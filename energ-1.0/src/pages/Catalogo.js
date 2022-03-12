@@ -12,9 +12,7 @@ export default class Catalogo extends Component {
         <Header/>
         <Container>
           <TarjetaProducto/>
-          <TarjetaProducto/>
-          <TarjetaProducto/>
-          <TarjetaProducto/>
+          
         </Container>
       </div>
     )
