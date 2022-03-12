@@ -1,5 +1,6 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Nav, Row } from "react-bootstrap";
+import {NavLink} from 'react-router-dom'
 
 
 class Header extends React.Component {
@@ -14,13 +15,12 @@ class Header extends React.Component {
             <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="button-addon2" />
           </Col>
           <Col>
-            <button class="btn btn-secondary d-flex align-items-start " type="button" id="button-addon2">icono</button>
+            <button class="btn btn-secondary d-flex align-items-start" type="button" id="button-addon2">icono</button>
           </Col>
           <Col>
-            <button
-              type="button"
-              className="btn btn-link d-flex align-items-center justify-content-end text-white"> Catálogo
-            </button>
+            <NavLink to="/catalogo" >
+            Catálogo
+            </NavLink>
           </Col>
           <Col>
             <button

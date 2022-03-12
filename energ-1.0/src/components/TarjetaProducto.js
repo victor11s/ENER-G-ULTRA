@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Card, Container, Form, Row, Col } from 'react-bootstrap';
+import img1 from '../assets/img/1.png'
 
 
 export default class TarjetaProducto extends Component {
@@ -7,7 +8,7 @@ export default class TarjetaProducto extends Component {
     return (
       <div>
           <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="1.png" style={{ width: '4rem'}}/>
+            <Card.Img variant="top" src={img1} style={{ width: '4rem'}}/>
             <Card.Body>
                 <Card.Title>Card Title</Card.Title>
                 <Card.Text>

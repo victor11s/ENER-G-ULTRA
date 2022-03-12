@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Header from "../components/Header";
 
 import TarjetaProducto from '../components/TarjetaProducto'
 import { Col, Container, Row } from "react-bootstrap";
@@ -8,13 +9,13 @@ export default class Catalogo extends Component {
   render() {
     return (
       <div>
+        <Header/>
         <Container>
           <TarjetaProducto/>
           <TarjetaProducto/>
           <TarjetaProducto/>
           <TarjetaProducto/>
         </Container>
-        
       </div>
     )
   }
