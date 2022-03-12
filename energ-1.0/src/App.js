@@ -1,6 +1,5 @@
 import Catalogo from "./pages/Catalogo.js";
 import LandingPage from "./pages/LandingPage";
-import { Component } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
