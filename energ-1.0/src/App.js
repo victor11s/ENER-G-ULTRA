@@ -1,8 +1,9 @@
-import Header from "./components/Header";
-import Feature1 from "./components/Feature1";
-import Feature2 from "./components/Feature2";
-import Feature3 from "./components/Feature3";
-import Footer from "./components/Footer";
+import Catalogo from "./pages/Catalogo.js";
+import LandingPage from "./pages/LandingPage";
+import { Component } from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
 import React from "react";
 // aqui se importan todos los componentes creados
 
@@ -11,15 +12,14 @@ import React from "react";
 const App = () => {
   return (
     <div>
-      <Header/>
-      <Feature1/>
-      <Feature2/>
-      <Feature3/>
-      <Footer/>
-    </div>
-    
-
-    
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} /> 
+        <Route path="/catalogo" element={<Catalogo />} />
+      </Routes>
+    </BrowserRouter>
+    {/* <TarjetaProducto/> */}
+  </div>
   );
 };
 
