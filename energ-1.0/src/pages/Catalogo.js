@@ -10,12 +10,13 @@ export default class Catalogo extends Component {
   render() {
     return (
       <div>
-        <Header/>
-        
+        <Header />
+
         <Container>
-          <TarjetaProducto/>
-          <FilterBar/>
-          
+          <FilterBar />
+          <TarjetaProducto />
+
+
         </Container>
       </div>
     )
