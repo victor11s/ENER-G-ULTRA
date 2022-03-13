@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from "../components/Header";
+import FilterBar from '../components/FilterBar';
 
 import TarjetaProducto from '../components/TarjetaProducto'
 import { Col, Container, Row } from "react-bootstrap";
@@ -10,8 +11,10 @@ export default class Catalogo extends Component {
     return (
       <div>
         <Header/>
+        
         <Container>
           <TarjetaProducto/>
+          <FilterBar/>
           
         </Container>
       </div>
