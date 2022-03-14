@@ -7,7 +7,7 @@ class Footer extends React.Component {
         return (
             <div >
                 <Row className="bg-danger">
-                    <Col className="text-center"> Estoy Vacio, como mi corazon xd </Col>
+                    <Col className="text-center"> Dererechos Reservados </Col>
 
                 </Row>
                 <Row className="bg-danger">
