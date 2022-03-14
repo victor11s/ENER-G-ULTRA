@@ -17,11 +17,18 @@ export default class TarjetaProducto extends Component {
                 </Card.Text>
                 <Container style={{align: 'center'}}>
                   <Row>
+<<<<<<< Updated upstream
                     <Col>
                     <Button variant="primary">-</Button>
                     </Col>
                     <Col>
                     <Form.Control type="number" placeholder="1" />
+=======
+                    <Col className="d-flex align-items-center justify-content-center">
+                      <div >
+                        <p><strong>$ 99.00</strong></p>
+                      </div>
+>>>>>>> Stashed changes
                     </Col>
                     <Col>
                     <Button variant="primary">+</Button>
