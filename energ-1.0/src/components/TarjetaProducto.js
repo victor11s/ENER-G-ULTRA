@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Card, Container, Form, Row, Col } from 'react-bootstrap';
 import img1 from '../assets/img/1.png'
-
+import {NavLink} from './NavComponent'
 
 
 function TarjetaProducto (props) {
@@ -24,7 +24,7 @@ function TarjetaProducto (props) {
                       
                     </Col>
                     <Col>
-                    <Button variant="danger">Ver producto</Button>
+                    <Button variant="danger"><NavLink to='/producto'>Ver producto</NavLink></Button>
                     </Col>
                   </Row>
                 </Container>
