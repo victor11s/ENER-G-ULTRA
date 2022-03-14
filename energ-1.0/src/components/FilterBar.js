@@ -6,8 +6,6 @@ import { Routes, Route } from "react-router-dom";
 
 export default class FilterBar extends Component {
   render() {
-
-   
     return (
       <div>
         <h5 className='mt-1 text-center main-heading'>Selecciona la categoría del Producto</h5>
