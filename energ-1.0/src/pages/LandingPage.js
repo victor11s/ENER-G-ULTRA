@@ -18,11 +18,9 @@ export default class LandingPage extends Component {
       <div>
 
       <NavBar/>
-     
       <Feature1/>
       <Feature2/>
       <Feature3/>
-      
       <Footer/>
       
     </div>

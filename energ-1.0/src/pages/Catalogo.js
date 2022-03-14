@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from "../components/Header";
 import FilterBar from '../components/FilterBar';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer'
 
 import TarjetaProducto from '../components/TarjetaProducto'
 import { Col, Container, Row } from "react-bootstrap";
@@ -25,23 +26,24 @@ export default class Catalogo extends Component {
           <FilterBar />
           {/* <TarjetaProducto nombre={producto.nombre}/> */}
 
-          <div className='row d-flex flex-row flex-wrap'>
+          <div >
             {
               Productos.map(producto => {
                 return (
-                  <div >
+                  <Row className='row d-flex flex-row flex-wrap'>
 
-                    <div className='col-md-4'>
-                    <TarjetaProducto nombre={producto.nombre} precio={producto.precio} />
-                    </div>
+                    <Col md={4} className='row d-flex flex-col flex-wrap'>
+                      <TarjetaProducto nombre={producto.nombre} precio={producto.precio} />
+                    </Col>
 
-                  </div>
+                  </Row>
                 )
               })
             }
 
           </div>
         </Container>
+        <Footer />
       </div>
     )
   }
