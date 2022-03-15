@@ -34,7 +34,7 @@ export default class TarjetaDetalleProducto extends Component {
                                     </Row>
                                 </Form>
                                 <Row>
-                                    <h3 className='mt-3'>INGREDIENTES</h3>
+                                    <h3 className='mt-5'>INGREDIENTES</h3>
                                     <Table responsive="sm">
 
                                         <thead>

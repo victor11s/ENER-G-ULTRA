@@ -10,7 +10,7 @@ function TarjetaProducto (props) {
          <Container className="" style={{align: 'center'}}>
            <Row>
             <Col>
-            <Card className="mt-5" style={{ width: '18rem' }}>
+            <Card className="mt-5 p-2" style={{ width: '18rem' }}>
             <Card.Img className="mt-2 mx-auto" variant="top" src={img1} style={{ width: '4rem'}}/>
             <Card.Body>
                 <Card.Title>{props.nombre}</Card.Title>
