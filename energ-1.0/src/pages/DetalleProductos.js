@@ -7,8 +7,12 @@ const DetalleProductos = () => {
   return (
     <div>
         <NavBar/>
+
           <h1>Aqui van los productos</h1>
           <h2>Eso es todo amigos</h2>
+
+        <h2>Eso es todo amigos</h2>
+
         <Footer/>
     </div>
   )
