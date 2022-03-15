@@ -10,7 +10,7 @@ const DetalleProductos = () => {
 
           <h1>Aqui van los productos</h1>
           <h2>Eso es todo amigos</h2>
-
+a
         <h2>Eso es todo amigos</h2>
 
         <Footer/>
