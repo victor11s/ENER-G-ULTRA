@@ -1,35 +1,44 @@
 import React, { Component } from 'react'
 import { Button, Card, Container, Form, Row, Col } from 'react-bootstrap';
 import img1 from '../assets/img/1.png'
+import {NavLink} from './NavComponent'
 
 
-export default class TarjetaProducto extends Component {
-  render() {
+function TarjetaProducto (props) {
     return (
       <div>
-          <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={img1} style={{ width: '4rem'}}/>
+         <Container className="" style={{align: 'center'}}>
+           <Row>
+            <Col>
+            <Card className="mt-5" style={{ width: '18rem' }}>
+            <Card.Img className="mt-2 mx-auto" variant="top" src={img1} style={{ width: '4rem'}}/>
             <Card.Body>
-                <Card.Title>Card Title</Card.Title>
+                <Card.Title>{props.nombre}</Card.Title>
                 <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
+                  {props.descripcion}
                 </Card.Text>
-                <Container style={{align: 'center'}}>
+                {/* <Container className="" style={{align: 'center'}}> */}
                   <Row>
-                    <Col>
-                    <Button variant="primary">-</Button>
+                    <Col className="d-flex align-items-center">
+                      <div >
+                        <p><strong>MXN$ {props.precio}</strong></p>
+                      </div>
                     </Col>
                     <Col>
-                    <Form.Control type="number" placeholder="1" />
-                    </Col>
-                    <Col>
-                    <Button variant="primary">Ver producto</Button>
+
+                    <Button variant="danger"><NavLink to='/detatalleProducto'>Ver producto</NavLink></Button>
+
                     </Col>
                   </Row>
-                </Container>
+                {/* </Container> */}
             </Card.Body>
-        </Card></div>
+        </Card>
+        </Col>
+        </Row>
+        </Container>
+        </div>
     )
-  }
 }
+
+export default TarjetaProducto;
+

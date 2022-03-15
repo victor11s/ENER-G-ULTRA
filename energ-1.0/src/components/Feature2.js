@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import img1 from '../assets/img/1.png'
+import img1 from '../assets/img/LATASF.png'
 
 
 class Feature2 extends React.Component {
@@ -9,7 +9,7 @@ class Feature2 extends React.Component {
             <div className="bg-danger">
                 <Row className="p-5">
                     <Col>
-                        <img class="rounded mx-auto d-block" src={img1} alt="..." />
+                    <img class="rounded mx-auto d-block" src={img1} style={{maxHeight: '30rem'}} alt="..." />
                     </Col>
                     <Col className="d-flex  justify-content-center">
                         <h1 class="display-1 lh-1 mb-3 d-flex align-items-center justify-content-center text-white">Ener-G ULTRA</h1>

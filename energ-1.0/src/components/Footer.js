@@ -5,9 +5,9 @@ import { Col, Container, Row } from "react-bootstrap";
 class Footer extends React.Component {
     render() {
         return (
-            <div >
+            <div className="mt-5">
                 <Row className="bg-danger">
-                    <Col className="text-center"> Estoy Vacio, como mi corazon xd </Col>
+                    <Col className="text-center"> Dererechos Reservados </Col>
 
                 </Row>
                 <Row className="bg-danger">
