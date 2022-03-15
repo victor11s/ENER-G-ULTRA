@@ -18,7 +18,18 @@ const Productos=
         precio:"25",
         categoria:"Bebida",
         stock:""
+    },
+
+    {
+        id:3,
+        imagen:"",
+        nombre:"Bebida 3",
+        descripcion:"Bebida sabor Mango",
+        precio:"45",
+        categoria:"Bebida",
+        stock:""
     }
+
 ]
 
 export default Productos;

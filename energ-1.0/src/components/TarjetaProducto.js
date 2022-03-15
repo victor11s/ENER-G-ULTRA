@@ -7,29 +7,35 @@ import {NavLink} from './NavComponent'
 function TarjetaProducto (props) {
     return (
       <div>
-          <Card className="mt-5" style={{ width: '18rem' }}>
+         <Container className="" style={{align: 'center'}}>
+           <Row>
+            <Col>
+            <Card className="mt-5" style={{ width: '18rem' }}>
             <Card.Img className="mt-2 mx-auto" variant="top" src={img1} style={{ width: '4rem'}}/>
             <Card.Body>
-                <Card.Title>{props.nombre} de prueba</Card.Title>
+                <Card.Title>{props.nombre}</Card.Title>
                 <Card.Text>
                 Some quick example text to build on the card title and make up the bulk of
                 the card's content.
                 </Card.Text>
-                <Container className="" style={{align: 'center'}}>
+                {/* <Container className="" style={{align: 'center'}}> */}
                   <Row>
                     <Col className="d-flex align-items-center">
                       <div >
                         <p><strong>MXN$ {props.precio}</strong></p>
                       </div>
-                      
                     </Col>
                     <Col>
                     <Button variant="danger"><NavLink to='/producto'>Ver producto</NavLink></Button>
                     </Col>
                   </Row>
-                </Container>
+                {/* </Container> */}
             </Card.Body>
-        </Card></div>
+        </Card>
+        </Col>
+        </Row>
+        </Container>
+        </div>
     )
 }
 

@@ -24,25 +24,30 @@ export default class Catalogo extends Component {
         <NavBar />
         <Container className='alig-items-center'>
           <FilterBar />
+          </Container>
           {/* <TarjetaProducto nombre={producto.nombre}/> */}
 
           <div >
-            {
-              Productos.map(producto => {
-                return (
-                  <Row className='row d-flex flex-row flex-wrap'>
-
-                    <Col md={4} className='row d-flex flex-col flex-wrap'>
+            <Container>
+              <Row className='row d-flex flex-row flex-wrap'>
+                {
+                  Productos.map(producto => {
+                    return (
+                      <>
+                  
+                    <Col  className='row d-flex flex-col flex-wrap md-4 sm-6' >
                       <TarjetaProducto nombre={producto.nombre} precio={producto.precio} />
                     </Col>
-
-                  </Row>
-                )
-              })
-            }
+                    
+                    </>
+                    )
+                  })
+                }
+              </Row>
+            </Container>
 
           </div>
-        </Container>
+        
         <Footer />
       </div>
     )
