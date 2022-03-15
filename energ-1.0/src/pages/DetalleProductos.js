@@ -12,6 +12,7 @@ const DetalleProductos = () => {
           <h2>Eso es todo amigos</h2>
 
         <h2>Eso es todo amigos</h2>
+        <h2>Esto fue antes del merge</h2>
 
         <Footer/>
     </div>
