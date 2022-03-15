@@ -10,7 +10,7 @@ const DetalleProductos = () => {
 
           <h1>Aqui van los productos</h1>
           <h2>Eso es todo amigos</h2>
-
+        <h3>Cambio realizado en main</h3>
         <h2>Eso es todo amigos</h2>
         <h2>Esto fue antes del merge</h2>
         <h3>Prueba pull request</h3>
