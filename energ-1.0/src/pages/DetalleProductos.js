@@ -8,11 +8,6 @@ const DetalleProductos = () => {
     <div>
         <NavBar/>
           
-          <h4>Imaginar que agregué codigo nuevo y hay Cambios en main</h4>
-
-
-
-
         <Footer/>
     </div>
   )
