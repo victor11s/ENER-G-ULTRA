@@ -7,6 +7,7 @@ const DetalleProductos = () => {
   return (
     <div>
         <NavBar/>
+        <h2>Eso es todo amigos</h2>
         <Footer/>
     </div>
   )
