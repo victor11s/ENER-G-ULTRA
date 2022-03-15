@@ -16,6 +16,7 @@ const DetalleProductos = () => {
           <h2>Esto fue antes del merge</h2>
           <h3>Prueba pull request</h3>
           <h3>Cambio realizado en main</h3>
+          <h4>Imaginar que agregué codigo nuevo y hay Cambios en main</h4>
 
 
         <Footer/>
