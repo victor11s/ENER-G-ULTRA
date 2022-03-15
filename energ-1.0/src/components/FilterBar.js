@@ -7,18 +7,18 @@ import { Routes, Route } from "react-router-dom";
 export default class FilterBar extends Component {
   render() {
     return (
-      <div>
-        <h5 className='mt-1 text-center main-heading'>Selecciona la categoría del Producto</h5>
-        <div className='menu-tabs container'>
-          <div className='menu-tab d-flex justify-content-around'>
-            <button className='btn btn-secondary'>Bebida</button>
-            <button className='btn btn-secondary'>Alimento</button>
-            <button className='btn btn-secondary'>Bebida2</button>
+      <div className='bg-light p-3'>
+        <Container className='alig-items-center'>
+          <h5 className='mb-2 text-center main-heading'>Selecciona la categoría del Producto</h5>
+          <div className='menu-tabs container'>
+            <div className='menu-tab d-flex justify-content-around'>
+              <button className='btn btn-secondary'>Bebida</button>
+              <button className='btn btn-secondary'>Alimento</button>
+              <button className='btn btn-secondary'>Bebida2</button>
+            </div>
           </div>
-
-        </div>
-
-        </div>
-    )  
+        </Container>
+      </div>
+    )
   }
 }
