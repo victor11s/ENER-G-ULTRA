@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 export default class FilterBar extends Component {
   render() {
     return (
-      <div className='bg-light p-2'>
+      <div className='bg-light p-3'>
         <Container className='alig-items-center mt-2'>
           <h5 className='mt-1 text-center main-heading'>Selecciona la categoría del Producto</h5>
           <div className='menu-tabs container'>
