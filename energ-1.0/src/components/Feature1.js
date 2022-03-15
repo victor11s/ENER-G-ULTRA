@@ -1,5 +1,5 @@
 import React from "react";
-import img1 from '../assets/img/1.png'
+import img1 from '../assets/img/LATASF.png'
 import { Col, Container, Row } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 
@@ -28,7 +28,7 @@ class Feature1 extends React.Component {
 
                     </Col>
                     <Col>
-                        <img class="rounded mx-auto d-block" src={img1} alt="..." />
+                        <img class="rounded mx-auto d-block" src={img1} style={{maxHeight: '30rem'}} alt="..." />
                     </Col>
                 </Row>
             </div>
