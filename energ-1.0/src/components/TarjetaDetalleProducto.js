@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import img1 from '../assets/img/LATASF.png'
 import { Button, Card, Col, Container, Form, Row, Table } from 'react-bootstrap'
+import ImageGallery from './ImageGallery'
 
 export default class TarjetaDetalleProducto extends Component {
     render() {
@@ -10,7 +11,7 @@ export default class TarjetaDetalleProducto extends Component {
                     <Container className='p-4'>
                         <Row>
                             <Col>
-                                <img class="rounded mx-auto d-block" src={img1} style={{ maxHeight: '30rem' }} alt="..." />
+                                <ImageGallery/>
                             </Col>
                             <Col>
                                 <Row>
