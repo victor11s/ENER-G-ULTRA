@@ -6,7 +6,6 @@ const Productos=
         nombre:"Bebida 1",
         descripcion:"Bebida sabor Limon",
         precio:"20",
-        categoria:"Bebida",
         stock:""
     },
 
@@ -16,7 +15,6 @@ const Productos=
         nombre:"Bebida 2",
         descripcion:"Bebida sabor Fresa",
         precio:"25",
-        categoria:"Bebida",
         stock:""
     },
 
@@ -26,7 +24,6 @@ const Productos=
         nombre:"Bebida 3",
         descripcion:"Bebida sabor Mango",
         precio:"45",
-        categoria:"Bebida",
         stock:""
     }
 

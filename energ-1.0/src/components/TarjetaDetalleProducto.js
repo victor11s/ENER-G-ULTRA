@@ -4,18 +4,18 @@ import { Button, Card, Col, Container, Form, Row, Table } from 'react-bootstrap'
 import ImageGallery from './ImageGallery'
 
 export default class TarjetaDetalleProducto extends Component {
-    render() {
+    render(props) {
         return (
             <div>
                 <Card className='mt-2'>
                     <Container className='p-4'>
                         <Row>
                             <Col>
-                                <ImageGallery/>
+                                <ImageGallery />
                             </Col>
                             <Col>
                                 <Row>
-                                    <h1 className='mt-4'>Bebida sabor limon</h1>
+                                    <h1 className='mt-4'>{this.props.nombreProducto}</h1>
                                 </Row>
                                 <Row>
                                     <p className='mr-6'>Lorem ipsum dolor sit amet. Eum odit omnis ex vero excepturi
@@ -26,11 +26,9 @@ export default class TarjetaDetalleProducto extends Component {
                                 <h2 className='text-danger'>MXN$20</h2>
                                 <Form className='mt-3'>
                                     <Row>
-                                        <Col className='sm-6 md-2 lg-2' >
-                                            <Form.Control type="number" placeholder="1" />
-                                        </Col>
-                                        <Col>
-                                            <Button variant='danger'>Agregar al carrito</Button>
+                                        <Col className='sm-6 md-2 lg-2 d-flex justify-content-start' >
+                                            <Form.Control style={{ maxWidth: "5rem" }} className="mw-20" type="number" defaultValue="1" pattern='^[0-9]+' min='1' />
+                                            <Button className='mx-3' variant='danger'>Agregar al carrito</Button>
                                         </Col>
                                     </Row>
                                 </Form>
