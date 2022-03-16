@@ -25,7 +25,7 @@ function TarjetaProducto(props) {
                     </div>
                   </Col>
                   <Col>
-                    <Button variant="danger"><NavLink to='/detatalleProducto'>Ver producto</NavLink></Button>
+                    <Button variant="danger"><NavLink to={`/detalleProducto/${props.id}`}>Ver producto</NavLink></Button>
                   </Col>
                 </Row>
                 {/* </Container> */}
