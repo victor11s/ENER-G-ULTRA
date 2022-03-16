@@ -42,7 +42,7 @@ export default class Catalogo extends Component {
                     <>
 
                       <Col className='row d-flex flex-col flex-wrap md-4 sm-6' >
-                        <TarjetaProducto nombre={producto.nombre} descripcion={producto.descripcion} precio={producto.precio} />
+                        <TarjetaProducto key={producto.id} nombre={producto.nombre} descripcion={producto.descripcion} precio={producto.precio} />
                       </Col>
 
                     </>

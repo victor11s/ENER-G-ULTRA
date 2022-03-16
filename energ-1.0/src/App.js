@@ -16,7 +16,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} /> 
         <Route path="/catalogo" element={<Catalogo />} />
-        <Route path="/detatalleProducto/*" element={<DetalleProductos />} />
+        <Route path="/detalleProducto/:id" element={<DetalleProductos />} />
         
         {/* Agregar rutas de perfil y noticias*/}
       </Routes>
