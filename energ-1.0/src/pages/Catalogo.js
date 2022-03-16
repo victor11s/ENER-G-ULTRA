@@ -11,10 +11,7 @@ import Productos from '../components/Productos';
 
 console.log(Productos)
 
-
-
 export default class Catalogo extends Component {
-
 
   render() {
 
@@ -40,11 +37,9 @@ export default class Catalogo extends Component {
                 Productos.map(producto => {
                   return (
                     <>
-
                       <Col className='row d-flex flex-col flex-wrap md-4 sm-6' >
                         <TarjetaProducto key={producto.id} id={producto.id} nombre={producto.nombre} descripcion={producto.descripcion} precio={producto.precio} />
                       </Col>
-
                     </>
                   )
                 })
