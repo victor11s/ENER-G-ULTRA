@@ -9,7 +9,7 @@ import { Breadcrumb, Col, Container, Row } from "react-bootstrap";
 import { Routes, Route, Link } from "react-router-dom";
 import Productos from '../components/Productos';
 
-console.log(Productos)
+{/* console.log(Productos)*/}
 
 export default class Catalogo extends Component {
 
