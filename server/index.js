@@ -9,15 +9,12 @@ const db = mysql.createPool({
     database: 'energultra'
 });
 
+db.connect((error) => {
+    if (error) {
+        console.error('Error de conexion es: ' + error);
+        return
+    }
+    console.log('Conectado a BD energultra')
+})
 
-app.get('/',(req, res)=>{
-    const sqlInsert = "INSERT INTO producto(nombre, descripcion, precio, stock, ingrendientes) VALUES ('Ener G boost','bebida energetica', 17 , 20 ,'extracto de guarana');";
-    db.query(sqlInsert,(err, result)=>{
-        res.send("Hola Axel, despues de insertar en la DB");
-    });
-    
-});
-
-app.listen(3001,() =>{
-  console.log('corriendo en 3001');
-});
+module.exports=db;
