@@ -1,4 +1,4 @@
-const db = require('../server/index');
+const db = require('../server/db');
 
 exports.save = (req, res) => {
     const nombre = req.body.nombre;
