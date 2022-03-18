@@ -5,7 +5,7 @@ import { Col, Container, Row } from "react-bootstrap";
 class Footer extends React.Component {
     render() {
         return (
-            <div className="mt-5">
+            <div className="mt-5 text-white">
                 <Row className="bg-danger">
                     <Col className="text-center"> Dererechos Reservados </Col>
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Card, Container, Form, Row, Col } from 'react-bootstrap';
-import img1 from '../assets/img/1.png'
+import img1 from '../assets/img/LATASF.png'
 import { NavLink } from './NavComponent'
 
 
@@ -11,7 +11,7 @@ function TarjetaProducto(props) {
         <Row>
           <Col>
             <Card className="mt-5 p-2" style={{ width: '18rem' }}>
-              <Card.Img className="mt-2 mx-auto" variant="top" src={img1} style={{ width: '4rem' }} />
+              <Card.Img className="mt-2 mx-auto" variant="top" src={img1} style={{ width: '12rem' }} />
               <Card.Body>
                 <Card.Title>{props.nombre}</Card.Title>
                 <Card.Text>
