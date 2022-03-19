@@ -16,7 +16,7 @@ const conexion= mysql.createConnection(
             console.error('El error de conexion es:'+ error);
             return
         }
-        console.log('Conectado a la BD de MySQL!');
+         console.log('Conectado a la BD de MySQL!');
 
     })
 

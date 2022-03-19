@@ -16,11 +16,12 @@ router.get('/', (req, res) => {
         if (error) {
             throw error;
         } else {
-            res.render('index', { results: results });
+            res.render('../index', { results: results });
         }
     })
 
 })
+
 const crud = require('./crud');
 router.post('/save', crud.save)
 

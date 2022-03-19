@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import Header from "../components/Header";
 import FilterBar from '../components/FilterBar';
 import NavBar from '../components/NavBar';
@@ -9,15 +9,22 @@ import { Breadcrumb, Col, Container, Row } from "react-bootstrap";
 import { Routes, Route, Link } from "react-router-dom";
 import Productos from '../components/Productos';
 
+import Axios from 'axios'
 console.log(Productos)
 
 
 
-export default class Catalogo extends Component {
-
-
-  render() {
-
+function Catalogo() {
+  
+  const [productoLista, setProductoLista] = useState([])
+    useEffect(()=>{
+      Axios.get('http://localhost:3001/api/get').then((response)=>{
+        // console.log(response.data);
+         setProductoLista(response.data)
+         
+      })
+    },[])
+    console.log(productoLista);
     return (
 
       <div>
@@ -37,12 +44,11 @@ export default class Catalogo extends Component {
 
             <Row className='row d-flex flex-row flex-wrap'>
               {
-                Productos.map(producto => {
+                productoLista.map(producto => {
                   return (
                     <>
-
                       <Col className='row d-flex flex-col flex-wrap md-4 sm-6' >
-                        <TarjetaProducto key={producto.id} id={producto.id} nombre={producto.nombre} descripcion={producto.descripcion} precio={producto.precio} />
+                        <TarjetaProducto key={producto.idProducto} id={producto.idProducto} nombre={producto.nombre} descripcion={producto.descripcion} precio={producto.precio} />
                       </Col>
 
                     </>
@@ -57,5 +63,6 @@ export default class Catalogo extends Component {
         <Footer />
       </div>
     )
-  }
+  
 }
+export default Catalogo;
