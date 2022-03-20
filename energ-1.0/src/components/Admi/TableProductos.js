@@ -6,6 +6,8 @@ import { AiOutlinePlusCircle} from "react-icons/ai";
 
 import { Row, Col } from 'react-bootstrap';
 
+import ModalProducto from './ModalProducto';
+
 
 
 
@@ -17,7 +19,7 @@ function TableProductos() {
     <div className='mt-5'>
       <Row className='mw-50'>
         <Col>
-        <Button href="" className="btn btn-danger mt-4 " size="lg" style={{width:85}} ><AiOutlinePlusCircle/></Button>
+        <Button href={<ModalProducto/>} className="btn btn-danger mt-4 " size="lg" style={{width:85}} ><AiOutlinePlusCircle/></Button>
         </Col>
       
       </Row>

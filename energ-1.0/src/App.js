@@ -5,6 +5,7 @@ import Catalogo from "./pages/Catalogo.js";
 import React from "react";
 import DetalleProductos from "./pages/DetalleProductos";
 import AdmiAgregarProducto from "./pages/AdmiAgregarProducto";
+import ModalProducto from "./components/Admi/ModalProducto";
 
 // aqui se importan todos los componentes creados
 
@@ -20,6 +21,8 @@ const App = () => {
         <Route path="/catalogo" element={<Catalogo />} />
         <Route path="/detalleProducto/:id" element={<DetalleProductos />} />
         <Route path="/admiAgregarProducto/" element={<AdmiAgregarProducto />} />
+        <Route path="/admiAgregarProducto/modalProducto" element={<ModalProducto />} />
+
         
         
         {/* Agregar rutas de perfil y noticias*/}
