@@ -17,7 +17,7 @@ function TableProductos() {
     <div className='mt-5'>
       <Row className='mw-50'>
         <Col>
-        <Button href="" class="btn btn-primary mt-4 " size="lg" style={{color:''}} ><AiOutlinePlusCircle/></Button>
+        <Button href="" className="btn btn-danger mt-4 " size="lg" style={{color:''}} ><AiOutlinePlusCircle/></Button>
         </Col>
       
       </Row>
