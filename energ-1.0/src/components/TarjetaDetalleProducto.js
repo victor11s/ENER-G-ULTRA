@@ -37,7 +37,6 @@ export default class TarjetaDetalleProducto extends Component {
                                 <Row>
                                     <h3 className='mt-5'>INGREDIENTES</h3>
                                     <Table responsive="sm">
-
                                         <thead>
                                             <tr>
                                                 <th className='justify-content-md-center'>LOREM IPSUM</th>
