@@ -10,6 +10,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import Productos from '../components/Productos';
 
 import Axios from 'axios'
+
 console.log(Productos)
 
 
@@ -17,14 +18,17 @@ console.log(Productos)
 function Catalogo() {
   
   const [productoLista, setProductoLista] = useState([])
+
     useEffect(()=>{
       Axios.get('http://localhost:3001/api/get').then((response)=>{
-        // console.log(response.data);
+         console.log(response.data);
          setProductoLista(response.data)
          
       })
     },[])
+    
     console.log(productoLista);
+    
     return (
 
       <div>
