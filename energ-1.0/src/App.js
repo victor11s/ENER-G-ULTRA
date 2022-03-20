@@ -4,6 +4,7 @@ import Catalogo from "./pages/Catalogo.js";
 
 import React from "react";
 import DetalleProductos from "./pages/DetalleProductos";
+import AdmiAgregarProducto from "./pages/AdmiAgregarProducto";
 
 // aqui se importan todos los componentes creados
 
@@ -18,6 +19,8 @@ const App = () => {
         <Route path="/" element={<LandingPage />} /> 
         <Route path="/catalogo" element={<Catalogo />} />
         <Route path="/detalleProducto/:id" element={<DetalleProductos />} />
+        <Route path="/admiAgregarProducto/" element={<AdmiAgregarProducto />} />
+        
         
         {/* Agregar rutas de perfil y noticias*/}
       </Routes>
