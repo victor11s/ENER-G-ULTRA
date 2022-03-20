@@ -1,10 +1,59 @@
 import React, { Component } from 'react'
 
-function TableProductos  () {
-  
-    return (
-      <div>TableProductos</div>
-    )
-  }
+import { Button, Container, Table } from 'react-bootstrap'
 
-export default TableProductos
+import { AiOutlinePlusCircle} from "react-icons/ai";
+
+import { Row, Col } from 'react-bootstrap';
+
+
+
+
+function TableProductos() {
+
+  const wellStyles = { minWidth: 100 };
+  return (
+    <Container>
+    <div className='mt-5'>
+      <Row className='mw-50'>
+        <Col>
+        <Button href="" class="btn btn-primary mt-4 " size="lg" style={{color:''}} ><AiOutlinePlusCircle/></Button>
+        </Col>
+      
+      </Row>
+       
+      <Table striped bordered hover variant="ligth" className='mt-3'>
+        <thead>
+          <tr>
+            
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Ingredientes</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>
+              <a href="" class="btn btn-outline-info">Editar</a>
+              <a href="" class="btn btn-outline-danger">Borrar</a>
+            </td>
+          </tr>
+         
+
+        </tbody>
+      </Table>
+    </div>
+    </Container>
+  )
+}
+
+export default TableProductos;
