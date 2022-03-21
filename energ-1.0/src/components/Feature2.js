@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import img1 from '../assets/img/LATASF.png'
+import { div } from "./LandingStyle";
 
 
 class Feature2 extends React.Component {
