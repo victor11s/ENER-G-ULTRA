@@ -5,18 +5,10 @@ import ImageGallery from './ImageGallery'
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 
-
 function TarjetaDetalleProducto() {
-
     let { id, nombre } = useParams();
-
     const [producto, setProducto] = useState([]);
     const [ingredientes, setIngredientes] = useState([]);
-
-    async function getProducto() {
-
-    }
-
 
     useEffect(() => {
         const axiosGet = async () => {
@@ -73,7 +65,7 @@ function TarjetaDetalleProducto() {
                                 <Table responsive="sm">
                                     <thead>
                                         <tr>
-                                            <th className='justify-content-md-center'>Tu bebida {nombre} contiene: </th>
+                                            <th className='justify-content-md-center'>TU BEBIDA {nombre} CONTIENE: </th>
                                             <th ></th>
                                         </tr>
                                     </thead>
@@ -81,7 +73,8 @@ function TarjetaDetalleProducto() {
 
                                         {
                                             ingredientes.map(ingrediente => {
-                                            let ingM = ingrediente.charAt(0).toUpperCase()+ingrediente.slice(1);
+                                            let ingM = ingrediente.trim()
+                                            ingM= ingM.charAt(0).toUpperCase()+ingM.slice(1);
                                                 return (
                                                     <tr key={ingrediente.toString() + 'a'}>
                                                         <td key={ingrediente.toString() + 'b'}>{ingM}</td>
@@ -98,6 +91,5 @@ function TarjetaDetalleProducto() {
             </Card>
         </div>
     )
-
 }
 export default TarjetaDetalleProducto;
