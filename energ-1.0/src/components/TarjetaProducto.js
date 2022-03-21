@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import { Button, Card, Container, Form, Row, Col } from 'react-bootstrap';
+
 import img1 from '../assets/img/LATASF.png'
+
 import { NavLink } from './NavComponent'
 
 
+
 function TarjetaProducto(props) {
+  
+
   return (
     <div>
       <Container className="" style={{ align: 'center' }}>
@@ -25,7 +30,7 @@ function TarjetaProducto(props) {
                     </div>
                   </Col>
                   <Col>
-                    <Button variant="danger"><NavLink to={`/detalleProducto/${props.id}`}>Ver producto</NavLink></Button>
+                    <Button variant="danger"><NavLink to={`/detalleProducto/${props.id}/${props.nombre}`}>Ver producto</NavLink></Button>
                   </Col>
                 </Row>
                 {/* </Container> */}
