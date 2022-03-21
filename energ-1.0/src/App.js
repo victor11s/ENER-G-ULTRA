@@ -21,7 +21,7 @@ const App = () => {
         <Route path="/catalogo" element={<Catalogo />} />
         <Route path="/detalleProducto/:id" element={<DetalleProductos />} />
         <Route path="/admiAgregarProducto/" element={<AdmiAgregarProducto />} />
-        <Route path="/admiAgregarProducto/modalProducto" element={<ModalProducto />} />
+        
 
         
         

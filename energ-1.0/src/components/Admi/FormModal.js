@@ -1,37 +1,38 @@
+import React, { Component, useState } from 'react'
 import { Button, Form } from "react-bootstrap"
 
 const FormModal = () => {
     return (
         <Form>
-            <Form.Group>
+            <Form.Group >
                 <Form.Control
                     type="text"
                     placeholder="Nombre"
                     required
                 />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mt-3">
                 <Form.Control
                     type="text"
                     placeholder="Descripcion"
                     rows={3}
                 />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mt-3">
                 <Form.Control
                     type="number"
                     placeholder="Precio"
                     required
                 />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mt-3">
                 <Form.Control
                     type="number"
                     placeholder="Stock"
                     required
                 />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mt-3">
                 <Form.Control
                     type="text"
                     placeholder="Ingredientes"
@@ -39,7 +40,7 @@ const FormModal = () => {
                 />
             </Form.Group>
 
-            <Button variant="success" type="submit" block>
+            <Button variant="danger" type="submit"  className="mt-3"block>
                 Agregar Producto
             </Button>
             
