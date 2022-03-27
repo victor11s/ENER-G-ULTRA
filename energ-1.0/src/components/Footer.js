@@ -1,21 +1,25 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-
+import { Nav } from './NavComponent';
 
 class Footer extends React.Component {
     render() {
         return (
-            <div className="mt-5 text-white">
-                <Row className="bg-danger">
-                    <Col className="text-center"> Dererechos Reservados </Col>
+            <Nav>
+                <div className="text-white">
+                    <Row className="bg">
+                        <Col className="text-center"> Dererechos Reservados </Col>
 
-                </Row>
-                <Row className="bg-danger">
-                    <Col className="text-center"> Ener-G Ultra (2022) </Col>
+                    </Row>
+                    <Row className="bg">
+                        <Col className="text-center"> Ener-G Ultra (2022) </Col>
 
-                </Row>
+                    </Row>
 
-            </div>
+                </div>
+
+
+            </Nav>
 
 
         );
