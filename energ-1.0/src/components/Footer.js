@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { Nav } from './NavComponent'
+import { Nav } from './NavComponent';
 
 class Footer extends React.Component {
     render() {

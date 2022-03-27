@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import TarjetaDetalleProducto from '../components/TarjetaDetalleProducto'
 import { Container, Breadcrumb } from 'react-bootstrap'
 
+
 const DetalleProductos = () => {
   return (
     <div>

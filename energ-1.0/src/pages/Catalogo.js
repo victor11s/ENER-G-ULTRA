@@ -50,12 +50,9 @@ function Catalogo() {
               {
                 productoLista.map(producto => {
                   return (
-                    <>
-                      <Col className='row d-flex flex-col flex-wrap md-4 sm-6' >
-                        <TarjetaProducto key={producto.idProducto} id={producto.idProducto} nombre={producto.nombre} descripcion={producto.descripcion} precio={producto.precio} />
+                      <Col className='row d-flex flex-col flex-wrap md-4 sm-6' key={producto.idProducto.toString()+'b'}>
+                        <TarjetaProducto key={producto.idProducto.toString()+'a'} id={producto.idProducto} nombre={producto.nombre} descripcion={producto.descripcion} precio={producto.precio} />
                       </Col>
-
-                    </>
                   )
                 })
               }
