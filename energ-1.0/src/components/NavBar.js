@@ -1,5 +1,5 @@
 import React from 'react'
-
+import imgLogo from '../assets/img/Logo-Energultra.png'
 import { Nav, NavLink, Bars, NavMenu, NavBtn,NavBtnLink} from './NavComponent'
 
 const NavBar = () => {
@@ -7,7 +7,7 @@ const NavBar = () => {
     <>
     <Nav>
         <NavLink to='/'>
-            <h1>Logo</h1>
+        <img src={imgLogo} alt=""  style={{width:75}} />
             {/*Para el logo */}
             {/* <img src='' alt=''/>*/}
         </NavLink>
