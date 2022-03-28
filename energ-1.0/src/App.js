@@ -21,6 +21,7 @@ const App = () => {
         <Route path="/" element={<LandingPage />} /> 
         <Route path="/catalogo" element={<Catalogo />} />
         <Route path="/detalleProducto/:id/:nombre" element={<DetalleProductos />} />
+        <Route path="/detalleProducto/:pIdProducto/:pNombreProducto/:pIdCarrito" element={<DetalleProductos />} />
         <Route path="/admiAgregarProducto/" element={<AdmiAgregarProducto />} />
         <Route path="/carrito/" element={<Carrito />} />
         

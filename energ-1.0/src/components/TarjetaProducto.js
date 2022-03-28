@@ -45,14 +45,7 @@ function TarjetaProducto(props) {
                 </Row>
                 <Row>
                   <Col className="mt-2 d-grid" >
-
-
-
-                    <Button size="md" variant="dark" >  <NavLink to={`/detalleProducto/${props.id}/${props.nombre}`} className="d-grid" >Ver producto</NavLink></Button>
-
-
-
-
+                    <Button size="md" variant="dark" >  <NavLink to={`/detalleProducto/${props.id}/${props.nombre}/1`} className="d-grid" >Ver producto</NavLink></Button>
                   </Col>
                 </Row>
                 {/* </Container> */}
