@@ -40,7 +40,7 @@ function TarjetaDetalleProducto() {
     };
 
     const agregarProductoCarrito = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         // console.log(sCantidadProducto);
         Axios.post('http://localhost:3001/api/agregarCarrito',
                 { 

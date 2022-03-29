@@ -24,6 +24,7 @@ export default function (props) {
                  console.log(response.data);
                 // setProducto(response.data[0]);
             });
+            window.location.reload();
     }
 
     return (

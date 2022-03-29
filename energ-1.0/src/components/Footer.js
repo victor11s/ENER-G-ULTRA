@@ -7,14 +7,14 @@ class Footer extends React.Component {
         return (
             <Nav>
                 <div className="text-white">
-                    <Row className="bg">
-                        <Col className="text-center"> Dererechos Reservados </Col>
+                    {/* <Row className="bg">
+                        <Col className="text-center"> Derechos Reservados </Col>
 
                     </Row>
                     <Row className="bg">
                         <Col className="text-center"> Ener-G Ultra (2022) </Col>
 
-                    </Row>
+                    </Row> */}
 
                 </div>
 
