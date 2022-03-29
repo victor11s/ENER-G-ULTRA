@@ -15,7 +15,7 @@ const DetalleProductos = () => {
         {/* No se uso Breadcrumb.item por que no deja dar color al link */}
             <li className="breadcrumb-item"><Link className='text-danger' to='/'>Home</Link></li>
             <li className="breadcrumb-item"><Link className='text-danger' to='/catalogo'>Catálogo</Link></li>
-            <li className="breadcrumb-item active" aria-current="page">producto</li>       
+            <li className="breadcrumb-item active" aria-current="page">Producto</li>       
         </Breadcrumb>
         <TarjetaDetalleProducto />
       </Container>

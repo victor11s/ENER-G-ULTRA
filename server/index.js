@@ -68,6 +68,28 @@ app.post('/api/agregarCarrito', (req, res) => {
 
 });
 
+app.get('/api/getCarrito', (req, res) => {
+    const idCarrito = req.query.idCarrito;
+    const sqlSelect = "SELECT producto.idProducto, nombre, cantidad,precio,stock FROM productocarrito JOIN producto ON producto.idProducto=productocarrito.idProducto WHERE idCarrito = (?)";
+    db.query(sqlSelect,[idCarrito], (err, result) => {
+        res.send(result);
+        // res.send("Despues de seleccionar en la DB");
+    });
+});
+
+app.delete('/api/eliminarItem', (req, res) => {
+    const idCarrito = req.query.idCarrito;
+    const idProducto = req.query.idProducto;
+    console.log([idCarrito,idProducto]);
+    const sqlSelect = "DELETE FROM productocarrito WHERE idCarrito = (?) AND idProducto = (?)";
+    db.query(sqlSelect,[idCarrito,idProducto], (err, result) => {
+        // console.log(result);
+        res.send(result);
+        
+        // res.send("Despues de seleccionar en la DB");
+    });
+});
+
 app.listen(3001, () => {
     console.log('corriendo en 3001');
 });
