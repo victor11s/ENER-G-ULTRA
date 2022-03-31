@@ -3,6 +3,7 @@ import Axios from 'axios';
 import imgLogo from '../assets/img/Logo-Energultra.png';
 import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink } from './NavComponent';
 import { Badge, Col } from "react-bootstrap";
+import IniciarSesion from './CreacionPerfil/IniciarSesion';
 
 function NavBar() {
   let [sNumProductosCarrito, setNumProductos] = useState(0);
@@ -62,7 +63,7 @@ function NavBar() {
           <Col>
             <NavBtn>
 
-              <NavBtnLink to="/signin">Iniciar Sesión</NavBtnLink>
+              <NavBtnLink to="/iniciarSesion" >Iniciar Sesión</NavBtnLink>
 
             </NavBtn>
           </Col>
