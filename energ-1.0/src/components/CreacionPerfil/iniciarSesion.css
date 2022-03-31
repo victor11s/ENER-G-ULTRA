@@ -1,0 +1,18 @@
+.btn-danger
+{
+    color: fff;
+    background-color: red !important;
+    border-color: lightcoral;
+}
+
+.iniciarSesion-imagen
+{
+    width: 70px;
+    height: 70px;
+    margin-bottom: 2rem;
+}
+
+.register
+{
+    color: black;
+}
