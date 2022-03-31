@@ -8,6 +8,7 @@ import AdmiAgregarProducto from "./pages/AdmiAgregarProducto";
 import ModalProducto from "./components/Admi/ModalProducto";
 import Carrito from "./pages/Carrito";
 import IniciarSesion from "./components/CreacionPerfil/IniciarSesion";
+import Registrarse from "./components/CreacionPerfil/Registrarse";
 
 // aqui se importan todos los componentes creados
 
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/admiAgregarProducto/" element={<AdmiAgregarProducto />} />
         <Route path="/carrito/:pIdCarrito" element={<Carrito />} />
         <Route path="/iniciarSesion" element={<IniciarSesion />} />
+        <Route path="/registrar" element={<Registrarse />} />
 
         
 

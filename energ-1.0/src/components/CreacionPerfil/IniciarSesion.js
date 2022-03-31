@@ -5,6 +5,8 @@ import NavBar from '../NavBar'
 import iniciar from '../../assets/img/user.png'
 import "./iniciarSesion.css"
 
+import { Link } from 'react-router-dom'
+
 export default function IniciarSesion() {
     return (
         <>
@@ -29,8 +31,7 @@ export default function IniciarSesion() {
                                 Iniciar Sesión
                             </Button>
                             <div className='text-right mt-3'>
-                                <a href=''><small className='register'>Registrarse</small></a>
-                                {/* <a href=''><small className='register'>Reestablecer Contraseña</small></a> */}
+                                <Button variant="btn btn-link"><Link className='register' to='/registrar'>Registrarse</Link></Button>
                             </div>
                         </Form>
                     </Col>
