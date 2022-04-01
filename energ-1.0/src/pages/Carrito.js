@@ -36,7 +36,14 @@ export default function Carrito() {
         console.log(id);
         console.log(nuevosProductos);
     }
-
+    const actualizarCantidad = (id, cantidad) =>{
+        const nuevosProductos = sProductos.map(producto => {
+            if(producto.idProducto=id)producto.cantidad=cantidad;
+        });
+        setProductos(nuevosProductos);
+        console.log(id);
+        console.log(nuevosProductos);
+    }
     // console.log(sProductos);
     let productosLista; 
     if(sProductos.length>0){
@@ -51,7 +58,9 @@ export default function Carrito() {
                     cantidad={producto.cantidad}
                     precio={producto.precio}
                     stock={producto.stock}
-                    eliminarItem = {eliminarItem}/>
+                    eliminarItem = {eliminarItem}
+                    actualizarCantidad = {actualizarCantidad}/>
+                    
             )
         })
     }else{

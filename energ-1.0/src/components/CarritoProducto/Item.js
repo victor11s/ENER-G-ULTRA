@@ -11,22 +11,63 @@ export default function (props) {
     }
 
     const eliminarItem = (event) => {
+
         props.eliminarItem(props.id);
         Axios.delete('http://localhost:3001/api/eliminarItem',
             {
-                params:{
+                params: {
                     idProducto: props.id,
                     idCarrito: props.idCarrito,
                 }
-                
+
             }).then((response) => {
-                
-                 console.log(response.data);
+
+                console.log(response.data);
                 // setProducto(response.data[0]);
             });
-            window.location.reload();
-    }
+        window.location.reload();
 
+    }
+    const actualizarCantidadEnter = (event) => {
+        if (event.key === "Enter") {
+            if (event.target.value != '' && event.target.value > 0 && event.target.value <= 24) {
+                props.actualizarCantidad(props.id, event.target.value);
+                Axios.put('http://localhost:3001/api/actualizarCantidad',
+                    {
+
+                        idProducto: props.id,
+                        idCarrito: props.idCarrito,
+                        cantidad: event.target.value,
+
+                    }).then((response) => {
+
+                        console.log(response.data);
+                        // setProducto(response.data[0]);
+                    });
+                window.location.reload();
+            }
+        }
+    }
+    const actualizarCantidadBlur = (event) => {
+
+        if (event.target.value != '' && event.target.value > 0 && event.target.value <= 24) {
+            props.actualizarCantidad(props.id, event.target.value);
+            Axios.put('http://localhost:3001/api/actualizarCantidad',
+                {
+
+                    idProducto: props.id,
+                    idCarrito: props.idCarrito,
+                    cantidad: event.target.value,
+
+                }).then((response) => {
+
+                    console.log(response.data);
+                    // setProducto(response.data[0]);
+                });
+            window.location.reload();
+        }
+
+    }
     return (
         <tr>
             <td>
@@ -51,17 +92,19 @@ export default function (props) {
                             <Col className="col-10">
                                 <h3>{props.nombre}</h3>
                                 <p variant='success'>{disponibilidad}</p>
-                                <Form className='mt-3'>
+                                <Form className='mt-3' >
                                     <Row>
                                         <Col className='sm-6 md-2 lg-2 d-flex justify-content-start' >
-                                            <label style={{marginRight: "1rem"}}>Cantidad:</label>
+                                            <label style={{ marginRight: "1rem" }}>Cantidad:</label>
                                             {/* <Button className='mx-3' variant='danger' style={{ minWidth: "2rem" }}>-</Button> */}
-                                            <Form.Control style={{ maxWidth: "5rem" }} 
-                                                className="mw-20" 
-                                                type="number" 
-                                                defaultValue={props.cantidad} 
-                                                pattern='^[0-9]+' 
-                                                min='1' max='24' />
+                                            <Form.Control style={{ maxWidth: "5rem" }}
+                                                className="mw-20"
+                                                type="number"
+                                                defaultValue={props.cantidad}
+                                                pattern='^[0-9]+'
+                                                min='1' max='24'
+                                                onKeyDown={actualizarCantidadEnter}
+                                                onBlur={actualizarCantidadBlur} />
                                             {/* <Button className='mx-3' variant='danger' style={{ minWidth: "2rem" }}>+</Button> */}
                                         </Col>
                                     </Row>

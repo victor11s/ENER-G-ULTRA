@@ -49,19 +49,19 @@ app.post('/api/agregarCarrito', (req, res) => {
     const idCarrito = req.body.idCarrito;
     const idProducto = req.body.idProducto;
     const cantidadProducto = req.body.cantidadProducto;
-    
+
 
     const sqlSelect = "SELECT * FROM productocarrito WHERE idProducto=(?) AND idCarrito=(?)";
     db.query(sqlSelect, [idProducto, idCarrito], (error, result) => {
         // console.log(result[0]);
         if (result[0]) {
             res.send("Producto ya insertado:" + result[0]);
-        }else{
+        } else {
             const sqlInsert = "INSERT INTO productocarrito(idCarrito, idProducto, Cantidad) VALUES (?,?,?)";
             db.query(sqlInsert, [idCarrito, idProducto, cantidadProducto], (err, result) => {
                 res.send("Producto insertado");
                 console.log([idCarrito, idProducto, cantidadProducto]);
-            });  
+            });
         }
     });
 
@@ -71,7 +71,7 @@ app.post('/api/agregarCarrito', (req, res) => {
 app.get('/api/getCarrito', (req, res) => {
     const idCarrito = req.query.idCarrito;
     const sqlSelect = "SELECT producto.idProducto, nombre, cantidad,precio,stock FROM productocarrito JOIN producto ON producto.idProducto=productocarrito.idProducto WHERE idCarrito = (?)";
-    db.query(sqlSelect,[idCarrito], (err, result) => {
+    db.query(sqlSelect, [idCarrito], (err, result) => {
         res.send(result);
         // res.send("Despues de seleccionar en la DB");
     });
@@ -80,14 +80,30 @@ app.get('/api/getCarrito', (req, res) => {
 app.delete('/api/eliminarItem', (req, res) => {
     const idCarrito = req.query.idCarrito;
     const idProducto = req.query.idProducto;
-    console.log([idCarrito,idProducto]);
+    console.log([idCarrito, idProducto]);
     const sqlSelect = "DELETE FROM productocarrito WHERE idCarrito = (?) AND idProducto = (?)";
-    db.query(sqlSelect,[idCarrito,idProducto], (err, result) => {
+    db.query(sqlSelect, [idCarrito, idProducto], (err, result) => {
         // console.log(result);
         res.send(result);
-        
+
         // res.send("Despues de seleccionar en la DB");
     });
+});
+
+app.put('/api/actualizarCantidad', (req, res) => {
+    const idCarrito = req.body.idCarrito;
+    const idProducto = req.body.idProducto;
+    const cantidad = req.body.cantidad;
+    if (cantidad != undefined) {
+        console.log([idCarrito, idProducto]);
+        const sqlSelect = "UPDATE productocarrito SET cantidad = (?) WHERE idCarrito = (?) AND idProducto = (?)";
+        db.query(sqlSelect, [cantidad, idCarrito, idProducto], (err, result) => {
+            // console.log(result);
+            res.send(result);
+
+            // res.send("Despues de seleccionar en la DB");
+        });
+    }
 });
 
 app.listen(3001, () => {
