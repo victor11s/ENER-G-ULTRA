@@ -60,13 +60,7 @@ function NavBar() {
             </NavLink>
           </Col>
 
-          <Col>
-            <NavBtn>
-
-              <NavBtnLink to="/iniciarSesion" >Iniciar Sesión</NavBtnLink>
-
-            </NavBtn>
-          </Col>
+       
 
 
 

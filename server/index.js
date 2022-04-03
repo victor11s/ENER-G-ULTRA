@@ -106,6 +106,22 @@ app.put('/api/actualizarCantidad', (req, res) => {
     }
 });
 
+// para agregar usuarios
+app.post('/api/agregarUsuario', (req, res) => {
+
+
+
+})
+
+app.get('/api/consultarUsuario', (req, res) => {
+        const nombreUsuario = req.query.nombreUsuario;
+        const sqlSelect = "SELECT nombreUsuario FROM usuario WHERE nombreUsuario = (?)";
+        db.query(sqlSelect, [nombreUsuario], (err, result) => {
+            res.send(result);
+            // res.send("Despues de seleccionar en la DB");
+        });
+    });
+
 app.listen(3001, () => {
     console.log('corriendo en 3001');
 });

@@ -43,14 +43,14 @@ function TarjetaDetalleProducto() {
         // event.preventDefault();
         // console.log(sCantidadProducto);
         Axios.post('http://localhost:3001/api/agregarCarrito',
-                { 
-                        idProducto: pIdProducto,
-                        idCarrito: pIdCarrito,
-                        cantidadProducto: sCantidadProducto,
-                }).then((response) => {
-                    console.log(response.data);
-                    // setProducto(response.data[0]);
-                });
+            {
+                idProducto: pIdProducto,
+                idCarrito: pIdCarrito,
+                cantidadProducto: sCantidadProducto,
+            }).then((response) => {
+                console.log(response.data);
+                // setProducto(response.data[0]);
+        });
     };
 
     // console.log(ingredientes);
