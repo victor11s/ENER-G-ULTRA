@@ -109,18 +109,28 @@ app.put('/api/actualizarCantidad', (req, res) => {
 // para agregar usuarios
 app.post('/api/agregarUsuario', (req, res) => {
 
+    const nombreUsuario = req.body.nombreUsuario;
+    const contraseña = req.body.contraseña;
+    const nombre = req.body.nombre;
+    const apellido = req.body.apellido;
+
+    const sqlInsert = "INSERT INTO usuario(nombreUsuario, contraseña, nombre, apellido, tipo) VALUES (?,?,?,?,?)";
+    db.query(sqlInsert, [nombreUsuario, contraseña, nombre, apellido,"usuario"], (err, result) => {
+        res.send("Producto insertado");
+        console.log([nombreUsuario, contraseña, nombre, apellido]);
+    });
 
 
 })
 
 app.get('/api/consultarUsuario', (req, res) => {
-        const nombreUsuario = req.query.nombreUsuario;
-        const sqlSelect = "SELECT nombreUsuario FROM usuario WHERE nombreUsuario = (?)";
-        db.query(sqlSelect, [nombreUsuario], (err, result) => {
-            res.send(result);
-            // res.send("Despues de seleccionar en la DB");
-        });
+    const nombreUsuario = req.query.nombreUsuario;
+    const sqlSelect = "SELECT nombreUsuario FROM usuario WHERE nombreUsuario = (?)";
+    db.query(sqlSelect, [nombreUsuario], (err, result) => {
+        res.send(result);
+        // res.send("Despues de seleccionar en la DB");
     });
+});
 
 app.listen(3001, () => {
     console.log('corriendo en 3001');

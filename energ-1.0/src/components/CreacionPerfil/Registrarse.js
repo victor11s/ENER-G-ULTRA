@@ -1,15 +1,18 @@
-import React from 'react'
-import { Container, Row, Col, Button, Form, useState } from 'react-bootstrap'
+
+import { Container, Row, Col, Button, Form, Modal, ModalHeader } from 'react-bootstrap'
 import Footer from '../Footer'
 import NavBar from '../NavBar'
 import iniciar from '../../assets/img/user.png'
 import Axios from 'axios'
 import "./iniciarSesion.css"
+import YaRegistrado from './YaRegistrado'
+
+import React, { Component, useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
 class Registrarse extends React.Component {
-    
+
     state =
         {
             form:
@@ -23,7 +26,7 @@ class Registrarse extends React.Component {
             errorMsg: ""
 
         }
-    
+
 
     handleSubmit = e => {
         e.preventDefault();
@@ -40,7 +43,9 @@ class Registrarse extends React.Component {
         console.log(this.state.form);
     }
 
-    handleBoton= () => {
+
+
+    handleBoton = () => {
         console.log(this.state.form);
         Axios.get('http://localhost:3001/api/consultarUsuario',
             {
@@ -48,31 +53,36 @@ class Registrarse extends React.Component {
                     nombreUsuario: this.state.form.nombreUsuario,
                 }
             }).then((response) => {
-                if(response.data[0]){
+                if (response.data[0]) {
+
+                    alert('Nombre Usuario tomado, selecciona otro Usuario');
+
                     console.log("Handle Modal:");
                     console.log(response.data);
-                }else{
-                    console.log("Usuario no registrado");
+
+                } else {
                     
+                    Axios.post('http://localhost:3001/api/agregarUsuario',
+                        {
+                            nombreUsuario: this.state.form.nombreUsuario,
+                            contraseña: this.state.form.contraseña,
+                            nombre: this.state.form.nombre,
+                            apellido: this.state.form.apellido,
+                        }).then((response) => {
+                            console.log(response.data);
+                            console.log("enviado");
+                            alert('Usuario Creado');
+                        });
                 }
             });
-
-
-
-        // Axios.post('http://localhost:3001/api/agregarUsuario',
-        //     {
-        //         idProducto: pIdProducto,
-        //         idCarrito: pIdCarrito,
-        //         cantidadProducto: sCantidadProducto,
-        //     }).then((response) => {
-        //         console.log(response.data);
-        //         // setProducto(response.data[0]);
-        //     });
-        // console.log("enviado");
     }
 
 
+
     render() {
+
+
+
         return (
             <>
                 <NavBar />
@@ -108,7 +118,12 @@ class Registrarse extends React.Component {
                         </Col>
                         <Col></Col>
                     </Row>
+
+
+
                 </Container>
+
+
                 <Footer />
 
             </>
