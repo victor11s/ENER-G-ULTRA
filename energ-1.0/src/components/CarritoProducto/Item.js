@@ -11,7 +11,6 @@ export default function (props) {
     }
 
     const eliminarItem = (event) => {
-
         props.eliminarItem(props.id);
         Axios.delete('http://localhost:3001/api/eliminarItem',
             {
@@ -40,7 +39,6 @@ export default function (props) {
                         cantidad: event.target.value,
 
                     }).then((response) => {
-
                         console.log(response.data);
                         // setProducto(response.data[0]);
                     });
