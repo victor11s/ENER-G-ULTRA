@@ -1,4 +1,3 @@
-
 import { Container, Row, Col, Button, Form, Modal, ModalHeader } from 'react-bootstrap'
 import Footer from '../Footer'
 import NavBar from '../NavBar'
@@ -6,6 +5,8 @@ import iniciar from '../../assets/img/user.png'
 import Axios from 'axios'
 import "./iniciarSesion.css"
 import YaRegistrado from './YaRegistrado'
+import md5 from 'md5'
+
 
 import React, { Component, useState } from 'react'
 
@@ -65,7 +66,7 @@ class Registrarse extends React.Component {
                     Axios.post('http://localhost:3001/api/agregarUsuario',
                         {
                             nombreUsuario: this.state.form.nombreUsuario,
-                            contraseña: this.state.form.contraseña,
+                            contraseña:  md5(this.state.form.contraseña),
                             nombre: this.state.form.nombre,
                             apellido: this.state.form.apellido,
                         }).then((response) => {
