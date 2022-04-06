@@ -9,6 +9,7 @@ import ModalProducto from "./components/Admi/ModalProducto";
 import Carrito from "./pages/Carrito";
 import IniciarSesion from "./components/CreacionPerfil/IniciarSesion";
 import Registrarse from "./components/CreacionPerfil/Registrarse";
+import PayPalModule from "./components/PayPalCheckout/PayPalModule";
 
 // aqui se importan todos los componentes creados
 
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/carrito/:pIdCarrito" element={<Carrito />} />
         <Route path="/iniciarSesion" element={<IniciarSesion />} />
         <Route path="/registrar" element={<Registrarse />} />
+        <Route path="/checkout" element={<PayPalModule />} />
 
         
 

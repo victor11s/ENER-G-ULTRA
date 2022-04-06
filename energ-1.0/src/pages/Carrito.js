@@ -4,6 +4,7 @@ import Axios from 'axios'
 import { Button, Card, Col, Container, Form, Row, Table } from 'react-bootstrap'
 import Footer from '../components/Footer'
 import NavBar from '../components/NavBar'
+import { Link } from 'react-router-dom';
 import img1 from '../assets/img/LATASF.png'
 
 import Item from '../components/CarritoProducto/Item'
@@ -99,7 +100,8 @@ export default function Carrito() {
                             </Col>
                             <Col className='sm-6 md-2 lg-2 d-flex justify-content-end' >
                                 <Button className='mx-3' variant='danger' disabled={estadoBoton}>
-                                    Proceder pago
+                                    <Link to="/checkout">Proceder pago</Link>
+                                    
                                 </Button>
                             </Col>
                         </Row>
