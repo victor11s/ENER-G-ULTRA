@@ -100,7 +100,7 @@ export default function Carrito() {
                             </Col>
                             <Col className='sm-6 md-2 lg-2 d-flex justify-content-end' >
                                 <Button className='mx-3' variant='danger' disabled={estadoBoton}>
-                                    <NavLink to="/checkout"> Proceder pago</NavLink>
+                                    <NavLink to={`/checkout/${total}`}> Proceder pago</NavLink>
                                 </Button>
                             </Col>
                         </Row>
