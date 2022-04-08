@@ -1,18 +1,9 @@
 import React from 'react'
-
 import { Col, Row, Button } from 'react-bootstrap'
-
-
 import { NavLink } from 'react-router-dom';
-
-
 import PayPalCheckout from 'react-paypal-checkout-button'
 import 'react-paypal-checkout-button/dist/index.css'
 import { useParams, Redirect, Navigate } from 'react-router-dom';
-
-
-
-
 import NavBar from '../NavBar'
 import Footer from '../Footer';
 import { NavBtnLink } from '../NavComponent';
@@ -38,13 +29,8 @@ const PayPal = () => {
           // let history = useHistory();
           // // // return <Navigate to='/regresarInicio' state={{ from: location }} replace  />
           // // navigate('/regresarInicio');
-
-
           // history.push('/regresarInicio')
-
           // window.location='/'
-
-
         }}
         onError={(error) => {
           console.log(error)
