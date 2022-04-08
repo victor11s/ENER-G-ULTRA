@@ -10,6 +10,7 @@ import Carrito from "./pages/Carrito";
 import IniciarSesion from "./components/CreacionPerfil/IniciarSesion";
 import Registrarse from "./components/CreacionPerfil/Registrarse";
 import PayPal from "./components/PayPalCheckOut/PayPal";
+import Pagado from "./components/PayPalCheckOut/Pagado";
 // aqui se importan todos los componentes creados
 
 
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/iniciarSesion" element={<IniciarSesion />} />
         <Route path="/registrar" element={<Registrarse />} />
         <Route path="/checkout/:amount" element={<PayPal />} />
+        <Route path="/regresarInicio" element={<Pagado />} />
 
 
         

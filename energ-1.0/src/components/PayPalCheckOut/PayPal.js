@@ -1,10 +1,16 @@
 import React from 'react'
 
-import { Col, Row } from 'react-bootstrap'
+import { Col, Row, Button } from 'react-bootstrap'
+
+
+import { NavLink } from 'react-router-dom';
+
 
 import PayPalCheckout from 'react-paypal-checkout-button'
 import 'react-paypal-checkout-button/dist/index.css'
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect, Navigate } from 'react-router-dom';
+
+
 
 
 import NavBar from '../NavBar'
@@ -27,8 +33,17 @@ const PayPal = () => {
         currency='MXN'
         onSuccess={(data, order) => {
           console.log(data, order)
-          window.location = "/"
-          alert("Pago")
+          alert('Pago Exitoso')
+          // let history = useHistory();
+          // // // return <Navigate to='/regresarInicio' state={{ from: location }} replace  />
+          // // navigate('/regresarInicio');
+
+
+          // history.push('/regresarInicio')
+
+          // window.location='/'
+
+
         }}
         onError={(error) => {
           console.log(error)
@@ -36,16 +51,25 @@ const PayPal = () => {
         }}
       /></Col>
 
-      <Col></Col>
+      <Col>
 
 
+      </Col>
     </Row>
 
-
-
-  
     <Row>
-      <Footer/>
+      <Col></Col>
+      <Col  clasName='d-flex justify-content-end'>
+        <Button className='mx-3' variant='danger'>
+          <NavLink to='/'>Volver a Inicio</NavLink>
+        </Button>
+
+      </Col>
+
+      <Col></Col>
+    </Row>
+    <Row>
+      <Footer />
     </Row>
 
   </>
