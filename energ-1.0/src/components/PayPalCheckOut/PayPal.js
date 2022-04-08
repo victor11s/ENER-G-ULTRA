@@ -7,10 +7,16 @@ import 'react-paypal-checkout-button/dist/index.css'
 import { useParams } from 'react-router-dom';
 
 
+import NavBar from '../NavBar'
+import Footer from '../Footer';
+
 
 const PayPal = () => {
-  let {amount} = useParams();
+  let { amount } = useParams();
   return (<>
+    <Row>
+      <NavBar />
+    </Row>
 
     <Row>
       <Col></Col>
@@ -21,7 +27,7 @@ const PayPal = () => {
         currency='MXN'
         onSuccess={(data, order) => {
           console.log(data, order)
-          window.location="/"
+          window.location = "/"
           alert("Pago")
         }}
         onError={(error) => {
@@ -33,6 +39,27 @@ const PayPal = () => {
       <Col></Col>
 
 
+    </Row>
+
+
+
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+  <Row></Row>
+    <Row>
+      <Footer/>
     </Row>
 
   </>
