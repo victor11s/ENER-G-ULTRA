@@ -43,21 +43,7 @@ const PayPal = () => {
 
 
 
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
-  <Row></Row>
+  
     <Row>
       <Footer/>
     </Row>
