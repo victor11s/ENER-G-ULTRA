@@ -46,7 +46,8 @@ function NavBar() {
         <Bars />
         <NavMenu>
           <NavLink to='/catalogo' activeStyle>Cátalogo</NavLink>
-          <NavLink to='/iniciarSesion' activeStyle>Perfil</NavLink>
+          <NavLink to='/miPerfil' activeStyle>Mi Perfil</NavLink>
+          <NavLink to='/iniciarSesion' activeStyle>Iniciar Sesion</NavLink>
         </NavMenu>
         <div className='row'>
           <Col>
