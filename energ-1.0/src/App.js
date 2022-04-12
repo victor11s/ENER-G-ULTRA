@@ -11,6 +11,7 @@ import IniciarSesion from "./components/CreacionPerfil/IniciarSesion";
 import Registrarse from "./components/CreacionPerfil/Registrarse";
 import PayPal from "./components/PayPalCheckOut/PayPal";
 import Pagado from "./components/PayPalCheckOut/Pagado";
+import Profile from "./components/UserProfile/Profile";
 // aqui se importan todos los componentes creados
 
 
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/registrar" element={<Registrarse />} />
         <Route path="/checkout/:amount" element={<PayPal />} />
         <Route path="/regresarInicio" element={<Pagado />} />
+        <Route path="/miPerfil" element={<Profile />} />
 
 
         
