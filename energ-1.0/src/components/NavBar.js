@@ -47,7 +47,10 @@ function NavBar() {
         <NavMenu>
           <NavLink to='/catalogo' activeStyle>Cátalogo</NavLink>
           <NavLink to='/miPerfil' activeStyle>Mi Perfil</NavLink>
+          <NavLink to='/perfilAdmi' activeStyle>Mi Perfil Admi</NavLink>
           <NavLink to='/iniciarSesion' activeStyle>Iniciar Sesion</NavLink>
+          
+
         </NavMenu>
         <div className='row'>
           <Col>
