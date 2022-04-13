@@ -39,6 +39,14 @@ const FormModal = () => {
                     rows={3}
                 />
             </Form.Group>
+            <Form.Group className="mt-3">
+                <Form.Control
+                    type="text"
+                    placeholder="Imagen"
+                    rows={3}
+                />
+            </Form.Group>
+
 
             <Button variant="danger" type="submit"  className="mt-3"block>
                 Agregar Producto

@@ -12,6 +12,7 @@ import Registrarse from "./components/CreacionPerfil/Registrarse";
 import PayPal from "./components/PayPalCheckOut/PayPal";
 import Pagado from "./components/PayPalCheckOut/Pagado";
 import Profile from "./components/UserProfile/Profile";
+import PerfilAdmi from "./components/Admi/PerfilAdmi";
 // aqui se importan todos los componentes creados
 
 
@@ -33,12 +34,8 @@ const App = () => {
         <Route path="/checkout/:amount" element={<PayPal />} />
         <Route path="/regresarInicio" element={<Pagado />} />
         <Route path="/miPerfil" element={<Profile />} />
+        <Route path="/perfilAdmi" element={<PerfilAdmi/>}/>
 
-
-        
-
-        
-        
         {/* Agregar rutas de perfil y noticias*/}
       </Routes>
     </BrowserRouter>

@@ -37,6 +37,19 @@ app.get("/api/getProducto", (req, res) => {
     });
 });
 
+app.get("/api/getImagenes", (req, res) => {
+
+    const idProducto = req.query.idProducto;
+
+    // console.log(idProducto);
+
+    const sqlSelect = "SELECT * FROM fotoproducto WHERE idProducto = (?)";
+    db.query(sqlSelect, [idProducto], (err, result) => {
+        res.send(result);
+        // res.send("Despues de seleccionar en la DB");
+    });
+});
+
 app.get('/api/insert', (req, res) => {
     const sqlInsert = "INSERT INTO producto(nombre, descripcion, precio, stock, ingredientes) VALUES ('Ener G boost','bebida energetica', 17 , 21 ,'extracto de guarana')";
     db.query(sqlInsert, (err, result) => {

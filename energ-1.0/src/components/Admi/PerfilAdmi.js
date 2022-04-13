@@ -5,15 +5,15 @@ import NavBar from '../NavBar';
 import Footer from '../Footer';
 
 import { Button, Card, Col, Container, Form, Row, Table } from 'react-bootstrap'
+import TableProductos from './TableProductos';
 
 
 
-function Profile() {
+function PerfilAdmi() {
     return (
         <>
 
-            <NavBar />
-
+            <NavBar/>
             <Container>
                 <Row>
                     <Col>
@@ -21,16 +21,15 @@ function Profile() {
                     </Col>
 
                     <Col>
-                        <Button variant="danger">Direcciones</Button>
+                        <Button variant="danger">Productos</Button>
                     </Col>
 
                     <Col>
-                        <Button variant="danger">Mis Pedidos</Button>
+                        <Button variant="danger">Pedidos</Button>
                     </Col>
                 </Row>
 
-
-            
+                <TableProductos/>
             </Container>
 
 
@@ -41,4 +40,4 @@ function Profile() {
         </>
     )
 }
-export default Profile;
+export default PerfilAdmi;
