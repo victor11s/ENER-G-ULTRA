@@ -31,7 +31,7 @@ function TableProductos() {
   const wellStyles = { minWidth: 100 };
   return (
     <Container>
-      <div className='mt-5'>
+      <div className='mt-0'>
         <Row className='mw-50'>
           <Col>
             <Button onClick={handleShow} className="btn btn-danger mt-4 " size="lg" style={{ width: 85 }} ><AiOutlinePlusCircle /></Button>
