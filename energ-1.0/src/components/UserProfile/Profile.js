@@ -4,42 +4,13 @@ import React, { Component } from 'react'
 import NavBar from '../NavBar';
 import Footer from '../Footer';
 
-import { Button, Card, Col, Container, Form, Row, Table } from 'react-bootstrap'
+import { Button, Card, Col, Container, Form, Row, Table, Accordion } from 'react-bootstrap'
 
 import InformacionPersonal from './InformacionPersonal'
 import MisPedidos from './MisPedidos'
 import Direccion from './Direccion'
 
 class Profile extends Component {
-    constructor() {
-        super();
-        this.state = {
-            name: "React",
-            showHideDemo1: false,
-            showHideDemo2: false,
-            showHideDemo3: false
-        };
-        this.hideComponent = this.hideComponent.bind(this);
-    }
-
-    hideComponent(name) {
-        console.log(name);
-        switch (name) {
-            case "showHideDemo1":
-                this.setState({ showHideDemo1: !this.state.showHideDemo1 });
-                break;
-            case "showHideDemo2":
-                this.setState({ showHideDemo2: !this.state.showHideDemo2 });
-                break;
-            case "showHideDemo3":
-                this.setState({ showHideDemo3: !this.state.showHideDemo3 });
-                break;
-            default:
-                
-        }
-    }
-
-
     render() {
 
 
@@ -47,25 +18,40 @@ class Profile extends Component {
             <>
 
                 <NavBar />
+                <Container>
+                <Row >
+                    <Col></Col>
+                    <Col className="text-center"><h2>Mi Perfil</h2></Col>
+                    <Col></Col>
+
+                </Row>
+                </Container>
+                
 
                 <Container>
-                    <InformacionPersonal/>
-                    <Direccion/>
-                    <MisPedidos/>
+                
 
-                    <Row>
-                        <Col>
-                            <Button variant="danger" onClick={() => this.hideComponent("showHideDemo1")} >Información Personal</Button>
-                        </Col>
-
-                        <Col>
-                            <Button variant="danger" onClick={() => this.hideComponent("showHideDemo2")}>Direcciones</Button>
-                        </Col>
-
-                        <Col>
-                            <Button variant="danger" onClick={() => this.hideComponent("showHideDemo3")}>Mis Pedidos</Button>
-                        </Col>
-                    </Row>
+                <Accordion defaultActiveKey="0">
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>Informacion Personal</Accordion.Header>
+                        <Accordion.Body>
+                            <InformacionPersonal/>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                    <Accordion.Item eventKey="1">
+                        <Accordion.Header>Direccion</Accordion.Header>
+                        <Accordion.Body>
+                            <Direccion/>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                    <Accordion.Item eventKey="2">
+                        <Accordion.Header>Mis Pedidos</Accordion.Header>
+                        <Accordion.Body>
+                            <MisPedidos/>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                    
+                </Accordion>
 
 
 
