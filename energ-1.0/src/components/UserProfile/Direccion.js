@@ -61,7 +61,7 @@ function Direccion() {
           <DireccionModal />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
+          <Button variant='secondary' onClick={handleClose} >
             Cerrar
           </Button>
         </Modal.Footer>
