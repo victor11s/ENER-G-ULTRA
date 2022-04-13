@@ -9,7 +9,7 @@ class Direccion extends Component {
   }
 
   render() {
-    return <div>This is Demo1 component</div>;
+    return <div>This is Direccion</div>;
   }
 }
 

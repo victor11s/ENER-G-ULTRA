@@ -9,7 +9,7 @@ class InformacionPersonal extends Component {
   }
 
   render() {
-    return <div>This is Demo1 component</div>;
+    return <div>This is Informacion Personal</div>;
   }
 }
 

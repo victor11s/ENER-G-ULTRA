@@ -9,7 +9,7 @@ class MisPedidos extends Component {
   }
 
   render() {
-    return <div>This is Demo1 component</div>;
+    return <div>This is Mis Pedidos</div>;
   }
 }
 
