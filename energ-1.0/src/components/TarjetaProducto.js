@@ -10,20 +10,25 @@ import { NavLink } from './NavComponent'
 
 function TarjetaProducto(props) {
   const [imagenes, setImagenes] = useState('');
+  let busquedaRealizada = false;
+
+ 
 
 
  useEffect(() => {
-  Axios.get('http://localhost:3001/api/getImagenes',
+  if(!busquedaRealizada){
+    Axios.get('http://localhost:3001/api/getImagenes',
     {
       params: {
         idProducto: props.id,
       }
-    }).then(async(response)  => {
-      
-      let imgs = await response.data.ubicacion;
+    }).then((response)  => {
+      busquedaRealizada = true;
+      let imgs = response.data.ubicacion;
       setImagenes(imgs);
       
     })
+  }
 
   }, []);
 

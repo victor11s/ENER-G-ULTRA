@@ -48,7 +48,7 @@ function TableProductos() {
               <th>Precio</th>
               <th>Stock</th>
               <th>Ingredientes</th>
-              <th>Imagen</th>
+              {/* <th>Imagen</th> */}
               <th>Editar</th>
             </tr>
           </thead>
@@ -60,7 +60,7 @@ function TableProductos() {
               <td>@mdo</td>
               <td>Otto</td>
               <td>@mdo</td>
-              <td>Imagen</td>
+              {/* <td>Imagen</td> */}
               <td>
                 <Button  onClick={handleShow2} className="btn btn-info mr-5" style={{marginRight:5}}>Editar</Button>
 
