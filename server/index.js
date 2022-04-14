@@ -43,7 +43,7 @@ app.get("/api/getImagenes", (req, res) => {
 
     // console.log(idProducto);
 
-    const sqlSelect = "SELECT * FROM fotoproducto WHERE idProducto = (?)";
+    const sqlSelect = "SELECT ubicacion FROM fotoproducto WHERE idProducto = (?)";
     db.query(sqlSelect, [idProducto], (err, result) => {
         res.send(result);
         // res.send("Despues de seleccionar en la DB");
@@ -134,7 +134,7 @@ app.post('/api/agregarUsuario', (req, res) => {
     });
 
 
-})
+}) 
 
 app.get('/api/consultarUsuario', (req, res) => {
     const nombreUsuario = req.query.nombreUsuario;
