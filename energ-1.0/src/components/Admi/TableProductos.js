@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 
 import { Button, Container, Table, Modal, ModalHeader } from 'react-bootstrap'
 
@@ -9,6 +9,8 @@ import { Row, Col } from 'react-bootstrap';
 import EditModal from './EditModal';
 
 import FormModal from './FormModal';
+
+import Axios from 'axios';
 
 
 
@@ -27,11 +29,28 @@ function TableProductos() {
   const handleShow3 = () => setShow3(true)
   const handleClose3 = () => setShow3(false)
 
+  //Productos en la tienda
+  const [productoLista, setProductoLista] = useState([])
+
+  //Produdcto a editar/borrar
+  const [thisIdProducto, setThisIdProducto] = useState('');
+
+  //Recuperar todos los productos de la BD:
+  useEffect(() => {
+    Axios.get('http://localhost:3001/api/get').then((response) => {
+      setProductoLista(response.data)
+    })
+  }, []);
+
+  console.log(productoLista);
+
 
   const wellStyles = { minWidth: 100 };
   return (
     <Container>
       <div className='mt-0'>
+
+        {/* Boton para AÑADIR nuevo producto */}
         <Row className='mw-50'>
           <Col>
             <Button onClick={handleShow} className="btn btn-danger mt-4 " size="lg" style={{ width: 85 }} ><AiOutlinePlusCircle /></Button>
@@ -39,6 +58,7 @@ function TableProductos() {
 
         </Row>
 
+        {/* Tabla de productos */}
         <Table striped bordered hover variant="ligth" className='mt-3'>
           <thead>
             <tr>
@@ -53,25 +73,30 @@ function TableProductos() {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {
+              productoLista.map(producto => {
 
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              {/* <td>Imagen</td> */}
-              <td>
-                <Button  onClick={handleShow2} className="btn btn-info mr-5" style={{marginRight:5}}>Editar</Button>
+                return (
+                  <tr>
+                    
+                    <td>{producto.nombre}</td>
+                    <td>{producto.descripcion}</td>
+                    <td>{producto.precio}</td>
+                    <td>{producto.stock}</td>
+                    <td>{producto.ingredientes}</td>
+                    {/* <td>Imagen</td> */}
+                    <td>
+                      <Button onClick={handleShow2} className="btn btn-info mr-5" style={{ marginRight: 5 }}>Editar</Button>
 
-                <Button  onClick={handleShow3} className="btn btn-danger ml-5 ">Borrar</Button>
-              </td>
-            </tr>
-
-
+                      <Button onClick={handleShow3} className="btn btn-danger ml-5 ">Borrar</Button>
+                    </td>
+                  </tr>
+                )
+              })
+            }
           </tbody>
         </Table>
-
+        {/* Modal para AÑADIR productos (oculto por default) */}
         <Modal show={show}>
           <ModalHeader>
             <Modal.Title>
@@ -89,7 +114,7 @@ function TableProductos() {
         </Modal>
 
 
-
+        {/* Modal para EDITAR productos (oculto por default) */}
         <Modal show={show2}>
           <ModalHeader>
             <Modal.Title>
@@ -106,10 +131,11 @@ function TableProductos() {
           </Modal.Footer>
         </Modal>
 
+        {/* Modal para BORRAR productos (oculto por default) */}
         <Modal show={show3}>
           <ModalHeader>
             <Modal.Title>
-            ¿Seguro que deseas Borrar?
+              ¿Seguro que deseas Borrar?
             </Modal.Title>
           </ModalHeader>
           <Modal.Footer>
@@ -121,10 +147,6 @@ function TableProductos() {
             </Button>
           </Modal.Footer>
         </Modal>
-
-
-        
-
       </div>
     </Container>
   )

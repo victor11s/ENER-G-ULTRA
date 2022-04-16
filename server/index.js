@@ -134,7 +134,7 @@ app.post('/api/agregarUsuario', (req, res) => {
     });
 
 
-}) 
+})
 
 app.get('/api/consultarUsuario', (req, res) => {
     const nombreUsuario = req.query.nombreUsuario;
