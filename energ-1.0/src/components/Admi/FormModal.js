@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react'
 import { Button, Form } from "react-bootstrap"
 
-const FormModal = () => {
+const FormModal = (props) => {
     return (
         <Form>
             <Form.Group >
@@ -9,6 +9,7 @@ const FormModal = () => {
                     type="text"
                     placeholder="Nombre"
                     required
+                    value={props.idProducto}
                 />
             </Form.Group>
             <Form.Group className="mt-3">

@@ -57,6 +57,7 @@ app.get('/api/insert', (req, res) => {
     });
 });
 
+//Para agregar productos al carrito en la BD
 app.post('/api/agregarCarrito', (req, res) => {
 
     const idCarrito = req.body.idCarrito;
@@ -103,6 +104,7 @@ app.delete('/api/eliminarItem', (req, res) => {
     });
 });
 
+//Usado en ProductoCarrito/Item.js:
 app.put('/api/actualizarCantidad', (req, res) => {
     const idCarrito = req.body.idCarrito;
     const idProducto = req.body.idProducto;
@@ -132,8 +134,6 @@ app.post('/api/agregarUsuario', (req, res) => {
         res.send("Producto insertado");
         console.log([nombreUsuario, contraseña, nombre, apellido]);
     });
-
-
 })
 
 app.get('/api/consultarUsuario', (req, res) => {
@@ -142,6 +142,37 @@ app.get('/api/consultarUsuario', (req, res) => {
     db.query(sqlSelect, [nombreUsuario], (err, result) => {
         res.send(result);
         // res.send("Despues de seleccionar en la DB");
+    });
+});
+
+
+
+//Utilizado en EditModal.js:
+// para actualizar productos
+app.put('/api/actualizarProducto', (req, res) => {
+    
+    const idProducto = req.body.idProducto;
+    const nombreProducto = req.body.nombreProducto;
+    const descripcionProducto = req.body.descripcionProducto;
+    const precioProducto = req.body.precioProducto;
+    const stockProducto = req.body.stockProducto;
+    const ingredientesProducto = req.body.ingredientesProducto;
+
+    console.log([nombreProducto, descripcionProducto, precioProducto, stockProducto, ingredientesProducto,idProducto]);
+
+    const sqlInsert = "UPDATE producto SET nombre = (?), descripcion = (?), precio = (?), stock = (?), ingredientes = (?) WHERE idProducto = (?)";
+    db.query(sqlInsert, [nombreProducto, descripcionProducto, precioProducto, stockProducto, ingredientesProducto,idProducto], (err, result) => {
+        res.send("Producto actualizado");
+        // console.log([nombreProducto, descripcionProducto, precioProducto, stockProducto, ingredientesProducto]);
+    });
+})
+
+app.get('/api/consultarNombreProducto', (req, res) => {
+    const idProducto = req.query.idProducto;
+    const nombreProducto = req.query.nombreProducto;
+    const sqlSelect = "SELECT nombre FROM producto WHERE nombre = (?) EXCEPT (SELECT nombre FROM producto WHERE idProducto = (?))";
+    db.query(sqlSelect, [nombreProducto, idProducto], (err, result) => {
+        res.send(result);
     });
 });
 

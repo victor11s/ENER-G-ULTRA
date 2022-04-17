@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react'
 
-import { Button, Container, Table, Modal, ModalHeader } from 'react-bootstrap'
+import { Button, Form, Container, Table, Modal, ModalHeader } from 'react-bootstrap'
 
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
@@ -22,7 +22,11 @@ function TableProductos() {
 
   //modal de editar
   const [show2, setShow2] = useState(false)
-  const handleShow2 = () => setShow2(true)
+  
+  const handleShow2 = (event) => {
+    setThisIdProducto(event.target.value);
+    setShow2(true)}
+
   const handleClose2 = () => setShow2(false)
   //modal de borrar
   const [show3, setShow3] = useState(false)
@@ -33,7 +37,7 @@ function TableProductos() {
   const [productoLista, setProductoLista] = useState([])
 
   //Produdcto a editar/borrar
-  const [thisIdProducto, setThisIdProducto] = useState('');
+  const [thisIdProducto, setThisIdProducto] = useState("1");
 
   //Recuperar todos los productos de la BD:
   useEffect(() => {
@@ -42,7 +46,12 @@ function TableProductos() {
     })
   }, []);
 
-  console.log(productoLista);
+
+  const setIdProducto = (event) => {
+    event.preventDefault()
+    // setThisIdProducto(event.target.idProducto.value);
+    // console.log("Producto de interes:" + event.target.idProducto.value)
+  };
 
 
   const wellStyles = { minWidth: 100 };
@@ -86,9 +95,15 @@ function TableProductos() {
                     <td>{producto.ingredientes}</td>
                     {/* <td>Imagen</td> */}
                     <td>
-                      <Button onClick={handleShow2} className="btn btn-info mr-5" style={{ marginRight: 5 }}>Editar</Button>
+                    <Form className='mt-3' onSubmit={setIdProducto} show={false}>
+                      {/* <Form.Control value={producto.idProducto} name="idProducto" style={{display: 'none'}}/> */}
+
+                      <Button type="submit" onClick={handleShow2} className="btn btn-info mr-5" 
+                        style={{ marginRight: 5 }} value={producto.idProducto} >Editar</Button>
 
                       <Button onClick={handleShow3} className="btn btn-danger ml-5 ">Borrar</Button>
+
+                    </Form>
                     </td>
                   </tr>
                 )
@@ -104,7 +119,7 @@ function TableProductos() {
             </Modal.Title>
           </ModalHeader>
           <Modal.Body>
-            <FormModal />
+            <FormModal idProducto={thisIdProducto}/>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>
@@ -122,7 +137,7 @@ function TableProductos() {
             </Modal.Title>
           </ModalHeader>
           <Modal.Body>
-            <EditModal />
+            <EditModal idProducto={thisIdProducto}/>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose2}>
