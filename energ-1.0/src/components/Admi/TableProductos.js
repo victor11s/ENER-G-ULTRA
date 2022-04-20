@@ -77,11 +77,9 @@ function TableProductos() {
     })
   }, []);
 
-
+  //Para prevenir que la ventana se recargue
   const prevenirReload = (event) => {
     event.preventDefault()
-    // setThisIdProducto(event.target.idProducto.value);
-    // console.log("Producto de interes:" + event.target.idProducto.value)
   };
 
   const wellStyles = { minWidth: 100 };
