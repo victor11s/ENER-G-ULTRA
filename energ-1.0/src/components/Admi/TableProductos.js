@@ -15,14 +15,14 @@ import Axios from 'axios';
 
 
 function TableProductos() {
-  //modal de agregar
+  //modal de agregar:
   const [show, setShow] = useState(false)
 
   const handleShow = () => setShow(true)
 
   const handleClose = () => setShow(false)
 
-  //modal de editar
+  //modal de editar:
   const [show2, setShow2] = useState(false)
 
   const handleShow2 = (event) => {
@@ -32,7 +32,7 @@ function TableProductos() {
 
   const handleClose2 = () => setShow2(false)
 
-  //modal de borrar
+  //modal de borrar:
   const [show3, setShow3] = useState(false)
   const handleShow3 = (event) => {
     setThisIdProducto(event.target.value);//Cambia el state del producto de interes para el modal
@@ -51,7 +51,6 @@ function TableProductos() {
         eliminarItem(thisIdProducto);
         alert('Producto eliminado');
       });
-    //window.location.reload();
     setShow3(false)
   }
 
@@ -64,10 +63,10 @@ function TableProductos() {
 
   const handleClose3 = () => setShow3(false)
 
-  //Productos en la tienda
+  //Productos en la tienda:
   const [productoLista, setProductoLista] = useState([])
 
-  //Produdcto a editar/borrar
+  //Produdcto a editar/borrar:
   const [thisIdProducto, setThisIdProducto] = useState("1");
 
   //Recuperar todos los productos de la BD:
@@ -83,6 +82,7 @@ function TableProductos() {
   };
 
   const wellStyles = { minWidth: 100 };
+  
   return (
     <Container>
       <div className='mt-0'>

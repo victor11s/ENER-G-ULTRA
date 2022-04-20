@@ -58,8 +58,7 @@ const FormModal = () => {
                                 });// cierre de Axios consultarIdProducto
                             console.log("Producto Agregado: ");
                             alert('Producto Agregado');
-                            //window.location.reload();
-
+                            window.location.reload();
                         });//cierre de Axios añadirProducto
                 }
             });// cierre de Axios consultarNombreNuevoProducto
