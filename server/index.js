@@ -167,7 +167,8 @@ app.put('/api/actualizarProducto', (req, res) => {
     });
 })
 
-app.get('/api/consultarNombreProducto', (req, res) => {
+app.get('/api/consultarNombreProducto', (req, res) => { //Consultra si el nombre del producto esta disponible
+                                                        //Excepto el nombre del producto a editar
     const idProducto = req.query.idProducto;
     const nombreProducto = req.query.nombreProducto;
     const sqlSelect = "SELECT nombre FROM producto WHERE nombre = (?) EXCEPT (SELECT nombre FROM producto WHERE idProducto = (?))";
@@ -195,14 +196,14 @@ app.post('/api/anadirProducto', (req, res) => {
 
     console.log([nombreProducto, descripcionProducto, precioProducto, stockProducto, ingredientesProducto]);
 
-    const sqlInsert = "INSERT INTO producto(nombre, descripcion, precio, stock, ingredientes) SET (?,?,?,?,?)";
+    const sqlInsert = "INSERT INTO producto(nombre, descripcion, precio, stock, ingredientes) VALUES (?,?,?,?,?)";
     db.query(sqlInsert, [nombreProducto, descripcionProducto, precioProducto, stockProducto, ingredientesProducto], (err, result) => {
         res.send("Producto agregado");
         console.log([nombreProducto, descripcionProducto, precioProducto, stockProducto, ingredientesProducto]);
     });
 })
 
-app.post('/api/anadirImagenesProducto', (req, res) => {
+app.post('/api/anadirImagenesProducto', (req, res) => {//Registra la ubicación de las imagenes pertencientes al producto
 
     const ubicacion = req.body.ubicacion;
     const idProducto = req.body.idProducto;
@@ -213,6 +214,18 @@ app.post('/api/anadirImagenesProducto', (req, res) => {
         console.log([ubicacion, idProducto]);
     });
 })
+//Para borrar productos
+app.delete('/api/eliminarProducto', (req, res) => {
+    const idProducto = req.query.idProducto;
+    console.log([idProducto]);
+    const sqlDelete = "DELETE FROM producto WHERE idProducto = (?)";
+    db.query(sqlDelete, [idProducto], (err, result) => {
+        // console.log(result);
+        res.send(result);
+
+        // res.send("Despues de seleccionar en la DB");
+    });
+});
 
 app.listen(3001, () => {
     console.log('corriendo en 3001');

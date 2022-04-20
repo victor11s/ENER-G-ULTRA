@@ -16,7 +16,7 @@ const FormModal = () => {
     const [sImagen2Producto, setImagen2Producto] = useState('');
     const [sImagen3Producto, setImagen3Producto] = useState('');
 
-    const handleBotonConfirmar = async (event) => {
+    const handleBotonConfirmar = async (event) => {//La siguiente sección se utiliza para insertar un nuevo producto através del API
         event.preventDefault();
         await Axios.get('http://localhost:3001/api/consultarNuevoProducto',//para verificar que el nombre del producto no haya sido usado
             {
@@ -37,30 +37,28 @@ const FormModal = () => {
                         {
                             nombreProducto: sNombreProducto,
                             descripcionProducto: sDescripcionProducto,
-                            precioProducto: sPrecioProducto,
-                            stockProducto: sStockProducto,
+                            precioProducto: parseFloat (sPrecioProducto),
+                            stockProducto: parseInt(sStockProducto),
                             ingredientesProducto: sIngredientesProducto,
                         }).then(async (response) => {
+                            console.log(response)
                             await Axios.get('http://localhost:3001/api/consultarNuevoProducto',//para recuperar el idProducto del que acabamos de añadir
                                 {
                                     params: {
                                         nombreProducto: sNombreProducto,
                                     }
                                 }).then((response) => {
-                                    console.log( response[0])
-                                    let imagenProductos = [sImagen1Producto, sImagen2Producto, sImagen2Producto]
-                                    for (var i = 0; imagenProductos[i] != undefined; i++) {
+                                    let imagenProductos = [sImagen1Producto, sImagen2Producto, sImagen3Producto]
+                                    for (var i = 0; imagenProductos[i] != undefined && imagenProductos[i] != ''; i++) {
                                         Axios.post('http://localhost:3001/api/anadirImagenesProducto', {
-                                            idProducto: response[0],
+                                            idProducto: response.data[0].idProducto,
                                             ubicacion: imagenProductos[i],
                                         });
                                     }
                                 });// cierre de Axios consultarIdProducto
-
                             console.log("Producto Agregado: ");
-                            // console.log(response.data);
                             alert('Producto Agregado');
-                            // window.location.reload();
+                            //window.location.reload();
 
                         });//cierre de Axios añadirProducto
                 }

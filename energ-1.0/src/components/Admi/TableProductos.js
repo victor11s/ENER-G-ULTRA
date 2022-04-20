@@ -17,24 +17,51 @@ import Axios from 'axios';
 function TableProductos() {
   //modal de agregar
   const [show, setShow] = useState(false)
+
   const handleShow = () => setShow(true)
+
   const handleClose = () => setShow(false)
 
   //modal de editar
   const [show2, setShow2] = useState(false)
-  
+
   const handleShow2 = (event) => {
     setThisIdProducto(event.target.value);//Cambia el state del producto de interes para el modal
     setShow2(true)
   }
 
   const handleClose2 = () => setShow2(false)
+
   //modal de borrar
   const [show3, setShow3] = useState(false)
   const handleShow3 = (event) => {
     setThisIdProducto(event.target.value);//Cambia el state del producto de interes para el modal
     setShow3(true);
   }
+
+  const handleClose3Aceptar = () => {
+
+    Axios.delete('http://localhost:3001/api/eliminarProducto',
+      {
+        params: {
+          idProducto: thisIdProducto,
+        }
+      }).then((response) => {
+        console.log(response.data);
+        eliminarItem(thisIdProducto);
+        alert('Producto eliminado');
+      });
+    //window.location.reload();
+    setShow3(false)
+  }
+
+  const eliminarItem = (id) => {
+    const nuevosProductos = productoLista.filter(producto => producto.idProducto != id);
+    setProductoLista(nuevosProductos);
+    console.log(id);
+    console.log(nuevosProductos);
+  }
+
   const handleClose3 = () => setShow3(false)
 
   //Productos en la tienda
@@ -56,7 +83,6 @@ function TableProductos() {
     // setThisIdProducto(event.target.idProducto.value);
     // console.log("Producto de interes:" + event.target.idProducto.value)
   };
-
 
   const wellStyles = { minWidth: 100 };
   return (
@@ -91,7 +117,7 @@ function TableProductos() {
 
                 return (
                   <tr>
-                    
+
                     <td>{producto.nombre}</td>
                     <td>{producto.descripcion}</td>
                     <td>{producto.precio}</td>
@@ -99,16 +125,16 @@ function TableProductos() {
                     <td>{producto.ingredientes}</td>
                     {/* <td>Imagen</td> */}
                     <td>
-                    <Form className='mt-3' onSubmit={prevenirReload} show={false}>
-                      {/* <Form.Control value={producto.idProducto} name="idProducto" style={{display: 'none'}}/> */}
+                      <Form className='mt-3' onSubmit={prevenirReload} show={false}>
+                        {/* <Form.Control value={producto.idProducto} name="idProducto" style={{display: 'none'}}/> */}
 
-                      <Button type="submit" onClick={handleShow2} className="btn btn-info mr-5" 
-                        style={{ marginRight: 5 }} value={producto.idProducto} >Editar</Button>
+                        <Button type="submit" onClick={handleShow2} className="btn btn-info mr-5"
+                          style={{ marginRight: 5 }} value={producto.idProducto} >Editar</Button>
 
-                      <Button onClick={handleShow3} className="btn btn-danger ml-5" 
-                        value={producto.idProducto}>Borrar</Button>
+                        <Button onClick={handleShow3} className="btn btn-danger ml-5"
+                          value={producto.idProducto}>Borrar</Button>
 
-                    </Form>
+                      </Form>
                     </td>
                   </tr>
                 )
@@ -142,7 +168,7 @@ function TableProductos() {
             </Modal.Title>
           </ModalHeader>
           <Modal.Body>
-            <EditModal idProducto={thisIdProducto}/>
+            <EditModal idProducto={thisIdProducto} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose2}>
@@ -159,7 +185,7 @@ function TableProductos() {
             </Modal.Title>
           </ModalHeader>
           <Modal.Footer>
-            <Button variant='danger' style={{ width: 75 }} onClick={handleClose3}>
+            <Button variant='danger' style={{ width: 75 }} onClick={handleClose3Aceptar}>
               Sí
             </Button>
             <Button variant='secondary' style={{ width: 75 }} onClick={handleClose3}>
