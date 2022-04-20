@@ -176,6 +176,44 @@ app.get('/api/consultarNombreProducto', (req, res) => {
     });
 });
 
+//Para un nuevo producto
+app.get('/api/consultarNuevoProducto', (req, res) => {
+    const nombreProducto = req.query.nombreProducto;
+    const sqlSelect = "SELECT idProducto FROM producto WHERE nombre = (?)";
+    db.query(sqlSelect, [nombreProducto], (err, result) => {
+        res.send(result);
+    });
+});
+
+app.post('/api/anadirProducto', (req, res) => {
+    
+    const nombreProducto = req.body.nombreProducto;
+    const descripcionProducto = req.body.descripcionProducto;
+    const precioProducto = req.body.precioProducto;
+    const stockProducto = req.body.stockProducto;
+    const ingredientesProducto = req.body.ingredientesProducto;
+
+    console.log([nombreProducto, descripcionProducto, precioProducto, stockProducto, ingredientesProducto]);
+
+    const sqlInsert = "INSERT INTO producto(nombre, descripcion, precio, stock, ingredientes) SET (?,?,?,?,?)";
+    db.query(sqlInsert, [nombreProducto, descripcionProducto, precioProducto, stockProducto, ingredientesProducto], (err, result) => {
+        res.send("Producto agregado");
+        console.log([nombreProducto, descripcionProducto, precioProducto, stockProducto, ingredientesProducto]);
+    });
+})
+
+app.post('/api/anadirImagenesProducto', (req, res) => {
+
+    const ubicacion = req.body.ubicacion;
+    const idProducto = req.body.idProducto;
+
+    const sqlInsert = "INSERT INTO fotoproducto(ubicacion, idProducto) VALUES (?,?)";
+    db.query(sqlInsert, [ubicacion, idProducto], (err, result) => {
+        res.send("Imagen insertada");
+        console.log([ubicacion, idProducto]);
+    });
+})
+
 app.listen(3001, () => {
     console.log('corriendo en 3001');
 });

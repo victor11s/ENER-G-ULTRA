@@ -24,13 +24,17 @@ function TableProductos() {
   const [show2, setShow2] = useState(false)
   
   const handleShow2 = (event) => {
-    setThisIdProducto(event.target.value);
-    setShow2(true)}
+    setThisIdProducto(event.target.value);//Cambia el state del producto de interes para el modal
+    setShow2(true)
+  }
 
   const handleClose2 = () => setShow2(false)
   //modal de borrar
   const [show3, setShow3] = useState(false)
-  const handleShow3 = () => setShow3(true)
+  const handleShow3 = (event) => {
+    setThisIdProducto(event.target.value);//Cambia el state del producto de interes para el modal
+    setShow3(true);
+  }
   const handleClose3 = () => setShow3(false)
 
   //Productos en la tienda
@@ -47,7 +51,7 @@ function TableProductos() {
   }, []);
 
 
-  const setIdProducto = (event) => {
+  const prevenirReload = (event) => {
     event.preventDefault()
     // setThisIdProducto(event.target.idProducto.value);
     // console.log("Producto de interes:" + event.target.idProducto.value)
@@ -95,13 +99,14 @@ function TableProductos() {
                     <td>{producto.ingredientes}</td>
                     {/* <td>Imagen</td> */}
                     <td>
-                    <Form className='mt-3' onSubmit={setIdProducto} show={false}>
+                    <Form className='mt-3' onSubmit={prevenirReload} show={false}>
                       {/* <Form.Control value={producto.idProducto} name="idProducto" style={{display: 'none'}}/> */}
 
                       <Button type="submit" onClick={handleShow2} className="btn btn-info mr-5" 
                         style={{ marginRight: 5 }} value={producto.idProducto} >Editar</Button>
 
-                      <Button onClick={handleShow3} className="btn btn-danger ml-5 ">Borrar</Button>
+                      <Button onClick={handleShow3} className="btn btn-danger ml-5" 
+                        value={producto.idProducto}>Borrar</Button>
 
                     </Form>
                     </td>
@@ -119,7 +124,7 @@ function TableProductos() {
             </Modal.Title>
           </ModalHeader>
           <Modal.Body>
-            <FormModal idProducto={thisIdProducto}/>
+            <FormModal />
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>

@@ -1,8 +1,8 @@
-import Axios  from 'axios';
+import Axios from 'axios';
 import React, { Component, useEffect, useState } from 'react'
 import { Button, Form } from "react-bootstrap"
 
-function EditModal (props) {
+function EditModal(props) {
 
     console.log(props.idProducto)
 
@@ -11,7 +11,7 @@ function EditModal (props) {
 
     useEffect(() => {
         const axiosGet = async () => {
-            
+
             await Axios.get('http://localhost:3001/api/getProducto',
                 {
                     params: {
@@ -19,7 +19,7 @@ function EditModal (props) {
                     }
                 }).then((response) => {
                     console.log(response.data);
-                    setProducto(response.data[0]);                    
+                    setProducto(response.data[0]);
                 });
         }
         axiosGet();
@@ -34,7 +34,7 @@ function EditModal (props) {
                     idProducto: props.idProducto,
                 }
             }).then((response) => {
-                
+
 
                 if (response.data[0]) {
 
@@ -44,25 +44,26 @@ function EditModal (props) {
                     console.log(response.data);
 
                 } else {
-                    
+
                     Axios.put('http://localhost:3001/api/actualizarProducto',
                         {
                             idProducto: props.idProducto,
                             nombreProducto: producto.nombre,
-                            descripcionProducto:  producto.descripcion,
+                            descripcionProducto: producto.descripcion,
                             precioProducto: producto.precio,
                             stockProducto: producto.stock,
                             ingredientesProducto: producto.ingredientes
                         }).then((response) => {
                             console.log("Producto Actualizado: ");
                             console.log(response.data);
-                            alert('Producto Actualizado');
-                            // window.location.reload();
                             
+
+                            alert('Producto Actualizado');
+                            window.location.reload();
                         });
                 }
             });
-    }    
+    }
 
     return (
         <Form onSubmit={handleBotonConfirmar}>
@@ -72,15 +73,15 @@ function EditModal (props) {
                     placeholder="Nombre"
                     required
                     defaultValue={producto.nombre}
-                    onChange={(event)=>{producto.nombre=event.target.value}}
+                    onChange={(event) => { producto.nombre = event.target.value }}
                 />
             </Form.Group>
-            <Form.Group className="mt-3"> 
+            <Form.Group className="mt-3">
                 <Form.Control
                     type="text"
                     placeholder="Descripcion"
                     defaultValue={producto.descripcion}
-                    onChange={(event)=>{producto.descripcion=event.target.value}}
+                    onChange={(event) => { producto.descripcion = event.target.value }}
                     rows={3}
                 />
             </Form.Group>
@@ -89,7 +90,7 @@ function EditModal (props) {
                     type="number"
                     placeholder="Precio"
                     defaultValue={producto.precio}
-                    onChange={(event)=>{producto.precio=event.target.value}}
+                    onChange={(event) => { producto.precio = event.target.value }}
                     required
                 />
             </Form.Group>
@@ -98,7 +99,7 @@ function EditModal (props) {
                     type="number"
                     placeholder="Stock"
                     defaultValue={producto.stock}
-                    onChange={(event)=>{producto.stock=event.target.value}}
+                    onChange={(event) => { producto.stock = event.target.value }}
                     required
                 />
             </Form.Group>
@@ -107,7 +108,7 @@ function EditModal (props) {
                     type="text"
                     placeholder="Ingredientes"
                     defaultValue={producto.ingredientes}
-                    onChange={(event)=>{producto.ingredientes=event.target.value}}
+                    onChange={(event) => { producto.ingredientes = event.target.value }}
                     rows={3}
                 />
             </Form.Group>
@@ -118,11 +119,25 @@ function EditModal (props) {
                     rows={3}
                 />
             </Form.Group>
+            <Form.Group className="mt-3">
+                <Form.Control
+                    type="text"
+                    placeholder="Imagen2"
+                    rows={3}
+                />
+            </Form.Group>
+            <Form.Group className="mt-3">
+                <Form.Control
+                    type="text"
+                    placeholder="Imagen3"
+                    rows={3}
+                />
+            </Form.Group>
 
-            <Button variant="danger" type="submit"  className="mt-3"block>
+            <Button variant="danger" type="submit" className="mt-3" block>
                 Confirmar
             </Button>
-            
+
         </Form>
     )
 }

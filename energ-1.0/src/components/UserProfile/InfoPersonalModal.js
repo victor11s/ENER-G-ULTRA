@@ -40,8 +40,6 @@ const InfoPersonalModal = () => {
                 />
             </Form.Group>
            
-
-
             <Button variant="danger" type="submit"  className="mt-3"block>
                 Guardar
             </Button>
