@@ -1,13 +1,9 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState } from 'react'
+import { Button, Form , Container, ListGroup, Modal, ModalHeader} from "react-bootstrap"
+import InfoPersonalAdmiModal from './InfoPersonalAdmiModal'
 
-
-import { Card, ListGroup, ListGroupItem, Form, Button, Container ,Table, Modal, ModalHeader } from "react-bootstrap";
-import InfoPersonalModal from "./InfoPersonalModal";
-
-function InformacionPersonal() {
-
-
-
+const InfoPersonalAdmi = () => {
+    
   const [show, setShow] = useState(false)
   const handleShow = () => setShow(true)
   const handleClose = () => setShow(false)
@@ -40,7 +36,7 @@ function InformacionPersonal() {
             </Modal.Title>
           </ModalHeader>
           <Modal.Body>
-            <InfoPersonalModal />
+            <InfoPersonalAdmiModal />
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>
@@ -57,7 +53,6 @@ function InformacionPersonal() {
 
 
   )
-
 }
 
-export default InformacionPersonal;
+export default InfoPersonalAdmi;

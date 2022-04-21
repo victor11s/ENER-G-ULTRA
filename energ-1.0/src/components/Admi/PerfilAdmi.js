@@ -6,6 +6,7 @@ import Footer from '../Footer';
 
 import { Button, Card, Col, Container, Form, Row, Table, Accordion } from 'react-bootstrap'
 import TableProductos from './TableProductos';
+import InfoPersonalAdmi from './InfoPersonalAdmi';
 
 
 
@@ -29,7 +30,7 @@ function PerfilAdmi() {
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>Informacion Personal</Accordion.Header>
                         <Accordion.Body>
-                            Inserte Informacion Personal del Administrador
+                            <InfoPersonalAdmi/>
                         </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
