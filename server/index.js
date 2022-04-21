@@ -43,7 +43,7 @@ app.get("/api/getImagenes", (req, res) => {
 
     // console.log(idProducto);
 
-    const sqlSelect = "SELECT ubicacion FROM fotoproducto WHERE idProducto = (?)";
+    const sqlSelect = "SELECT ubicacion, idFoto FROM fotoproducto WHERE idProducto = (?)";
     db.query(sqlSelect, [idProducto], (err, result) => {
         res.send(result);
         // res.send("Despues de seleccionar en la DB");
@@ -146,7 +146,6 @@ app.get('/api/consultarUsuario', (req, res) => {
 });
 
 
-
 //Utilizado en EditModal.js:
 // para actualizar productos
 app.put('/api/actualizarProducto', (req, res) => {
@@ -174,6 +173,30 @@ app.get('/api/consultarNombreProducto', (req, res) => { //Consultra si el nombre
     const sqlSelect = "SELECT nombre FROM producto WHERE nombre = (?) EXCEPT (SELECT nombre FROM producto WHERE idProducto = (?))";
     db.query(sqlSelect, [nombreProducto, idProducto], (err, result) => {
         res.send(result);
+    });
+});
+
+// app.get("/api/geImagenes", (req, res) => {
+
+//     const idProducto = req.query.idProducto;
+//     // console.log(idProducto);
+
+//     const sqlSelect = "SELECT ubicacion, idFoto FROM fotoproducto WHERE idProducto = (?)";
+//     db.query(sqlSelect, [idProducto], (err, result) => {
+//         res.send(result);
+//     });
+// });
+
+app.put('/api/actualizarImagenesProducto', (req, res) => {
+    const ubicacion = req.body.ubicacion;
+    const idFoto = req.body.idFoto;
+
+    console.log([ubicacion, idFoto]);
+
+    const sqlUpdate = "UPDATE fotoproducto SET ubicacion = (?) WHERE idFoto = (?)";
+    db.query(sqlUpdate, [ubicacion, idFoto], (err, result) => {
+        res.send("Imagenes actualizadas");
+        // console.log([nombreProducto, descripcionProducto, precioProducto, stockProducto, ingredientesProducto]);
     });
 });
 

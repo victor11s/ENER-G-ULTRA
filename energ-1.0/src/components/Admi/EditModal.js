@@ -7,6 +7,8 @@ function EditModal(props) {
     console.log(props.idProducto)
 
     const [producto, setProducto] = useState([]);
+    const [imagenes, setImagenes] = useState([]);
+    const [idImagenes, setIdImagenes] = useState([]);
 
 
     useEffect(() => {
@@ -20,6 +22,23 @@ function EditModal(props) {
                 }).then((response) => {
                     console.log(response.data);
                     setProducto(response.data[0]);
+                });
+            await Axios.get('http://localhost:3001/api/getImagenes',//OBTENER LAS UBICACIONES DE LAS IMAGENES.
+                {
+                    params: {
+                        idProducto: props.idProducto,
+                    }
+                }).then((response) => {
+                    console.log(response.data);
+                    let ubicaciones = [];
+                    let idImagenes = [];
+                    response.data.map(fotoproducto => {
+                        ubicaciones.push(fotoproducto.ubicacion);
+                        idImagenes.push(fotoproducto.idFoto);
+                        console.log(fotoproducto.ubicacion,fotoproducto.idFoto );
+                    })
+                    setImagenes(ubicaciones);
+                    setIdImagenes(idImagenes);
                 });
         }
         axiosGet();
@@ -45,7 +64,7 @@ function EditModal(props) {
 
                 } else {
 
-                    Axios.put('http://localhost:3001/api/actualizarProducto',
+                    Axios.put('http://localhost:3001/api/actualizarProducto',//Actualizar Producto
                         {
                             idProducto: props.idProducto,
                             nombreProducto: producto.nombre,
@@ -53,11 +72,17 @@ function EditModal(props) {
                             precioProducto: producto.precio,
                             stockProducto: producto.stock,
                             ingredientesProducto: producto.ingredientes
-                        }).then((response) => {
+                        }).then( async(response) => {
+
+                            for (var i = 0; imagenes[i] != undefined; i++) {
+                                await Axios.put('http://localhost:3001/api/actualizarImagenesProducto', {
+                                    idFoto: parseInt(imagenes[i]),
+                                    ubicacion: idImagenes[i],
+                                });
+                            }
+
                             console.log("Producto Actualizado: ");
                             console.log(response.data);
-                            
-
                             alert('Producto Actualizado');
                             window.location.reload();
                         });
@@ -116,6 +141,8 @@ function EditModal(props) {
                 <Form.Control
                     type="text"
                     placeholder="Imagen"
+                    defaultValue={imagenes[0]}
+                    onChange={(event) => { imagenes[0] = event.target.value; console.log(imagenes[0]) }}
                     rows={3}
                 />
             </Form.Group>
@@ -123,6 +150,8 @@ function EditModal(props) {
                 <Form.Control
                     type="text"
                     placeholder="Imagen2"
+                    defaultValue={imagenes[1]}
+                    onChange={(event) => { imagenes[1] = event.target.value; console.log(imagenes[1]) }}
                     rows={3}
                 />
             </Form.Group>
@@ -130,6 +159,8 @@ function EditModal(props) {
                 <Form.Control
                     type="text"
                     placeholder="Imagen3"
+                    defaultValue={imagenes[2]}
+                    onChange={(event) => { imagenes[2] = event.target.value; console.log(imagenes[2]) }}
                     rows={3}
                 />
             </Form.Group>
