@@ -16,10 +16,13 @@ background: linear-gradient(0deg, rgba(93,92,94,1) 5%, rgba(122,12,28,1) 63%);
 
 
 export const FooterBottom = styled.nav`
+
 background: rgb(93,92,94);
 background: linear-gradient(0deg, rgba(93,92,94,1) 5%, rgba(122,12,28,1) 63%);
+position: fixed;
   height: 80px;
-  bottom: 0;
+  width: 100%;
+  bottom: 0px;
   
   justify-content: space-between;
   padding: 0.5rem calc((100vw - 1000px) / 2);
