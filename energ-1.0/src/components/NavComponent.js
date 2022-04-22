@@ -14,7 +14,7 @@ background: linear-gradient(0deg, rgba(93,92,94,1) 5%, rgba(122,12,28,1) 63%);
   /* justify-content: flex-start; */
 `;
 
-
+//fixed para que se ponga abajo
 export const FooterBottom = styled.nav`
 position: relative;
   height: 80px;
