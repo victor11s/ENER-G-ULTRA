@@ -14,6 +14,18 @@ background: linear-gradient(0deg, rgba(93,92,94,1) 5%, rgba(122,12,28,1) 63%);
   /* justify-content: flex-start; */
 `;
 
+
+export const FooterBottom = styled.nav`
+background: rgb(93,92,94);
+background: linear-gradient(0deg, rgba(93,92,94,1) 5%, rgba(122,12,28,1) 63%);
+  height: 80px;
+  bottom: 0;
+  
+  justify-content: space-between;
+  padding: 0.5rem calc((100vw - 1000px) / 2);
+  z-index: 10;
+`;
+
 export const NavLink = styled(Link)`
   color: #fff;
   display: flex;

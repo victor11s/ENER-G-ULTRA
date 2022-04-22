@@ -1,11 +1,11 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { Nav } from './NavComponent';
+import { Nav, FooterBottom } from './NavComponent';
 
 class Footer extends React.Component {
     render() {
         return (
-            <Nav>
+            <FooterBottom className="mt-auto" >
                 <div className="text-white">
                     <Row className="bg">
                         <Col className="text-center"> Derechos Reservados </Col>
@@ -19,7 +19,7 @@ class Footer extends React.Component {
                 </div>
 
 
-            </Nav>
+            </FooterBottom>
 
 
         );
