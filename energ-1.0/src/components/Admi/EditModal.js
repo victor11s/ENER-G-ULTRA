@@ -31,7 +31,7 @@ function EditModal(props) {
                     params: {
                         idProducto: props.idProducto,
                     }
-                }).then( async (response) => {
+                }).then(async (response) => {
                     console.log(response.data);
                     let ubicaciones = [];
                     let idImgs = [];
@@ -42,23 +42,23 @@ function EditModal(props) {
                     })
                     setImagenes(ubicaciones);
                     setIdImagenes(idImgs);
-                    if(ubicaciones[1]==""||ubicaciones[1]== undefined){
+                    if (ubicaciones[1] == "" || ubicaciones[1] == undefined) {
                         console.log(ubicaciones[1])
                         setBottonI2(true)
                     }
-                    if(ubicaciones[2]==''||ubicaciones[2]== undefined){
+                    if (ubicaciones[2] == '' || ubicaciones[2] == undefined) {
                         console.log(ubicaciones[2])
                         setBottonI3(true)
                     }
 
                 });
-                
+
         }
         axiosGet();
-        
+
     }, []);
 
-    
+
     // if(imagenes[2]){
     //     setBottonI3(true)
     // }
@@ -122,6 +122,8 @@ function EditModal(props) {
                     }
                 }).then((response) => {
                     console.log(response.data);
+                    console.log(event.target.id)
+                    document.getElementById('field'+event.target.id).value = "";
                     alert('Imagen eliminada');
                 });
         }
@@ -187,6 +189,7 @@ function EditModal(props) {
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
+                    id='fieldimagen2'
                     type="text"
                     placeholder="Imagen2"
                     defaultValue={imagenes[1]}
@@ -198,6 +201,7 @@ function EditModal(props) {
                 />
             </Form.Group>
             <Button
+                id='imagen2'
                 variant="info"
                 value={idImagenes[1]}
                 className="mt-3 btn text-right"
@@ -207,6 +211,7 @@ function EditModal(props) {
             </Button>
             <Form.Group className="mt-3">
                 <Form.Control
+                    id='fieldimagen3'
                     type="text"
                     placeholder="Imagen3"
                     defaultValue={imagenes[2]}
@@ -215,9 +220,10 @@ function EditModal(props) {
                 />
             </Form.Group>
 
-            <Button 
-                variant="info" 
-                value={idImagenes[2]} 
+            <Button
+                id='imagen3'
+                variant="info"
+                value={idImagenes[2]}
                 onClick={borrarImagen}
                 className="mt-3 justify-content-md-end"
                 disabled={botonBorrarImagen3}>
