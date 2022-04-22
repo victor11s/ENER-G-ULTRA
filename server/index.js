@@ -195,7 +195,7 @@ app.put('/api/actualizarImagenesProducto', (req, res) => {
 
     const sqlUpdate = "UPDATE fotoproducto SET ubicacion = (?) WHERE idFoto = (?)";
     db.query(sqlUpdate, [ubicacion, idFoto], (err, result) => {
-        res.send("Imagenes actualizadas");
+        res.send(result);
         // console.log([nombreProducto, descripcionProducto, precioProducto, stockProducto, ingredientesProducto]);
     });
 });
@@ -246,10 +246,20 @@ app.delete('/api/eliminarProducto', (req, res) => {
         // console.log(result);
         res.send(result);
 
-        // res.send("Despues de seleccionar en la DB");
     });
 });
 
+//Para borrar imagen de producto
+app.delete('/api/eliminarFotoProducto', (req, res) => {
+    const idFoto = req.query.idFoto;
+    console.log([idFoto]);
+    const sqlDelete = "DELETE FROM fotoproducto WHERE idFoto = (?)";
+    db.query(sqlDelete, [idFoto], (err, result) => {
+
+        res.send(result);
+
+    });
+});
 app.listen(3001, () => {
     console.log('corriendo en 3001');
 });
