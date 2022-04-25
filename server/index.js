@@ -263,5 +263,13 @@ app.delete('/api/eliminarFotoProducto', (req, res) => {
 app.listen(3001, () => {
     console.log('corriendo en 3001');
 });
+//Para verfificar el usuario en IniciarSesion.js
+app.get('/api/verificarUsuario', (req, res) => {
+    const nombreUsuario = req.query.nombreUsuario;
+    const sqlSelect = "SELECT * FROM usuario WHERE nombreUsuario = (?)";
+    db.query(sqlSelect, [nombreUsuario], (err, result) => {
+        res.send(result);
+    });
+});
 
 module.exports = db;

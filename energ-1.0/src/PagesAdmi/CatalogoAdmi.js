@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import FilterBar from '../components/FilterBar';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer'
+import NavBarAdmi from '../components/NavBarAdmi';
 
 import TarjetaProducto from '../components/TarjetaProducto'
 import TarjetaProductoAdmi from './TarjetaProductoAdmi';
@@ -33,7 +34,7 @@ function CatalogoAdmi() {
   return (
 
     <div>
-      <NavBar />
+      <NavBarAdmi />
       <Container className='mt-2'>
         <Breadcrumb>
           {/* No se uso Breadcrumb.item por que no deja dar color al link */}

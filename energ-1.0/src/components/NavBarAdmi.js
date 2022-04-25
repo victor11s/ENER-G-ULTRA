@@ -46,14 +46,13 @@ function NavBarAdmi() {
         <Bars />
         <NavMenu>
           <NavLink to='/catalogo' activeStyle>Cátalogo</NavLink>
-          {/* <NavLink to='/miPerfil' activeStyle>Mi Perfil</NavLink> */}
           <NavLink to='/perfilAdmi' activeStyle>Mi Perfil Admi</NavLink>
           <NavLink to='/iniciarSesion' activeStyle>Iniciar Sesion</NavLink>
           
 
         </NavMenu>
-        {/* <div className='row'>
-          <Col>
+        <div className='row'>
+          {/* <Col>
             <NavLink to='/carrito/1'>
 
               <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
@@ -62,13 +61,13 @@ function NavBarAdmi() {
               </svg>
               {etiquetaNumProductos}
             </NavLink>
-          </Col>
+          </Col> */}
 
        
 
 
 
-        </div> */}
+        </div>
       </Nav>
     </>
   )

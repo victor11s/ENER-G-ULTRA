@@ -8,6 +8,7 @@ import TarjetaProducto from '../components/TarjetaProducto'
 import { Breadcrumb, Col, Container, Row } from "react-bootstrap";
 import { Routes, Route, Link } from "react-router-dom";
 import Productos from '../components/Productos';
+import NavBarAdmi from '../components/NavBarAdmi'
 
 import Axios from 'axios'
 

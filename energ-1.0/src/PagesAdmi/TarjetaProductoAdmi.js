@@ -4,7 +4,7 @@ import { Button, Card, Container, Form, Row, Col } from 'react-bootstrap';
 
 import img1 from '../assets/img/LATASF.png'
 
-import { NavLink } from './NavComponent'
+import { NavLink } from '../components/NavComponent'
 
 
 

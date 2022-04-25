@@ -7,6 +7,7 @@ import Footer from '../Footer';
 import { Button, Card, Col, Container, Form, Row, Table, Accordion } from 'react-bootstrap'
 import TableProductos from './TableProductos';
 import InfoPersonalAdmi from './InfoPersonalAdmi';
+import NavBarAdmi from '../NavBarAdmi';
 
 
 
@@ -14,7 +15,7 @@ function PerfilAdmi() {
     return (
         <>
 
-            <NavBar />
+            <NavBarAdmi />
             <Container>
                 <Row >
                     <Col></Col>
