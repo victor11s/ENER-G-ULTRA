@@ -40,11 +40,13 @@ class IniciarSesion extends React.Component {
 
                     // if(contrasena==md5(this.state.form.contrasena)){
                     if(contrasena == sContrasena){
-                        alert("eres tuuuu")
+                        alert("Inicio Sesión con Exito")
                         this.props.pSetUsuario(response.data[0]);
+                        console.log(JSON.stringify(response.data[0]));
+                        window.localStorage.setItem("usuario", JSON.stringify(response.data[0]));
                         this.props.pTipoUsuario(response.data[0].tipo);
                     }else{
-                        alert("No eres tu")
+                        alert("No se Inicio Sesión, favor de checar sus credenciales")
                     }
                 }
                 console.log(response.data);

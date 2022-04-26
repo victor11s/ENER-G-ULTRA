@@ -6,6 +6,7 @@ import { Badge, Col } from "react-bootstrap";
 import IniciarSesion from './CreacionPerfil/IniciarSesion';
 
 function NavBarAdmi() {
+  const [usuario, setUsuario] = useState(null);
   let [sNumProductosCarrito, setNumProductos] = useState(0);
   useEffect(() => {
     const axiosGet = async () => {
@@ -22,6 +23,34 @@ function NavBarAdmi() {
     }
     axiosGet();
   }, []);
+
+  //Para cambiar el boton cerrar/iniciar Sesion
+  useEffect(() => {
+    const usuarioString = window.localStorage.getItem("usuario");
+    if (usuarioString) {
+      const user = JSON.parse(usuarioString);
+      setUsuario(user);
+    }
+  }, []);
+
+
+  const renderIniciarSesion = () => {
+    return(
+      <NavLink to='/iniciarSesion' activeStyle>Iniciar Sesion</NavLink>
+    );
+  }
+
+  const renderCerrarSesion = () => {
+    return(
+      <NavLink to='/catalogo' onClick={handleCerrarSesion} activeStyle>Cerrar Sesión</NavLink>
+      );
+  }
+
+  const handleCerrarSesion = () => {
+    window.localStorage.removeItem('usuario');
+    setUsuario(null);
+  }
+  //termina metodos para cambiar cerrar/iniciar sesion
 
   let etiquetaNumProductos;
   if (sNumProductosCarrito > 0) {
@@ -47,8 +76,12 @@ function NavBarAdmi() {
         <NavMenu>
           <NavLink to='/catalogo' activeStyle>Cátalogo</NavLink>
           <NavLink to='/perfilAdmi' activeStyle>Mi Perfil Admi</NavLink>
-          <NavLink to='/iniciarSesion' activeStyle>Iniciar Sesion</NavLink>
           
+          {
+            usuario
+              ? renderCerrarSesion()
+              : renderIniciarSesion()
+          }
 
         </NavMenu>
         <div className='row'>
