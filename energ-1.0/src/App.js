@@ -15,6 +15,7 @@ import Pagado from "./components/PayPalCheckOut/Pagado";
 import Profile from "./components/UserProfile/Profile";
 import PerfilAdmi from "./components/Admi/PerfilAdmi";
 import LandingPageAdmi from "./PagesAdmi/LandingPagesAdmi";
+import DetalleProductosAdmi from "./PagesAdmi/DetalleProductosAdmi";
 // aqui se importan todos los componentes creados
 
 // crear nuevos componentes de navBar ya en proceso
@@ -73,8 +74,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<LandingPageAdmi />} />
             <Route path="/catalogo" element={<CatalogoAdmi />} />
-            <Route path="/detalleProducto/:id/:nombre" element={<DetalleProductos />} />
-            <Route path="/detalleProducto/:pIdProducto/:pNombreProducto/:pIdCarrito" element={<DetalleProductos />} />
+            <Route path="/detalleProducto/:id/:nombre" element={<DetalleProductosAdmi />} />
+            <Route path="/detalleProducto/:pIdProducto/:pNombreProducto/:pIdCarrito" element={<DetalleProductosAdmi />} />
             <Route path="/admiAgregarProducto/" element={<AdmiAgregarProducto />} />
             <Route path="/iniciarSesion" element={<IniciarSesion pSetUsuario={setUsuario} pTipoUsuario={setTipoUsuario} />} />
             <Route path="/registrar" element={<Registrarse />} />

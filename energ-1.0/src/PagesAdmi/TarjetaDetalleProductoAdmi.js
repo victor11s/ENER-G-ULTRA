@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import img1 from '../assets/img/LATASF.png'
 import { Button, Card, Col, Container, Form, Row, Table } from 'react-bootstrap'
-import ImageGallery from './ImageGallery'
+
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
+import ImageGallery from '../components/ImageGallery';
 
 function TarjetaDetalleProductoAdmi() {
     let { pIdProducto, pNombreProducto, pIdCarrito } = useParams();

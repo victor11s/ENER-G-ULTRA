@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom'
 import TarjetaDetalleProducto from '../components/TarjetaDetalleProducto'
 import TarjetaDetalleProductoAdmi from './TarjetaDetalleProductoAdmi'
 import { Container, Breadcrumb } from 'react-bootstrap'
+import NavBarAdmi from '../components/NavBarAdmi'
 
 
 const DetalleProductosAdmi = () => {
   return (
     <div>
-      <NavBar />
+      <NavBarAdmi />
       <Container className='mt-2'>
         <Breadcrumb>   
         {/* No se uso Breadcrumb.item por que no deja dar color al link */}
