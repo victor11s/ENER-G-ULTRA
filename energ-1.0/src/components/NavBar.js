@@ -55,7 +55,7 @@ function NavBar() {
 
   const renderCerrarSesion = () => {
     return(
-      <NavLink onClick={handleCerrarSesion} activeStyle>Iniciar Sesion</NavLink>
+      <NavLink to='/catalogo' onClick={handleCerrarSesion} activeStyle>Iniciar Sesion</NavLink>
       );
   }
 
