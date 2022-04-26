@@ -47,7 +47,7 @@ function NavBar() {
   }, []);
 
 
-  const renderInciarSesion = () => {
+  const renderIniciarSesion = () => {
     return(
       <NavLink to='/iniciarSesion' activeStyle>Iniciar Sesion</NavLink>
     );
@@ -55,7 +55,7 @@ function NavBar() {
 
   const renderCerrarSesion = () => {
     return(
-      <NavLink to='/catalogo' onClick={handleCerrarSesion} activeStyle>Iniciar Sesion</NavLink>
+      <NavLink to='/catalogo' onClick={handleCerrarSesion} activeStyle>Cerrar Sesion</NavLink>
       );
   }
 
@@ -84,7 +84,7 @@ function NavBar() {
           {
             usuario
               ? renderCerrarSesion()
-              : renderInciarSesion()
+              : renderIniciarSesion()
           }
 
 
