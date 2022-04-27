@@ -19,7 +19,6 @@ app.get('/api/get', (req, res) => {
     const sqlSelect = "SELECT * FROM producto";
     db.query(sqlSelect, (err, result) => {
         res.send(result);
-        // res.send("Despues de seleccionar en la DB");
     });
 });
 
@@ -33,7 +32,6 @@ app.get("/api/getProducto", (req, res) => {
     const sqlSelect = "SELECT * FROM producto WHERE idProducto = (?)";
     db.query(sqlSelect, [idProducto], (err, result) => {
         res.send(result);
-        // res.send("Despues de seleccionar en la DB");
     });
 });
 
@@ -46,7 +44,6 @@ app.get("/api/getImagenes", (req, res) => {
     const sqlSelect = "SELECT ubicacion, idFoto FROM fotoproducto WHERE idProducto = (?)";
     db.query(sqlSelect, [idProducto], (err, result) => {
         res.send(result);
-        // res.send("Despues de seleccionar en la DB");
     });
 });
 
@@ -57,13 +54,14 @@ app.get('/api/insert', (req, res) => {
     });
 });
 
-//Para agregar productos al carrito en la BD
+//Para agregar productos al carrito en la BD, usado en TarjetaProducto.js
 app.post('/api/agregarCarrito', (req, res) => {
 
     const idCarrito = req.body.idCarrito;
     const idProducto = req.body.idProducto;
     const cantidadProducto = req.body.cantidadProducto;
 
+    console.log("idCarito usado: "+idCarrito);
 
     const sqlSelect = "SELECT * FROM productocarrito WHERE idProducto=(?) AND idCarrito=(?)";
     db.query(sqlSelect, [idProducto, idCarrito], (error, result) => {
@@ -78,8 +76,15 @@ app.post('/api/agregarCarrito', (req, res) => {
             });
         }
     });
+});
 
-
+//Para obtener el idCarrito utilizado en el componenente NavBar.js
+app.get('/api/getIdCarrito', (req, res) => {
+    const nombreUsuario = req.query.nombreUsuario;
+    const sqlSelect = "SELECT idCarrito FROM carrito WHERE nombreUsuario = (?) ORDER BY idCarrito ASC";
+    db.query(sqlSelect, [nombreUsuario], (err, result) => {
+        res.send(result);
+    });
 });
 
 app.get('/api/getCarrito', (req, res) => {
@@ -87,7 +92,6 @@ app.get('/api/getCarrito', (req, res) => {
     const sqlSelect = "SELECT producto.idProducto, nombre, cantidad,precio,stock FROM productocarrito JOIN producto ON producto.idProducto=productocarrito.idProducto WHERE idCarrito = (?)";
     db.query(sqlSelect, [idCarrito], (err, result) => {
         res.send(result);
-        // res.send("Despues de seleccionar en la DB");
     });
 });
 
@@ -99,8 +103,6 @@ app.delete('/api/eliminarItem', (req, res) => {
     db.query(sqlSelect, [idCarrito, idProducto], (err, result) => {
         // console.log(result);
         res.send(result);
-
-        // res.send("Despues de seleccionar en la DB");
     });
 });
 

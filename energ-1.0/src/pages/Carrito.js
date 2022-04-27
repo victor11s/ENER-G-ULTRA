@@ -15,6 +15,7 @@ export default function Carrito() {
     let estadoBoton = '';
     let total = 0;
 
+    console.log("Mostrando items del carrito: "+pIdCarrito);
     useEffect(() => {
         const axiosGet = async () => {
             // console.log(pIdCarrito);

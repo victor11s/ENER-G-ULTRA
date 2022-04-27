@@ -9,13 +9,14 @@ import { NavLink } from './NavComponent'
 
 
 function TarjetaProducto(props) {
+  const [sIdCarrito, setIdCarrito] = useState();
   const [imagenes, setImagenes] = useState('');
   let busquedaRealizada = false;
 
- 
-
-
  useEffect(() => {
+  let vIdCarrito = parseInt(window.localStorage.getItem("carrito"));
+  setIdCarrito(vIdCarrito);
+  
   if(!busquedaRealizada){
     Axios.get('http://localhost:3001/api/getImagenes',
     {
@@ -26,6 +27,7 @@ function TarjetaProducto(props) {
       busquedaRealizada = true;
       let imgs = response.data[0].ubicacion;
       setImagenes(imgs);
+      
       
     })
   } 
@@ -40,7 +42,7 @@ function TarjetaProducto(props) {
     Axios.post('http://localhost:3001/api/agregarCarrito',
       {
         idProducto: props.id,
-        idCarrito: 1,
+        idCarrito: sIdCarrito,
         cantidadProducto: 1,
       }).then((response) => {
         console.log(response.data);
@@ -84,7 +86,7 @@ function TarjetaProducto(props) {
                 </Row>
                 <Row>
                   <Col className="mt-2 d-grid" >
-                    <Button size="md" variant="dark" >  <NavLink to={`/detalleProducto/${props.id}/${props.nombre}/1`} className="d-grid" >Ver producto</NavLink></Button>
+                    <Button size="md" variant="dark" >  <NavLink to={`/detalleProducto/${props.id}/${props.nombre}/${sIdCarrito}`} className="d-grid" >Ver producto</NavLink></Button>
                   </Col>
                 </Row>
                 {/* </Container> */}

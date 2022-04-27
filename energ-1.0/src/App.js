@@ -22,9 +22,7 @@ import DetalleProductosAdmi from "./PagesAdmi/DetalleProductosAdmi";
 //quitarle al admi el carrito y paypal
 
 //Se llaman los componentes para incluirlos en el app.js
-const App = () => {
-  //window.localStorage.setItem("usuario",null);
-  
+const App = () => { 
   const [usuario, setUsuario] = useState(null);
   const [token, setToken] = useState(null);
   const [tipoUsuario, setTipoUsuario] = useState('usuario');

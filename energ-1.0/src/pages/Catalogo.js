@@ -12,7 +12,7 @@ import NavBarAdmi from '../components/NavBarAdmi'
 
 import Axios from 'axios'
 
-console.log(Productos)
+console.log(Productos) 
 
 
 
@@ -23,8 +23,7 @@ function Catalogo() {
   useEffect(() => {
     Axios.get('http://localhost:3001/api/get').then((response) => {
       console.log(response.data);
-      setProductoLista(response.data)
-
+      setProductoLista(response.data);
     })
   }, [])
 
@@ -53,7 +52,12 @@ function Catalogo() {
                 
                 return (
                   <Col className='row d-flex flex-col flex-wrap md-4 sm-6' key={producto.idProducto.toString() + 'b'}>
-                    <TarjetaProducto key={producto.idProducto.toString() + 'a'} id={producto.idProducto} nombre={producto.nombre} descripcion={producto.descripcion} precio={producto.precio} />
+                    <TarjetaProducto 
+                      key={producto.idProducto.toString() + 'a'} 
+                      id={producto.idProducto} 
+                      nombre={producto.nombre} 
+                      descripcion={producto.descripcion} 
+                      precio={producto.precio} />
                   </Col>
                 )
               })
