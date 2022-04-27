@@ -8,6 +8,7 @@ import { Button, Card, Col, Container, Form, Row, Table, Accordion } from 'react
 import TableProductos from './TableProductos';
 import InfoPersonalAdmi from './InfoPersonalAdmi';
 import NavBarAdmi from '../NavBarAdmi';
+import PedidosAdmi from './PedidosAdmi';
 
 
 
@@ -48,7 +49,7 @@ function PerfilAdmi() {
                     <Accordion.Item eventKey="2">
                         <Accordion.Header>Pedidos</Accordion.Header>
                         <Accordion.Body>
-                            Inserte Info de los Pedidos
+                            <PedidosAdmi/>
                         </Accordion.Body>
                     </Accordion.Item>
                     
