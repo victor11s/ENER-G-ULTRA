@@ -68,7 +68,7 @@ function TableProductos() {
 
   //Produdcto a editar/borrar:
   const [thisIdProducto, setThisIdProducto] = useState("1");
-  
+
 
   //Recuperar todos los productos de la BD:
   useEffect(() => {

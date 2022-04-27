@@ -274,4 +274,19 @@ app.get('/api/verificarUsuario', (req, res) => {
     });
 });
 
+//Para editar información del usuario
+app.put('/api/actualizarUsuario', (req, res) => {
+    
+    const nombreUsuario = req.body.nombreUsuario;
+    const nombre = req.body.nombre;
+    const apellido = req.body.apellido;
+
+    console.log([nombre, apellido, nombreUsuario]);
+
+    const sqlInsert = "UPDATE usuario SET nombre = (?), apellido = (?) WHERE nombreUsuario = (?)";
+    db.query(sqlInsert, [nombre, apellido, nombreUsuario], (err, result) => {
+        res.send(result);
+    });
+})
+
 module.exports = db;

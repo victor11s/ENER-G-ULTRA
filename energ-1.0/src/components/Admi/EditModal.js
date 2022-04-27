@@ -42,7 +42,7 @@ function EditModal(props) {
                     })
                     setImagenes(ubicaciones);
                     setIdImagenes(idImgs);
-                    if (ubicaciones[1] == "" || ubicaciones[1] == undefined) {
+                    if (ubicaciones[1] == '' || ubicaciones[1] == undefined) {
                         console.log(ubicaciones[1])
                         setBottonI2(true)
                     }
@@ -109,7 +109,7 @@ function EditModal(props) {
                             alert('Producto Actualizado');
                             window.location.reload();
                         });
-                }
+                } 
             });
     }
 
