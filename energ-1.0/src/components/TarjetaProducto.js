@@ -16,7 +16,7 @@ function TarjetaProducto(props) {
  useEffect(() => {
   let vIdCarrito = parseInt(window.localStorage.getItem("carrito"));
   setIdCarrito(vIdCarrito);
-  
+
   if(!busquedaRealizada){
     Axios.get('http://localhost:3001/api/getImagenes',
     {
