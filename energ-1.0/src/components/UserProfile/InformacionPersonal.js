@@ -1,5 +1,5 @@
-import React, { Component, useState } from "react";
-
+import React, { Component, useState, useEffect} from "react";
+import  Axios  from "axios";
 
 import { Card, ListGroup, ListGroupItem, Form, Button, Container ,Table, Modal, ModalHeader } from "react-bootstrap";
 import InfoPersonalModal from "./InfoPersonalModal";
@@ -11,18 +11,28 @@ function InformacionPersonal() {
   const [show, setShow] = useState(false)
   const handleShow = () => setShow(true)
   const handleClose = () => setShow(false)
+  const [sNombre, setNombre] = useState();
+  const [sApellido, setApellido] = useState();
 
 
+  useEffect(() => {
+    const usuarioString = window.localStorage.getItem("usuario");
+    if (usuarioString) {
+      const user = JSON.parse(usuarioString);
+      setNombre(user.nombre);//Ya tenemos el nombre del usuario
+      setApellido(user.apellido);
+    }
+  }, []);
   return (
 
 
-
+ 
     <Container>
 
       <h2>Perfil</h2>
       <ListGroup>
-        <ListGroup.Item>Nombre:</ListGroup.Item>
-        <ListGroup.Item>Apellido:</ListGroup.Item>
+        <ListGroup.Item >Nombre: {sNombre}</ListGroup.Item>
+        <ListGroup.Item >Apellido: {sApellido}</ListGroup.Item>
 
       </ListGroup>
 
@@ -40,7 +50,7 @@ function InformacionPersonal() {
             </Modal.Title>
           </ModalHeader>
           <Modal.Body>
-            <InfoPersonalModal />
+            <InfoPersonalModal pNombre={sNombre} pApellido={sApellido}/>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>

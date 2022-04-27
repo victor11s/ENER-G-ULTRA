@@ -5,7 +5,7 @@ import { Button, Form, Container, Table, Modal, ModalHeader } from 'react-bootst
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 import { Row, Col } from 'react-bootstrap';
-
+ 
 import EditModal from './EditModal';
 
 import FormModal from './FormModal';
@@ -68,9 +68,11 @@ function TableProductos() {
 
   //Produdcto a editar/borrar:
   const [thisIdProducto, setThisIdProducto] = useState("1");
+  
 
   //Recuperar todos los productos de la BD:
   useEffect(() => {
+
     Axios.get('http://localhost:3001/api/get').then((response) => {
       setProductoLista(response.data)
     })
