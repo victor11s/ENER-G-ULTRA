@@ -1,7 +1,10 @@
 import React, { Component, useState } from 'react'
 import { Button, Form } from "react-bootstrap"
 
-const DireccionModal = () => {
+
+
+
+const DireccionModal = (props) => {
     
     return (
         <Form>
@@ -9,6 +12,7 @@ const DireccionModal = () => {
                 <Form.Control
                     type="text"
                     placeholder="Calle"
+                    defaultValue={props.calle}
                     required
                 />
             </Form.Group>
@@ -16,6 +20,7 @@ const DireccionModal = () => {
                 <Form.Control
                     type="text"
                     placeholder="Colonia"
+                    defaultValue={props.colonia}
                     required
                 />
             </Form.Group>
@@ -23,11 +28,14 @@ const DireccionModal = () => {
                 <Form.Control
                     type="text"
                     placeholder="Ciudad"
+                    defaultValue={props.ciudad}
                     rows={3}
                 />
             </Form.Group>
             <Form.Group className="mt-3">
-                <Form.Select aria-label="Default select example">
+                <Form.Select aria-label="Default select example" 
+                defaultValue={props.idEstado}
+                defaultChecked={props.estado}>
                     <option>Selecciona tu Estado</option>
                     <option value="1">Nuevo León</option>
                     <option value="2">Campeche</option>
@@ -42,11 +50,13 @@ const DireccionModal = () => {
                 <Form.Control
                     type="number"
                     placeholder="Número Casa"
+                    defaultValue={props.noCasa}
                     required
                 />
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
+                    defaultValue={props.codigoPostal}
                     type="number"
                     placeholder="Codigo Postal"
                     required

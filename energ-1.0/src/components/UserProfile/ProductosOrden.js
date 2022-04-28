@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, Container, Table, Modal, ModalHeader } from 'react-bootstrap'
 
-
-import { NavLink } from 'react-router-dom';
-
-class PedidosAdmi extends Component {
+class ProductosOrden extends Component {
     constructor() {
         super();
         this.state = {
@@ -19,21 +16,29 @@ class PedidosAdmi extends Component {
                     <thead>
                         <tr>
 
-                            <th>Nombre Usuario</th>
-                            <th>Pedidos</th>
+
+                            
+
+
+                            {/* <th>Imagen</th> */}
 
                         </tr>
                     </thead>
                     <tbody>
                         {
 
+
                             <tr>
-                                <td>Nombre Usuario</td>
-                                <td>
-                                <Button  className="btn btn-danger ml-5" ><NavLink to={`/pedidosAdmi`} className="d-grid" >Ver Pedidos Usuario</NavLink></Button>
-                                </td>
-                              
+
+
+                                <td>Productos</td>
+                                <td>Cantidad</td>
+
+
+
+
                             </tr>
+
 
                         }
                     </tbody>
@@ -46,4 +51,4 @@ class PedidosAdmi extends Component {
     }
 }
 
-export default PedidosAdmi;
+export default ProductosOrden;

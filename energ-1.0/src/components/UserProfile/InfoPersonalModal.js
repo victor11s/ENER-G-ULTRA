@@ -7,12 +7,14 @@ const InfoPersonalModal = (props) => {
     const [sNombreUsuario, setNombreUsuario] = useState();
     const [sNombre, setNombre] = useState(props.pNombre);
     const [sApellido, setApellido] = useState(props.pApellido);
+    const [sUsuario, setUsuario] = useState();
 
     useEffect(() => {
         const usuarioString = window.localStorage.getItem("usuario");
         if (usuarioString) {
             const user = JSON.parse(usuarioString);
             setNombreUsuario(user.nombreUsuario);    //Ya tenemos el nombre del usuario
+            setUsuario(user);
         }
     }, []);
 
@@ -27,6 +29,9 @@ const InfoPersonalModal = (props) => {
                 console.log("Usuario Actualizado: ");
                 props.parentSetNombre(sNombre);
                 props.parentSetApellido(sApellido);
+                sUsuario.nombre = sNombre;
+                sUsuario.apellido = sApellido;
+                window.localStorage.setItem("usuario", JSON.stringify(sUsuario));
                 alert('Usuario actualizado');
 
             });

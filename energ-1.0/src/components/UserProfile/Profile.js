@@ -1,5 +1,6 @@
-import React, { Component , useState, useEffect} from 'react'
+import React, { Component, useState, useEffect } from 'react'
 
+import Axios from 'axios'
 
 import NavBar from '../NavBar';
 import Footer from '../Footer';
@@ -11,8 +12,17 @@ import MisPedidos from './MisPedidos'
 import Direccion from './Direccion'
 
 function Profile() {
+    const [sNombreUsuario, setNombreUsuario] = useState();
     const [sNombre, setNombre] = useState();
     const [sApellido, setApellido] = useState();
+
+    const [sCalle, setCalle] = useState();
+    const [sColonia, setColonia] = useState();
+    const [sNumeroCasa, setNumeroCasa] = useState();
+    const [sCodigoPostal, setCodigoPostal] = useState();
+    const [sCiudad, setCiudad] = useState();
+    const [sEstado, setEstado] = useState();
+    const [sIdEstado, setIdEstado] = useState();
 
     useEffect(() => {
         const usuarioString = window.localStorage.getItem("usuario");
@@ -20,6 +30,29 @@ function Profile() {
             const user = JSON.parse(usuarioString);
             setNombre(user.nombre);//Ya tenemos el nombre del usuario
             setApellido(user.apellido);
+            setNombreUsuario(user.nombreUsuario);
+            let varNombreUsuario = user.nombreUsuario;
+            console.log("Profile del usuario: "+varNombreUsuario);
+
+            Axios.get('http://localhost:3001/api/getDireccion',
+            {
+                params: {
+                    nombreUsuario: varNombreUsuario,
+                }    
+            }).then((response) => {
+                console.log("dirección del usuario: " + user.nombreUsuario);
+                if(response.data[0]){
+                  console.log(response.data[0])
+                  let direccion = response.data[0];
+                  setColonia(direccion.colonia);
+                  setCalle(direccion.calle);
+                  setNumeroCasa(direccion.noCasa);
+                  setCodigoPostal(direccion.codigoPostal);
+                  setCiudad(direccion.ciudad);
+                  setEstado(direccion.estado);
+                  setIdEstado(direccion.idEstado);
+                }
+            });
         }
     }, []);
 
@@ -40,23 +73,40 @@ function Profile() {
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>Informacion Personal</Accordion.Header>
                         <Accordion.Body>
-                            <InformacionPersonal 
-                            profileNombre={sNombre}
-                            profileApellido={sApellido}
-                            profileSetNombre={setNombre}
-                            profileSetApellido={setApellido}/>
+                            <InformacionPersonal
+                                profileNombre={sNombre}
+                                profileApellido={sApellido}
+                                profileSetNombre={setNombre}
+                                profileSetApellido={setApellido} />
                         </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
                         <Accordion.Header>Direccion</Accordion.Header>
                         <Accordion.Body>
-                            <Direccion />
+                            <Direccion 
+                                calle={sCalle}
+                                colonia={sColonia}
+                                noCasa={sNumeroCasa}
+                                codigoPostal={sCodigoPostal}
+                                ciudad={sCiudad}
+                                estado={sEstado}
+                                
+                                idEstado={sIdEstado}
+                                nombreUsuario={sNombreUsuario}
+                                />
                         </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="2">
                         <Accordion.Header>Mis Pedidos</Accordion.Header>
                         <Accordion.Body>
+                            
+                            <Row>
                             <MisPedidos />
+                            </Row>
+
+                                
+                            
+
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>

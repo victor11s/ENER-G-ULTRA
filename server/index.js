@@ -289,4 +289,13 @@ app.put('/api/actualizarUsuario', (req, res) => {
     });
 })
 
+//Para recuperar la dirección del usuario, Usando en Direccion.js
+app.get('/api/getDireccion', (req, res) => {
+    const nombreUsuario = req.query.nombreUsuario;
+    const sqlSelect = "SELECT calle, colonia, noCasa, codigoPostal, ciudad, estado.idEstado AS idEstado, estado.nombre AS estado FROM direccion JOIN estado ON estado.idEstado=direccion.idEstado WHERE nombreUsuario = (?)";
+    db.query(sqlSelect, [nombreUsuario], (err, result) => {
+        res.send(result);
+    });
+});
+
 module.exports = db;

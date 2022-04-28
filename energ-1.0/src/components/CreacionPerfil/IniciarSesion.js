@@ -42,7 +42,7 @@ class IniciarSesion extends React.Component {
                     if(contrasena == sContrasena){
                         alert("Inicio Sesión con Exito")
                         this.props.pSetUsuario(response.data[0]);
-                        console.log(JSON.stringify(response.data[0]));
+                        //console.log(JSON.stringify(response.data[0]));
                         window.localStorage.setItem("usuario", JSON.stringify(response.data[0]));
                         this.props.pTipoUsuario(response.data[0].tipo);
                     }else{

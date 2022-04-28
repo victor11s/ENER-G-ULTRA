@@ -16,6 +16,7 @@ import Profile from "./components/UserProfile/Profile";
 import PerfilAdmi from "./components/Admi/PerfilAdmi";
 import LandingPageAdmi from "./PagesAdmi/LandingPagesAdmi";
 import DetalleProductosAdmi from "./PagesAdmi/DetalleProductosAdmi";
+import PedidosIndividualesAdmi from "./components/Admi/PedidosIndividualesAdmi";
 // aqui se importan todos los componentes creados
 
 // crear nuevos componentes de navBar ya en proceso
@@ -78,6 +79,8 @@ const App = () => {
             <Route path="/iniciarSesion" element={<IniciarSesion pSetUsuario={setUsuario} pTipoUsuario={setTipoUsuario} />} />
             <Route path="/registrar" element={<Registrarse />} />
             <Route path="/perfilAdmi" element={<PerfilAdmi />} />
+            <Route path="/pedidosAdmi" element={<PedidosIndividualesAdmi />} />
+
 
             {/* Agregar rutas de perfil y noticias*/}
           </Routes>
