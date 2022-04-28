@@ -298,4 +298,40 @@ app.get('/api/getDireccion', (req, res) => {
     });
 });
 
+// para actualizar Direccion, usado en DireccionModal.js
+app.put('/api/actualizarDireccion', (req, res) => {
+
+    const nombreUsuario = req.body.nombreUsuario;
+    const calle = req.body.calle;
+    const colonia = req.body.colonia;
+    const noCasa = req.body.noCasa;
+    const codigoPostal = req.body.codigoPostal;
+    const idEstado = req.body.idEstado;
+
+    console.log([calle, colonia, noCasa, codigoPostal, idEstado, nombreUsuario]);
+
+    const sqlInsert = "UPDATE direccion SET calle = (?), colonia = (?), noCasa = (?), codigoPostal = (?), idEstado = (?) WHERE nombreUsuario = (?)";
+    db.query(sqlInsert, [calle, colonia, noCasa, codigoPostal, idEstado, nombreUsuario], (err, result) => {
+        res.send("Producto actualizado");
+        console.log([calle, colonia, noCasa, codigoPostal, idEstado, nombreUsuario]);
+    });
+})
+
+// para agregar direccion, usado en DireccionModal.js
+app.post('/api/agregarDireccion', (req, res) => {
+
+    const nombreUsuario = req.body.nombreUsuario;
+    const calle = req.body.calle;
+    const colonia = req.body.colonia;
+    const noCasa = req.body.noCasa;
+    const codigoPostal = req.body.codigoPostal;
+    const idEstado = req.body.idEstado;
+
+    const sqlInsert = "INSERT INTO direccion(calle, colonia, noCasa, codigoPostal, idEstado, nombreUsuario) VALUES (?,?,?,?,?,?)";
+    db.query(sqlInsert, [calle, colonia, noCasa, codigoPostal, idEstado, nombreUsuario], (err, result) => {
+        res.send("Producto insertado");
+        console.log([calle, colonia, noCasa, codigoPostal, idEstado, nombreUsuario]);
+    });
+})
+
 module.exports = db;

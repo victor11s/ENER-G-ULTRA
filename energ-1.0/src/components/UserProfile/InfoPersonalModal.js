@@ -33,6 +33,7 @@ const InfoPersonalModal = (props) => {
                 sUsuario.apellido = sApellido;
                 window.localStorage.setItem("usuario", JSON.stringify(sUsuario));
                 alert('Usuario actualizado');
+                props.handleClose();
 
             });
     }

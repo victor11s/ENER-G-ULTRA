@@ -73,7 +73,7 @@ class Registrarse extends React.Component {
                             console.log(response.data);
                             console.log("enviado");
                             alert('Usuario Creado');
-                        });
+                        }); 
                 }
             });
     }

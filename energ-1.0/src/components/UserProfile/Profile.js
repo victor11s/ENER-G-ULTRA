@@ -24,7 +24,7 @@ function Profile() {
     const [sEstado, setEstado] = useState();
     const [sIdEstado, setIdEstado] = useState();
 
-    useEffect(() => {
+    useEffect(() => { 
         const usuarioString = window.localStorage.getItem("usuario");
         if (usuarioString) {
             const user = JSON.parse(usuarioString);

@@ -58,7 +58,9 @@ function Direccion(props) {
             setEstado={props.setEstado}
 
             idEstado={props.idEstado}
-            nombreUsuario={props.nombreUsuario}/>
+            nombreUsuario={props.nombreUsuario}
+            
+            handleClose={handleClose}/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose} >

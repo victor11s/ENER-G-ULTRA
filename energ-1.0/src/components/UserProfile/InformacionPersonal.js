@@ -35,7 +35,9 @@ function InformacionPersonal(props) {
               pNombre={props.profileNombre}
               pApellido={props.profileApellido} 
               parentSetNombre={props.profileSetNombre} 
-              parentSetApellido={props.profileSetApellido}/>
+              parentSetApellido={props.profileSetApellido}
+              
+              handleClose={handleClose}/>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>
