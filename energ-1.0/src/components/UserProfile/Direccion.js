@@ -50,6 +50,13 @@ function Direccion(props) {
             ciudad={props.ciudad}
             estado={props.estado}
 
+            setColonia={props.setColonia}
+            setCalle={props.setCalle}
+            setNumeroCasa={props.setNumeroCasa}
+            setCodigoPostal={props.setCodigoPostal}
+            setCiudad={props.setCiudad}
+            setEstado={props.setEstado}
+
             idEstado={props.idEstado}
             nombreUsuario={props.nombreUsuario}/>
         </Modal.Body>

@@ -4,8 +4,30 @@ import { Button, Form } from "react-bootstrap"
 
 
 
+
 const DireccionModal = (props) => {
     
+    const handleBotonConfirmar = async (event) => {
+        event.preventDefault();
+
+
+        Axios.put('http://localhost:3001/api/actualizarUsuario',//Actualizar usuario
+            {
+                nombreUsuario: sNombreUsuario,
+                nombre: sNombre,
+                apellido: sApellido,
+            }).then(async (response) => {
+                console.log("Usuario Actualizado: ");
+                props.parentSetNombre(sNombre);
+                props.parentSetApellido(sApellido);
+                sUsuario.nombre = sNombre;
+                sUsuario.apellido = sApellido;
+                window.localStorage.setItem("usuario", JSON.stringify(sUsuario));
+                alert('Usuario actualizado');
+
+            });
+    }
+
     return (
         <Form>
             <Form.Group >

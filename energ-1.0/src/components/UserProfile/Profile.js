@@ -90,7 +90,14 @@ function Profile() {
                                 codigoPostal={sCodigoPostal}
                                 ciudad={sCiudad}
                                 estado={sEstado}
-                                
+
+                                setColonia={setColonia}
+                                setCalle={setCalle}
+                                setNumeroCasa={setNumeroCasa}
+                                setCodigoPostal={setCodigoPostal}
+                                setCiudad={setCiudad}
+                                setEstado={setEstado}
+
                                 idEstado={sIdEstado}
                                 nombreUsuario={sNombreUsuario}
                                 />
