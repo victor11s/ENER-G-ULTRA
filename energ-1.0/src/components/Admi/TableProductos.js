@@ -1,37 +1,95 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 
-import { Button, Container, Table, Modal, ModalHeader } from 'react-bootstrap'
+import { Button, Form, Container, Table, Modal, ModalHeader } from 'react-bootstrap'
 
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 import { Row, Col } from 'react-bootstrap';
-
+ 
 import EditModal from './EditModal';
 
 import FormModal from './FormModal';
 
+import Axios from 'axios';
+
 
 
 function TableProductos() {
-  //modal de agregar
+  //modal de agregar:
   const [show, setShow] = useState(false)
+
   const handleShow = () => setShow(true)
+
   const handleClose = () => setShow(false)
 
-  //modal de editar
+  //modal de editar:
   const [show2, setShow2] = useState(false)
-  const handleShow2 = () => setShow2(true)
+
+  const handleShow2 = (event) => {
+    setThisIdProducto(event.target.value);//Cambia el state del producto de interes para el modal
+    setShow2(true)
+  }
+
   const handleClose2 = () => setShow2(false)
-  //modal de borrar
+
+  //modal de borrar:
   const [show3, setShow3] = useState(false)
-  const handleShow3 = () => setShow3(true)
+  const handleShow3 = (event) => {
+    setThisIdProducto(event.target.value);//Cambia el state del producto de interes para el modal
+    setShow3(true);
+  }
+
+  const handleClose3Aceptar = () => {
+
+    Axios.delete('http://localhost:3001/api/eliminarProducto',
+      {
+        params: {
+          idProducto: thisIdProducto,
+        }
+      }).then((response) => {
+        console.log(response.data);
+        eliminarItem(thisIdProducto);
+        alert('Producto eliminado');
+      });
+    setShow3(false)
+  }
+
+  const eliminarItem = (id) => {
+    const nuevosProductos = productoLista.filter(producto => producto.idProducto != id);
+    setProductoLista(nuevosProductos);
+    console.log(id);
+    console.log(nuevosProductos);
+  }
+
   const handleClose3 = () => setShow3(false)
 
+  //Productos en la tienda:
+  const [productoLista, setProductoLista] = useState([])
+
+  //Produdcto a editar/borrar:
+  const [thisIdProducto, setThisIdProducto] = useState("1");
+
+
+  //Recuperar todos los productos de la BD:
+  useEffect(() => {
+
+    Axios.get('http://localhost:3001/api/get').then((response) => {
+      setProductoLista(response.data)
+    })
+  }, []);
+
+  //Para prevenir que la ventana se recargue
+  const prevenirReload = (event) => {
+    event.preventDefault()
+  };
 
   const wellStyles = { minWidth: 100 };
+  
   return (
     <Container>
-      <div className='mt-5'>
+      <div className='mt-0'>
+
+        {/* Boton para AÑADIR nuevo producto */}
         <Row className='mw-50'>
           <Col>
             <Button onClick={handleShow} className="btn btn-danger mt-4 " size="lg" style={{ width: 85 }} ><AiOutlinePlusCircle /></Button>
@@ -39,6 +97,7 @@ function TableProductos() {
 
         </Row>
 
+        {/* Tabla de productos */}
         <Table striped bordered hover variant="ligth" className='mt-3'>
           <thead>
             <tr>
@@ -48,28 +107,42 @@ function TableProductos() {
               <th>Precio</th>
               <th>Stock</th>
               <th>Ingredientes</th>
+              {/* <th>Imagen</th> */}
               <th>Editar</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {
+              productoLista.map(producto => {
 
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>
-                <Button  onClick={handleShow2} className="btn btn-info mr-5" style={{marginRight:5}}>Editar</Button>
+                return (
+                  <tr>
 
-                <Button  onClick={handleShow3} className="btn btn-danger ml-5 ">Borrar</Button>
-              </td>
-            </tr>
+                    <td>{producto.nombre}</td>
+                    <td>{producto.descripcion}</td>
+                    <td>{producto.precio}</td>
+                    <td>{producto.stock}</td>
+                    <td>{producto.ingredientes}</td>
+                    {/* <td>Imagen</td> */}
+                    <td>
+                      <Form className='mt-3' onSubmit={prevenirReload} show={false}>
+                        {/* <Form.Control value={producto.idProducto} name="idProducto" style={{display: 'none'}}/> */}
 
+                        <Button type="submit" onClick={handleShow2} className="btn btn-info mr-5"
+                          style={{ marginRight: 5 }} value={producto.idProducto} >Editar</Button>
 
+                        <Button onClick={handleShow3} className="btn btn-danger ml-5"
+                          value={producto.idProducto}>Borrar</Button>
+
+                      </Form>
+                    </td>
+                  </tr>
+                )
+              })
+            }
           </tbody>
         </Table>
-
+        {/* Modal para AÑADIR productos (oculto por default) */}
         <Modal show={show}>
           <ModalHeader>
             <Modal.Title>
@@ -87,7 +160,7 @@ function TableProductos() {
         </Modal>
 
 
-
+        {/* Modal para EDITAR productos (oculto por default) */}
         <Modal show={show2}>
           <ModalHeader>
             <Modal.Title>
@@ -95,7 +168,7 @@ function TableProductos() {
             </Modal.Title>
           </ModalHeader>
           <Modal.Body>
-            <EditModal />
+            <EditModal idProducto={thisIdProducto} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose2}>
@@ -104,14 +177,15 @@ function TableProductos() {
           </Modal.Footer>
         </Modal>
 
+        {/* Modal para BORRAR productos (oculto por default) */}
         <Modal show={show3}>
           <ModalHeader>
             <Modal.Title>
-            ¿Seguro que deseas Borrar?
+              ¿Seguro que deseas Borrar?
             </Modal.Title>
           </ModalHeader>
           <Modal.Footer>
-            <Button variant='danger' style={{ width: 75 }} onClick={handleClose3}>
+            <Button variant='danger' style={{ width: 75 }} onClick={handleClose3Aceptar}>
               Sí
             </Button>
             <Button variant='secondary' style={{ width: 75 }} onClick={handleClose3}>
@@ -119,10 +193,6 @@ function TableProductos() {
             </Button>
           </Modal.Footer>
         </Modal>
-
-
-        
-
       </div>
     </Container>
   )

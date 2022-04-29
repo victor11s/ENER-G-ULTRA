@@ -27,6 +27,7 @@ export default function (props) {
         window.location.reload();
 
     }
+    
     const actualizarCantidadEnter = (event) => {
         if (event.key === "Enter") {
             if (event.target.value != '' && event.target.value > 0 && event.target.value <= 24) {

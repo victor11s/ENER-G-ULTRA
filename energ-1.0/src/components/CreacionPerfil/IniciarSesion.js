@@ -3,29 +3,61 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap'
 import Footer from '../Footer'
 import NavBar from '../NavBar'
 import iniciar from '../../assets/img/user.png'
+import Axios from 'axios'
+import md5 from 'md5'
 import "./iniciarSesion.css"
 
 import { Link } from 'react-router-dom'
 
 class IniciarSesion extends React.Component {
 
-
     state =
         {
             form:
             {
                 "nombreUsuario": "",
-                "contraseña": "",
+                "contrasena": "",
                 "nombre": "",
                 "apellido": ""
             },
             error: false,
             errorMsg: ""
 
-        }
+        } 
 
-    handleSubmit2 = e => {
+    handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(this.state.form.nombreUsuario);
+        await Axios.get('http://localhost:3001/api/verificarUsuario',
+            {
+                params: {
+                    nombreUsuario: this.state.form.nombreUsuario,
+                }
+            }).then(async (response) => {
+                if(response.data[0]){
+                    let usuario = response.data[0];
+                    let contrasena = usuario.contraseña;
+                    let sContrasena = md5(this.state.form.contrasena)
+
+                    // if(contrasena==md5(this.state.form.contrasena)){
+                    if(contrasena == sContrasena){
+                        alert("Inicio Sesión con Exito")
+                        this.props.pSetUsuario(usuario);
+                        //console.log(JSON.stringify(response.data[0]));
+                        window.localStorage.setItem("usuario", JSON.stringify(usuario));
+                        await this.props.pTipoUsuario(usuario.tipo);
+                        setTimeout(() => {
+                            console.log("3 Segundos esperado")
+                        }, 3000);
+                        (usuario.tipo=="usuario" ?
+                        window.location.replace("/")
+                        : window.location.replace("/landing"))
+                    }else{
+                        alert("No se Inicio Sesión, favor de checar sus credenciales")
+                    }
+                }
+                console.log(response.data);
+            });
     }
 
     handleChange = async e => {
@@ -51,13 +83,17 @@ class IniciarSesion extends React.Component {
                             <img className='iniciarSesion-imagen' src={iniciar} alt="icon" />
                             <Form onSubmit={this.handleSubmit}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
-
-                                    <Form.Control type="email" placeholder="Ingrese Correo" />
+                                    <Form.Control type="email" 
+                                        placeholder="Ingrese Correo" 
+                                        name='nombreUsuario' 
+                                        onChange={this.handleChange}/>
                                 </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-
-                                    <Form.Control type="password" placeholder="Contraseña" />
+                                <Form.Group className="mb-3" controlId="formBasicPassword" >
+                                    <Form.Control type="password" 
+                                    placeholder="Contraseña" 
+                                    name='contrasena' 
+                                    onChange={this.handleChange}/>
                                 </Form.Group>
 
                                 <Button variant="danger btn-block" type="submit">

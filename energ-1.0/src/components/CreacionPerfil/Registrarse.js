@@ -62,17 +62,26 @@ class Registrarse extends React.Component {
                     console.log(response.data);
 
                 } else {
-                    
+
                     Axios.post('http://localhost:3001/api/agregarUsuario',
                         {
                             nombreUsuario: this.state.form.nombreUsuario,
-                            contraseña:  md5(this.state.form.contraseña),
+                            contraseña: md5(this.state.form.contraseña),
                             nombre: this.state.form.nombre,
                             apellido: this.state.form.apellido,
                         }).then((response) => {
                             console.log(response.data);
                             console.log("enviado");
                             alert('Usuario Creado');
+                            Axios.post('http://localhost:3001/api/agregarNuevoCarrito',
+                                {
+                                    nombreUsuario: this.state.form.nombreUsuario,
+                                }).then((response) => {
+                                    console.log(response.data);
+                                    console.log("Carrito creado");
+                                    //window.location.replace("/catalogo");
+                                });
+
                         });
                 }
             });
