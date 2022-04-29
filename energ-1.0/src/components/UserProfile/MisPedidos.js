@@ -6,7 +6,7 @@ import ProductosOrden from "./ProductosOrden";
 function MisPedidos(props) {
 
   return (
-    <>
+    <> 
 
       <AccordionPedido pedidos={props.pedidos}/>
 

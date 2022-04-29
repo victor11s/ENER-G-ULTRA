@@ -39,7 +39,7 @@ function Direccion(props) {
         <ModalHeader>
           <Modal.Title>
             Editar Dirección
-          </Modal.Title>
+          </Modal.Title> 
         </ModalHeader>
         <Modal.Body>
           <DireccionModal

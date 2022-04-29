@@ -24,7 +24,7 @@ function Profile() {
     const [sEstado, setEstado] = useState();
     const [sIdEstado, setIdEstado] = useState();
 
-    let [sPedidos, setPedidos] = useState();
+    let [sPedidos, setPedidos] = useState([]);
 
     useEffect(() => {
         const usuarioString = window.localStorage.getItem("usuario");
@@ -53,23 +53,23 @@ function Profile() {
                             setCodigoPostal(direccion.codigoPostal);
                             setCiudad(direccion.ciudad);
                             setEstado(direccion.estado);
-                            setIdEstado(direccion.idEstado);
+                            setIdEstado(direccion.idEstado); 
                         }
-                        await Axios.get('http://localhost:3001/api/getPedidos',
-                            {
-                                params: {
-                                    nombreUsuario: varNombreUsuario,
-                                }
-                            }).then((response) => {
-                                console.log("Pedidos del usuario: " + user.nombreUsuario + "\nLos pedidos son: ");
-                                if (response.data[0]) {
-                                    console.log(response.data);
-                                    let varPedidos = response.data;
-                                    setPedidos(varPedidos);
-                                }
-                            });
-                    });
 
+                    });
+                await Axios.get('http://localhost:3001/api/getPedidos',
+                    {
+                        params: {
+                            nombreUsuario: varNombreUsuario,
+                        }
+                    }).then((response) => {
+                        console.log("Pedidos del usuario: " + user.nombreUsuario + "\nLos pedidos son: ");
+                        if (response.data[0]) {
+                            console.log(response.data);
+                            let varPedidos = response.data;
+                            setPedidos(varPedidos);
+                        }
+                    });
 
             }
             axiosGetIdCarrito();
@@ -84,16 +84,6 @@ function Profile() {
                     <Col></Col>
                     <Col className="text-center"><h2>Mi Perfil</h2></Col>
                     <Col>
-                        {/* {
-
-                            sPedidos.map((pedido, index) => {
-                                return (
-                                    <>
-                                        <h1>pedido: {pedido.numPedido}</h1>
-                                    </>
-                                )
-                            })
-                        } */}
                     </Col>
 
                 </Row>
@@ -139,7 +129,7 @@ function Profile() {
                         <Accordion.Body>
 
 
-                            <MisPedidos />
+                            <MisPedidos pedidos={sPedidos} />
 
 
 

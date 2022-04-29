@@ -6,7 +6,7 @@ import AcordionChiquito from './AcordionChiquito';
 import Axios from 'axios'
 
 
-
+ 
 function AccordionPedido(props) { 
     
     let [varPedidos, setVarPedido] = useState(props.pedidos);
@@ -24,7 +24,7 @@ function AccordionPedido(props) {
     return (<>
         
 
-        {/* <AcordionChiquito pedidos={props.pedidos}/> */}
+        <AcordionChiquito pedidos={props.pedidos}/>
 
     </>)
 }

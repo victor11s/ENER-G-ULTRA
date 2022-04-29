@@ -384,9 +384,18 @@ app.post('/api/agregarOrden', (req, res) => {
 //Para recuperar los pedidos del usario, Usando en UserProfile/AccordionPedido.js
 app.get('/api/getPedidos', (req, res) => {
     const nombreUsuario = req.query.nombreUsuario;
-    const sqlSelect = "SELECT numPedido FROM orden JOIN carrito ON orden.idCarrito=carrito.idCarrito WHERE carrito.nombreUsuario = (?) AND confirmacionCompra = (?)";
+    const sqlSelect = "SELECT numPedido, carrito.idCarrito AS idCarrito FROM orden JOIN carrito ON orden.idCarrito=carrito.idCarrito WHERE carrito.nombreUsuario = (?) AND confirmacionCompra = (?)";
     db.query(sqlSelect, [nombreUsuario, true], (err, result) => {
         res.send(result);
+    });
+});
+
+//Para recuperar los productos pedidos en un carrito con confirmacion de compra, Usando en AcordionChiquito.js
+app.get('/api/getProductosPedidos', (req, res) => {
+    const idCarrito = req.query.idCarrito;
+    const sqlSelect = "SELECT producto.nombre AS nombre, cantidad FROM productocarrito JOIN producto ON productocarrito.idProducto=producto.idProducto WHERE idCarrito = (?)";
+    db.query(sqlSelect, [idCarrito], (err, result) => {
+        res.send(result); 
     });
 });
 
