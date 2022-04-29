@@ -108,7 +108,7 @@ function TableProductos() {
               <th>Stock</th>
               <th>Ingredientes</th>
               {/* <th>Imagen</th> */}
-              <th>Editar</th>
+              <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
