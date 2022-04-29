@@ -14,14 +14,39 @@ background: linear-gradient(0deg, rgba(93,92,94,1) 5%, rgba(122,12,28,1) 63%);
   /* justify-content: flex-start; */
 `;
 
-//fixed para que se ponga abajo
-export const FooterBottom = styled.nav`
+export const PageContainer = styled.div`
 position: relative;
+min-height: 100vh;
+`;
+
+/* Footer height */
+export const ContentWrap = styled.div`
+padding-bottom: 2.5rem;    
+`;
+
+// export const FooterBottom = styled.nav`
+//   position: absolute;
+//   bottom: 0;
+//   width: 100%;
+//   height: 80px;
+//   background: rgb(93,92,94);
+//   background: linear-gradient(0deg, rgba(93,92,94,1) 5%, rgba(122,12,28,1) 63%);
+
+  
+//   justify-content: space-between;
+//   padding: 0.5rem calc((100vw - 1000px) / 2);
+//   z-index: 10;
+// `;
+
+
+//fixed para que se ponga abajo
+ export const FooterBottom = styled.nav`
+ position: relative;
   height: 80px;
   width: 100%;
   bottom: 0px;
-background: rgb(93,92,94);
-background: linear-gradient(0deg, rgba(93,92,94,1) 5%, rgba(122,12,28,1) 63%);
+  background: rgb(93,92,94);
+  background: linear-gradient(0deg, rgba(93,92,94,1) 5%, rgba(122,12,28,1) 63%);
 
   
   justify-content: space-between;

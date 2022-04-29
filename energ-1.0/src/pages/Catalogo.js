@@ -9,6 +9,8 @@ import { Breadcrumb, Col, Container, Row } from "react-bootstrap";
 import { Routes, Route, Link } from "react-router-dom";
 import Productos from '../components/Productos';
 import NavBarAdmi from '../components/NavBarAdmi'
+import { Nav, FooterBottom, PageContainer, ContentWrap } from '../components/NavComponent'
+
 
 import Axios from 'axios'
 
@@ -34,6 +36,8 @@ function Catalogo() {
   return (
 
     <div>
+      <PageContainer>
+        <ContentWrap>
       <NavBar />
       <Container className='mt-2'>
         <Breadcrumb>
@@ -67,7 +71,8 @@ function Catalogo() {
         </Container>
 
       </div>
-
+      </ContentWrap>
+      </PageContainer>     
       <Footer />
     </div>
   )
