@@ -7,10 +7,15 @@ import { useParams, Redirect, Navigate } from 'react-router-dom';
 import NavBar from '../NavBar'
 import Footer from '../Footer';
 import { NavBtnLink } from '../NavComponent';
+import Axios from 'axios'
 
 
-const PayPal = () => {
-  let { amount } = useParams();
+
+
+const PayPal = () => { 
+
+
+  let { nombreUsuario, idDireccion, amount, idCarrito } = useParams();
   return (<>
     <Row>
       <NavBar />
@@ -24,13 +29,36 @@ const PayPal = () => {
         amount={amount}
         currency='MXN'
         onSuccess={(data, order) => {
-          console.log(data, order)
+          console.log("id de la orden: "+order.id)
           alert('Pago Exitoso')
-          // let history = useHistory();
-          // // // return <Navigate to='/regresarInicio' state={{ from: location }} replace  />
-          // // navigate('/regresarInicio');
-          // history.push('/regresarInicio')
-          // window.location='/'
+          //actualizar confirmacionCompra from carrito
+          Axios.put('http://localhost:3001/api/actualizarConfirmacionCompra',
+          {
+              idCarrito: idCarrito,
+              confirmacionCompra: true,
+          }).then((response) => {
+              console.log(response.data);
+          });
+          //crear una orden del carrito correspondiente
+          Axios.post('http://localhost:3001/api/agregarOrden',
+          {
+              idCarrito: idCarrito,
+              numPedido: order.id,
+              idDireccion: idDireccion,
+              status: "Orden recibida"
+          }).then((response) => {
+              console.log("Orden generada");
+              //window.location.replace("/catalogo");
+          });
+          //crear un nuevo carrito
+          Axios.post('http://localhost:3001/api/agregarNuevoCarrito',
+          {
+              nombreUsuario: nombreUsuario,
+          }).then((response) => {
+              console.log(response.data);
+              console.log("Carrito creado");
+              window.location.replace("/catalogo");
+          });
         }}
         onError={(error) => {
           console.log(error)

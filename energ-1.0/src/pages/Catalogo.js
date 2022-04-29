@@ -41,7 +41,6 @@ function Catalogo() {
         </Breadcrumb>
       </Container>
       <FilterBar />
-      {/* <TarjetaProducto nombre={producto.nombre}/> */}
 
       <div >
         <Container>

@@ -24,35 +24,55 @@ function Profile() {
     const [sEstado, setEstado] = useState();
     const [sIdEstado, setIdEstado] = useState();
 
-    useEffect(() => { 
+    let [sPedidos, setPedidos] = useState();
+
+    useEffect(() => {
         const usuarioString = window.localStorage.getItem("usuario");
         if (usuarioString) {
-            const user = JSON.parse(usuarioString);
-            setNombre(user.nombre);//Ya tenemos el nombre del usuario
-            setApellido(user.apellido);
-            setNombreUsuario(user.nombreUsuario);
-            let varNombreUsuario = user.nombreUsuario;
-            console.log("Profile del usuario: "+varNombreUsuario);
+            const axiosGetIdCarrito = async () => {
+                const user = JSON.parse(usuarioString);
+                setNombre(user.nombre);//Ya tenemos el nombre del usuario
+                setApellido(user.apellido);
+                setNombreUsuario(user.nombreUsuario);
+                let varNombreUsuario = user.nombreUsuario;
+                console.log("Profile del usuario: " + varNombreUsuario);
 
-            Axios.get('http://localhost:3001/api/getDireccion',
-            {
-                params: {
-                    nombreUsuario: varNombreUsuario,
-                }    
-            }).then((response) => {
-                console.log("dirección del usuario: " + user.nombreUsuario);
-                if(response.data[0]){
-                  console.log(response.data[0])
-                  let direccion = response.data[0];
-                  setColonia(direccion.colonia);
-                  setCalle(direccion.calle);
-                  setNumeroCasa(direccion.noCasa);
-                  setCodigoPostal(direccion.codigoPostal);
-                  setCiudad(direccion.ciudad);
-                  setEstado(direccion.estado);
-                  setIdEstado(direccion.idEstado);
-                }
-            });
+                await Axios.get('http://localhost:3001/api/getDireccion',
+                    {
+                        params: {
+                            nombreUsuario: varNombreUsuario,
+                        }
+                    }).then(async (response) => {
+                        console.log("dirección del usuario: " + user.nombreUsuario);
+                        if (response.data[0]) {
+                            console.log(response.data[0])
+                            let direccion = response.data[0];
+                            setColonia(direccion.colonia);
+                            setCalle(direccion.calle);
+                            setNumeroCasa(direccion.noCasa);
+                            setCodigoPostal(direccion.codigoPostal);
+                            setCiudad(direccion.ciudad);
+                            setEstado(direccion.estado);
+                            setIdEstado(direccion.idEstado);
+                        }
+                        await Axios.get('http://localhost:3001/api/getPedidos',
+                            {
+                                params: {
+                                    nombreUsuario: varNombreUsuario,
+                                }
+                            }).then((response) => {
+                                console.log("Pedidos del usuario: " + user.nombreUsuario + "\nLos pedidos son: ");
+                                if (response.data[0]) {
+                                    console.log(response.data);
+                                    let varPedidos = response.data;
+                                    setPedidos(varPedidos);
+                                }
+                            });
+                    });
+
+
+            }
+            axiosGetIdCarrito();
         }
     }, []);
 
@@ -63,7 +83,18 @@ function Profile() {
                 <Row >
                     <Col></Col>
                     <Col className="text-center"><h2>Mi Perfil</h2></Col>
-                    <Col></Col>
+                    <Col>
+                        {/* {
+
+                            sPedidos.map((pedido, index) => {
+                                return (
+                                    <>
+                                        <h1>pedido: {pedido.numPedido}</h1>
+                                    </>
+                                )
+                            })
+                        } */}
+                    </Col>
 
                 </Row>
             </Container>
@@ -71,7 +102,7 @@ function Profile() {
             <Container>
                 <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
-                        <Accordion.Header>Informacion Personal</Accordion.Header>
+                        <Accordion.Header>Información Personal</Accordion.Header>
                         <Accordion.Body>
                             <InformacionPersonal
                                 profileNombre={sNombre}
@@ -81,9 +112,9 @@ function Profile() {
                         </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
-                        <Accordion.Header>Direccion</Accordion.Header>
+                        <Accordion.Header>Dirección</Accordion.Header>
                         <Accordion.Body>
-                            <Direccion 
+                            <Direccion
                                 calle={sCalle}
                                 colonia={sColonia}
                                 noCasa={sNumeroCasa}
@@ -100,23 +131,24 @@ function Profile() {
 
                                 idEstado={sIdEstado}
                                 nombreUsuario={sNombreUsuario}
-                                />
+                            />
                         </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="2">
                         <Accordion.Header>Mis Pedidos</Accordion.Header>
                         <Accordion.Body>
-                            
-                            <Row>
-                            <MisPedidos />
-                            </Row>
 
-                                
-                            
+
+                            <MisPedidos />
+
+
+
+
 
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>
+
             </Container>
             <Footer />
         </>

@@ -24,7 +24,7 @@ const InfoPersonalModal = (props) => {
             {
                 nombreUsuario: sNombreUsuario,
                 nombre: sNombre,
-                apellido: sApellido,
+                apellido: sApellido, 
             }).then(async (response) => {
                 console.log("Usuario Actualizado: ");
                 props.parentSetNombre(sNombre);

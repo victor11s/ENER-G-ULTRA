@@ -15,6 +15,8 @@ const DireccionModal = (props) => {
     const [sEstado, setEstado] = useState(props.estado);
     const [sIdEstado, setIdEstado] = useState(props.idEstado);
 
+
+
     const handleBotonConfirmar = async (event) => {
         event.preventDefault();
 
@@ -112,7 +114,32 @@ const DireccionModal = (props) => {
                     <option id="7" value="7">Aguascalientes</option>
                     <option id="8" value="8">Baja California</option>
                     <option id="11" value="11">Chiapas</option>
-                    <option id="14" value="14">Chihuahua</option>
+                    <option id="15" value="15">Coahuila</option>
+                    <option id="18" value="18">Colima</option>
+                    <option id="19" value="19">CDMX</option>
+                    <option id="20" value="20">Durango</option>
+                    <option id="21" value="21">Guanajuato</option>
+                    <option id="22" value="22">Guerrero</option>
+                    <option id="23" value="23">Hidalgo</option>
+                    <option id="24" value="24">Jalisco</option>
+                    <option id="25" value="25">Michoacan</option>
+                    <option id="26" value="26">Morelos</option>
+                    <option id="27" value="27">Nayarit</option>
+                    <option id="28" value="28">Oaxaca</option>
+                    <option id="29" value="29">Puebla</option>
+                    <option id="30" value="30">Querétaro</option>
+                    <option id="31" value="31">Quintana Roo</option>
+                    <option id="32" value="32">San Luís Potosí</option>
+                    <option id="33" value="33">Sinaloa</option>
+                    <option id="34" value="34">Sonora</option>
+                    <option id="35" value="35">Tabasco</option>
+                    <option id="36" value="36">Tamaulipas</option>
+                    <option id="37" value="37">Tlaxcala</option>
+                    <option id="38" value="38">Veracruz</option>
+                    <option id="39" value="39">Yucatán</option>
+                    <option id="40" value="40">Zacatecas</option>
+
+
                 </Form.Select>
             </Form.Group>
             <Form.Group className="mt-3">

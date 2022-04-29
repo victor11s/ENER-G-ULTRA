@@ -8,21 +8,6 @@ import IniciarSesion from './CreacionPerfil/IniciarSesion';
 function NavBarAdmi() {
   const [usuario, setUsuario] = useState(null);
   let [sNumProductosCarrito, setNumProductos] = useState(0);
-  useEffect(() => {
-    const axiosGet = async () => {
-      // console.log(pIdCarrito);
-      await Axios.get('http://localhost:3001/api/getCarrito',
-        {
-          params: {
-            idCarrito: 1,
-          }
-        }).then((response) => {
-          // console.log(response.data);
-          setNumProductos(response.data.length);
-        });
-    }
-    axiosGet();
-  }, []);
 
   //Para cambiar el boton cerrar/iniciar Sesion
   useEffect(() => {
@@ -36,7 +21,7 @@ function NavBarAdmi() {
 
   const renderIniciarSesion = () => {
     return(
-      <NavLink to='/iniciarSesion' activeStyle>Iniciar Sesion</NavLink>
+      <NavLink to='/iniciarSesion' activeStyle>Iniciar Sesión</NavLink>
     );
   }
 
@@ -52,22 +37,16 @@ function NavBarAdmi() {
   }
   //termina metodos para cambiar cerrar/iniciar sesion
 
-  let etiquetaNumProductos;
-  if (sNumProductosCarrito > 0) {
-    etiquetaNumProductos = <Badge pill bg="secondary">{sNumProductosCarrito}</Badge>;
-  } else {
-    etiquetaNumProductos = <div></div>
-  }
+
 
   const actualizarNumCarrito = () =>{
 
   }
 
-  console.log("productos en carrito: " + sNumProductosCarrito);
   return (
     <>
       <Nav>
-        <NavLink to='/'>
+        <NavLink to='/landing'>
           <img src={imgLogo} alt="" style={{ width: 75 }} />
           {/*Para el logo */}
           {/* <img src='' alt=''/>*/}

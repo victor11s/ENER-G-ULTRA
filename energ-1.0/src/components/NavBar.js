@@ -57,13 +57,13 @@ function NavBar() {
   //Para cambiar el boton cerrar/iniciar Sesion
   const renderIniciarSesion = () => {
     return (
-      <NavLink to='/iniciarSesion' activeStyle>Iniciar Sesion</NavLink>
+      <NavLink to='/iniciarSesion' activeStyle>Iniciar Sesión</NavLink>
     );
   }
 
   const renderCerrarSesion = () => {
     return (
-      <NavLink to='/catalogo' onClick={handleCerrarSesion} activeStyle>Cerrar Sesion</NavLink>
+      <NavLink to='/catalogo' onClick={handleCerrarSesion} activeStyle>Cerrar Sesión</NavLink>
     );
   }
 

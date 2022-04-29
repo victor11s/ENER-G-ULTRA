@@ -53,9 +53,9 @@ const App = () => {
             <Route path="/carrito/:pIdCarrito" element={<Carrito />} />
             <Route path="/iniciarSesion" element={<IniciarSesion pSetUsuario={setUsuario} pTipoUsuario={setTipoUsuario}/>} />
             <Route path="/registrar" element={<Registrarse />} />
-            <Route path="/checkout/:amount" element={<PayPal />} />
+            <Route path="/checkout/:nombreUsuario/:idDireccion/:amount/:idCarrito" element={<PayPal />} />
             <Route path="/regresarInicio" element={<Pagado />} />
-            <Route path="/miPerfil" element={<Profile />} />
+            <Route path="/miPerfil" element={<Profile />} /> 
             <Route path="/perfilAdmi" element={<PerfilAdmi />} />
 
             {/* Agregar rutas de perfil y noticias*/}
@@ -71,7 +71,7 @@ const App = () => {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<LandingPageAdmi />} />
+            <Route path="/landing" element={<LandingPageAdmi />} />
             <Route path="/catalogo" element={<CatalogoAdmi />} />
             <Route path="/detalleProducto/:id/:nombre" element={<DetalleProductosAdmi />} />
             <Route path="/detalleProducto/:pIdProducto/:pNombreProducto/:pIdCarrito" element={<DetalleProductosAdmi />} />

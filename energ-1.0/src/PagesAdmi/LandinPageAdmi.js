@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 
 import React from "react";
 import { Component } from 'react';
-import NavBar from "../components/NavBar";
+
 import { Container } from "react-bootstrap";
 import NavBarAdmi from "../components/NavBarAdmi";
 

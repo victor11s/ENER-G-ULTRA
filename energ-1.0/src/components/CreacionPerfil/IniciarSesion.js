@@ -33,18 +33,25 @@ class IniciarSesion extends React.Component {
                 params: {
                     nombreUsuario: this.state.form.nombreUsuario,
                 }
-            }).then((response) => {
+            }).then(async (response) => {
                 if(response.data[0]){
-                    let contrasena = response.data[0].contraseña;
+                    let usuario = response.data[0];
+                    let contrasena = usuario.contraseña;
                     let sContrasena = md5(this.state.form.contrasena)
 
                     // if(contrasena==md5(this.state.form.contrasena)){
                     if(contrasena == sContrasena){
                         alert("Inicio Sesión con Exito")
-                        this.props.pSetUsuario(response.data[0]);
+                        this.props.pSetUsuario(usuario);
                         //console.log(JSON.stringify(response.data[0]));
-                        window.localStorage.setItem("usuario", JSON.stringify(response.data[0]));
-                        this.props.pTipoUsuario(response.data[0].tipo);
+                        window.localStorage.setItem("usuario", JSON.stringify(usuario));
+                        await this.props.pTipoUsuario(usuario.tipo);
+                        setTimeout(() => {
+                            console.log("3 Segundos esperado")
+                        }, 3000);
+                        (usuario.tipo=="usuario" ?
+                        window.location.replace("/")
+                        : window.location.replace("/landing"))
                     }else{
                         alert("No se Inicio Sesión, favor de checar sus credenciales")
                     }

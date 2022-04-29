@@ -3,24 +3,16 @@ import { Button, Form, Container, Table, Modal, ModalHeader } from 'react-bootst
 import AccordionPedido from "./AccordionPedido";
 import ProductosOrden from "./ProductosOrden";
 
-class MisPedidos extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: "React"
-    };
-  }
+function MisPedidos(props) {
 
-  render() {
-    return (
-      <>
+  return (
+    <>
 
-      <AccordionPedido/>
-    
+      <AccordionPedido pedidos={props.pedidos}/>
 
-      </>
-    )
-  }
+    </>
+  )
+
 }
 
 export default MisPedidos;
