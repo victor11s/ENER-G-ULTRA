@@ -3,10 +3,10 @@ import React from 'react'
 
 import NavBar from '../NavBar';
 import Footer from '../Footer';
-
+ 
 import { Button, Card, Col, Container, Form, Row, Table, Accordion } from 'react-bootstrap'
 import TableProductos from './TableProductos';
-import InfoPersonalAdmi from './InfoPersonalAdmi';
+import InfoPersonalAdmi from './InfoPersonalAdmi'; 
 import NavBarAdmi from '../NavBarAdmi';
 import PedidosAdmi from './PedidosAdmi';
 
@@ -30,12 +30,6 @@ function PerfilAdmi() {
 
                 <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
-                        <Accordion.Header>Informacion Personal</Accordion.Header>
-                        <Accordion.Body>
-                            <InfoPersonalAdmi/>
-                        </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="1">
                         <Accordion.Header>Productos</Accordion.Header>
                         <Accordion.Body>
                             <Row>
@@ -46,7 +40,7 @@ function PerfilAdmi() {
                             <TableProductos/>
                         </Accordion.Body>
                     </Accordion.Item>
-                    <Accordion.Item eventKey="2">
+                    <Accordion.Item eventKey="1">
                         <Accordion.Header>Pedidos</Accordion.Header>
                         <Accordion.Body>
                             <PedidosAdmi/>
@@ -55,23 +49,6 @@ function PerfilAdmi() {
                     
                 </Accordion>
 
-
-
-                {/* <Row>
-                    <Col>
-                        <Button variant="danger" >Información Personal</Button>
-                    </Col>
-
-                    <Col>
-                        <Button variant="danger">Productos</Button>
-                    </Col>
-
-                    <Col>
-                        <Button variant="danger">Pedidos</Button>
-                    </Col>
-                </Row>
-
-                <TableProductos /> */}
             </Container>
 
 

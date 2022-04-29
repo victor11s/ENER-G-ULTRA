@@ -398,5 +398,21 @@ app.get('/api/getProductosPedidos', (req, res) => {
         res.send(result); 
     });
 });
+//Para recuperar los usuarios con pedidos, usado en PedidosAdmi.js
+app.get('/api/getUsuariosPedidos', (req, res) => {
+    const sqlSelect = "SELECT DISTINCT nombreUsuario FROM carrito JOIN orden ON orden.idCarrito=carrito.idCarrito";
+    db.query(sqlSelect, (err, result) => {
+        res.send(result);
+        // res.send("Despues de seleccionar en la DB");
+    });
+});
+//Para recuperar los pedidos de un usuariousado en PedidosIndividualesAdmi.js
+app.get('/api/getPedidosIndividuales', (req, res) => {
+    const nombreUsuario = req.query.nombreUsuario;
+    const sqlSelect = "SELECT producto.nombre AS nombre, cantidad FROM productocarrito JOIN producto ON productocarrito.idProducto=producto.idProducto WHERE idCarrito = (?)";
+    db.query(sqlSelect, [idCarrito], (err, result) => {
+        res.send(result); 
+    });
+});
 
 module.exports = db;

@@ -79,7 +79,8 @@ const App = () => {
             <Route path="/iniciarSesion" element={<IniciarSesion pSetUsuario={setUsuario} pTipoUsuario={setTipoUsuario} />} />
             <Route path="/registrar" element={<Registrarse />} />
             <Route path="/perfilAdmi" element={<PerfilAdmi />} />
-            <Route path="/pedidosAdmi" element={<PedidosIndividualesAdmi />} />
+
+            <Route path="/pedidosAdmi/:nombreUsuario" element={<PedidosIndividualesAdmi />} />
 
 
             {/* Agregar rutas de perfil y noticias*/}

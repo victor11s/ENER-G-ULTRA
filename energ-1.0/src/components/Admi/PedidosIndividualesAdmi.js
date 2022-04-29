@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React ,{ useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 
 import NavBar from '../NavBar';
 import Footer from '../Footer';
@@ -9,10 +9,34 @@ import TableProductos from './TableProductos';
 import InfoPersonalAdmi from './InfoPersonalAdmi';
 import NavBarAdmi from '../NavBarAdmi';
 import PedidosAdmi from './PedidosAdmi';
+import PedidosIndi from './PedidosIndi';
 
-
+import Axios from 'axios';
 
 function PedidosIndividualesAdmi() {
+    let { nombreUsuario } = useParams();
+    let [sPedidos, setPedidos] = useState([]);
+
+    useEffect(() => {
+
+        const axiosGetIdCarrito = async () => {
+            await Axios.get('http://localhost:3001/api/getPedidos',
+                {
+                    params: {
+                        nombreUsuario: nombreUsuario,
+                    }
+                }).then((response) => {
+                    console.log("Pedidos del usuario: " + nombreUsuario + "\nLos pedidos son: ");
+                    if (response.data[0]) {
+                        console.log(response.data);
+                        let varPedidos = response.data;
+                        setPedidos(varPedidos);
+                    }
+                });
+
+        }
+        axiosGetIdCarrito();
+    }, []);
     return (
         <>
 
@@ -24,19 +48,19 @@ function PedidosIndividualesAdmi() {
                     <Col></Col>
 
                 </Row>
-                </Container>
+            </Container>
             <Container>
-                
+
 
                 <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
-                        <Accordion.Header>Pedidos</Accordion.Header>
+                        <Accordion.Header>Pedidos de :</Accordion.Header>
                         <Accordion.Body>
-                            <PedidosAdmi/>
+                            <PedidosIndi pedidos={sPedidos} />
                         </Accordion.Body>
                     </Accordion.Item>
-                    
-                   
+
+
                 </Accordion>
 
 

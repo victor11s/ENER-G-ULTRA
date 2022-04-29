@@ -42,7 +42,7 @@ function CatalogoAdmi() {
           <li class="breadcrumb-item active" aria-current="page">Catálogo</li>
         </Breadcrumb>
       </Container>
-      <FilterBar />
+      {/* <FilterBar /> */}
       {/* <TarjetaProducto nombre={producto.nombre}/> */}
 
       <div >

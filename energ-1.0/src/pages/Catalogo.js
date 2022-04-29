@@ -42,7 +42,7 @@ function Catalogo() {
           <li class="breadcrumb-item active" aria-current="page">Catálogo</li>
         </Breadcrumb>
       </Container>
-      <FilterBar />
+      {/* <FilterBar /> */}
 
       <div >
         <Container>
