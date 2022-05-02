@@ -54,7 +54,7 @@ function PedidosIndividualesAdmi() {
 
                 <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
-                        <Accordion.Header>Pedidos de :</Accordion.Header>
+                        <Accordion.Header>Pedidos de: {nombreUsuario}</Accordion.Header>
                         <Accordion.Body>
                             <PedidosIndi pedidos={sPedidos} />
                         </Accordion.Body>

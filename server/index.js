@@ -384,7 +384,7 @@ app.post('/api/agregarOrden', (req, res) => {
 //Para recuperar los pedidos del usario, Usando en UserProfile/AccordionPedido.js
 app.get('/api/getPedidos', (req, res) => {
     const nombreUsuario = req.query.nombreUsuario;
-    const sqlSelect = "SELECT numPedido, carrito.idCarrito AS idCarrito FROM orden JOIN carrito ON orden.idCarrito=carrito.idCarrito WHERE carrito.nombreUsuario = (?) AND confirmacionCompra = (?)";
+    const sqlSelect = "SELECT carrito.idCarrito AS idCarrito, numPedido, calle, colonia, noCasa, codigoPostal, ciudad, estado.nombre as estado FROM orden JOIN carrito ON orden.idCarrito=carrito.idCarrito JOIN direccion ON orden.idDireccion=direccion.idDireccion JOIN estado ON direccion.idEstado=estado.idEstado  WHERE carrito.nombreUsuario = (?) AND confirmacionCompra = (?)";
     db.query(sqlSelect, [nombreUsuario, true], (err, result) => {
         res.send(result);
     });

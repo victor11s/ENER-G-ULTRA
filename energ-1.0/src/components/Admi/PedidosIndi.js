@@ -22,14 +22,16 @@ function PedidosIndi(props) {
                     varPedidos.map((pedido, index) => {
                         return (
                             <Accordion.Item eventKey={index}>
-                                <Accordion.Header>Numero de Pedido: {pedido.numPedido}</Accordion.Header>
+                                <Accordion.Header>
+                                    Numero de Pedido: {pedido.numPedido}<br />
+                                    Direccion: {pedido.calle} #{pedido.noCasa}, {pedido.colonia}, C.P. {pedido.codigoPostal}, {pedido.ciudad}, {pedido.estado}
+                                </Accordion.Header>
                                 <Accordion.Body>
                                     <Table striped bordered hover variant="ligth" className='mt-3'>
                                         <thead>
                                             <tr>
                                                 <th>Producto</th>
                                                 <th>Cantidad</th>
-
                                             </tr>
                                         </thead>
 
