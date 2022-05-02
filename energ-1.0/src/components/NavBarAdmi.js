@@ -34,6 +34,7 @@ function NavBarAdmi() {
   const handleCerrarSesion = () => {
     window.localStorage.removeItem('usuario');
     setUsuario(null);
+    window.location.replace("/catalogo");
   }
   //termina metodos para cambiar cerrar/iniciar sesion
 
@@ -65,7 +66,7 @@ function NavBarAdmi() {
         </NavMenu>
         <div className='row'>
           <Col>
-            <NavLink to='/carrito/1'>
+            <NavLink to='/landing'>
 
             <img src={imgLogo} alt="" style={{ width: 75 }} />
 

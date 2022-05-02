@@ -92,7 +92,7 @@ function Profile() {
             <Container>
                 <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
-                        <Accordion.Header>Información Personal</Accordion.Header>
+                        <Accordion.Header >Información Personal</Accordion.Header>
                         <Accordion.Body>
                             <InformacionPersonal
                                 profileNombre={sNombre}

@@ -109,7 +109,7 @@ function EditModal(props) {
                             alert('Producto Actualizado');
                             window.location.reload();
                         });
-                } 
+                }
             });
     }
 
@@ -123,7 +123,7 @@ function EditModal(props) {
                 }).then((response) => {
                     console.log(response.data);
                     console.log(event.target.id)
-                    document.getElementById('field'+event.target.id).value = "";
+                    document.getElementById('field' + event.target.id).value = "";
                     alert('Imagen eliminada');
                 });
         }
@@ -132,6 +132,7 @@ function EditModal(props) {
 
     return (
         <Form onSubmit={handleBotonConfirmar}>
+            <h4>Nombre:</h4>
             <Form.Group >
                 <Form.Control
                     type="text"
@@ -140,6 +141,7 @@ function EditModal(props) {
                     defaultValue={producto.nombre}
                     onChange={(event) => { producto.nombre = event.target.value }}
                 />
+                <h4>Descripción:</h4>
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
@@ -150,24 +152,32 @@ function EditModal(props) {
                     rows={3}
                 />
             </Form.Group>
+            <h4>Precio:</h4>
             <Form.Group className="mt-3">
                 <Form.Control
                     type="number"
                     placeholder="Precio"
+                    pattern='^[0-9]+'
+                    min='0'
+                    step="any"
                     defaultValue={producto.precio}
                     onChange={(event) => { producto.precio = event.target.value }}
                     required
                 />
             </Form.Group>
+            <h4>Stock:</h4>         
             <Form.Group className="mt-3">
                 <Form.Control
                     type="number"
-                    placeholder="Stock"
+                    placeholder="Stock "
+                    pattern='^[0-9]+'
+                    min='0'
                     defaultValue={producto.stock}
                     onChange={(event) => { producto.stock = event.target.value }}
                     required
                 />
             </Form.Group>
+            <h4>Ingredientes:</h4>
             <Form.Group className="mt-3">
                 <Form.Control
                     type="text"
@@ -177,6 +187,7 @@ function EditModal(props) {
                     rows={3}
                 />
             </Form.Group>
+            <h4>Imagenes:</h4>
             <Form.Group className="mt-3">
                 <Form.Control
                     type="text"

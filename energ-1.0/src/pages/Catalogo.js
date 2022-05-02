@@ -19,10 +19,17 @@ console.log(Productos)
 
 
 function Catalogo() {
+  const [usuario, setUsuario] = useState(null);
 
   const [productoLista, setProductoLista] = useState([])
 
   useEffect(() => {
+    const usuarioString = window.localStorage.getItem("usuario");
+    if (usuarioString) {
+      const user = JSON.parse(usuarioString);
+      setUsuario(user);//Ya tenemos el usuario
+    }
+
     Axios.get('http://localhost:3001/api/get').then((response) => {
       if (response.data[0]) {
         console.log(response.data);
@@ -38,41 +45,42 @@ function Catalogo() {
     <div>
       <PageContainer>
         <ContentWrap>
-      <NavBar />
-      <Container className='mt-2'>
-        <Breadcrumb>
-          {/* No se uso Breadcrumb.item por que no deja dar color al link */}
-          <li class="breadcrumb-item"><Link className='text-danger' to='/'>Home</Link></li>
-          <li class="breadcrumb-item active" aria-current="page">Catálogo</li>
-        </Breadcrumb>
-      </Container>
-      {/* <FilterBar /> */}
+          <NavBar />
+          <Container className='mt-2'>
+            <Breadcrumb>
+              {/* No se uso Breadcrumb.item por que no deja dar color al link */}
+              <li class="breadcrumb-item"><Link className='text-danger' to='/'>Home</Link></li>
+              <li class="breadcrumb-item active" aria-current="page">Catálogo</li>
+            </Breadcrumb>
+          </Container>
+          {/* <FilterBar /> */}
 
-      <div >
-        <Container>
+          <div >
+            <Container>
 
-          <Row className='row d-flex flex-row flex-wrap'>
-            {
-              productoLista.map(producto => {
+              <Row className='row d-flex flex-row flex-wrap'>
+                {
+                  productoLista.map(producto => {
 
-                return (
-                  <Col className='row d-flex flex-col flex-wrap md-4 sm-6' key={producto.idProducto.toString() + 'b'}>
-                    <TarjetaProducto
-                      key={producto.idProducto.toString() + 'a'}
-                      id={producto.idProducto}
-                      nombre={producto.nombre}
-                      descripcion={producto.descripcion}
-                      precio={producto.precio} />
-                  </Col>
-                )
-              })
-            }
-          </Row>
-        </Container>
+                    return (
+                      <Col className='row d-flex flex-col flex-wrap md-4 sm-6' key={producto.idProducto.toString() + 'b'}>
+                        <TarjetaProducto
+                          key={producto.idProducto.toString() + 'a'}
+                          id={producto.idProducto}
+                          nombre={producto.nombre}
+                          descripcion={producto.descripcion}
+                          precio={producto.precio}
+                          usuario={usuario} />
+                      </Col>
+                    )
+                  })
+                }
+              </Row>
+            </Container>
 
-      </div>
-      </ContentWrap>
-      </PageContainer>     
+          </div>
+        </ContentWrap>
+      </PageContainer>
       <Footer />
     </div>
   )

@@ -71,8 +71,7 @@ const FormModal = () => {
                     type="text"
                     placeholder="Nombre"
                     onChange={(event) => { setNombreProducto(event.target.value) }}//Guardamos la información del campo en el state
-                    required
-                />
+                    required/>
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
@@ -80,24 +79,26 @@ const FormModal = () => {
                     placeholder="Descripcion"
                     rows={3}
                     onChange={(event) => { setDescripcionProducto(event.target.value) }}
-                    required
-                />
+                    required/>
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
                     type="number"
                     placeholder="Precio"
+                    pattern='^[0-9]+'
+                    min='0'
+                    step="any"
                     onChange={(event) => { setPrecioProducto(event.target.value) }}
-                    required
-                />
+                    required/>
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
                     type="number"
                     placeholder="Stock"
+                    pattern='^[0-9]+'
+                    min='0'
                     onChange={(event) => { setStockProducto(event.target.value) }}
-                    required
-                />
+                    required/>
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
@@ -105,8 +106,7 @@ const FormModal = () => {
                     placeholder="Ingredientes"
                     rows={3}
                     onChange={(event) => { setIngredientesProducto(event.target.value) }}
-                    required
-                />
+                    required/>
             </Form.Group>
             {<Form.Group className="mt-3">
                 <Form.Control
@@ -114,24 +114,21 @@ const FormModal = () => {
                     placeholder="Imagen1"
                     rows={3}
                     onChange={(event) => { setImagen1Producto(event.target.value) }}
-                    required
-                />
+                    required/>
             </Form.Group>}
             <Form.Group className="mt-3">
                 <Form.Control
                     type="text"
                     placeholder="Imagen2"
                     onChange={(event) => { setImagen2Producto(event.target.value) }}
-                    rows={3}
-                />
+                    rows={3}/>
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
                     type="text"
                     placeholder="Imagen3"
                     onChange={(event) => { setImagen3Producto(event.target.value) }}
-                    rows={3}
-                />
+                    rows={3}/>
             </Form.Group>
 
 

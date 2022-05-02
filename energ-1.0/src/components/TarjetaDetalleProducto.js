@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import img1 from '../assets/img/LATASF.png'
-import { Button, Card, Col, Container, Form, Row, Table } from 'react-bootstrap'
+import { Button, Card, Col, Container, Form, Row, Table, Tooltip, OverlayTrigger } from 'react-bootstrap'
 import ImageGallery from './ImageGallery'
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
@@ -9,11 +9,19 @@ function TarjetaDetalleProducto() {
     let { pIdProducto, pNombreProducto, pIdCarrito } = useParams();
     const [producto, setProducto] = useState([]);
     const [ingredientes, setIngredientes] = useState([]);
-    
+
+    const [usuario, setUsuario] = useState(null);
 
     const [sCantidadProducto, setCantidadProducto] = useState(1);
 
     useEffect(() => {
+        const usuarioString = window.localStorage.getItem("usuario");
+
+        if (usuarioString) {
+            const user = JSON.parse(usuarioString);
+            setUsuario(user);//Ya tenemos el usuario
+        }
+
         const axiosGet = async () => {
             console.log(pIdProducto);
             await Axios.get('http://localhost:3001/api/getProducto',
@@ -27,7 +35,7 @@ function TarjetaDetalleProducto() {
                     let ing = response.data[0].ingredientes;
                     let ings = ing.split('\,');
                     setIngredientes(ings);
-                    
+
                 });
         }
         axiosGet();
@@ -55,7 +63,42 @@ function TarjetaDetalleProducto() {
             });
     };
 
-    // console.log(ingredientes);
+    // activar o desactivar el boton de carrito:
+    const renderTooltipCarrito = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            Inicia sesión para agregar productos al carrito
+        </Tooltip>
+    );
+
+    const renderCarritoActivo = () => {
+        return (
+            <>
+                <Button className='mx-3' variant='danger' type='submit' >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                        <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
+                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                    </svg>     Agregar al carrito
+                </Button>
+            </>
+        );
+    }
+    const renderCarritoInactivo = () => {
+        return (
+            <>
+                <OverlayTrigger
+                    placement="bottom"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={renderTooltipCarrito}>
+                    <Button className='mx-3' variant='danger'  >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                            <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
+                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                        </svg>     Agregar al carrito
+                    </Button>
+                </ OverlayTrigger>
+            </>
+        );
+    }
 
     return (
         <div>
@@ -79,12 +122,11 @@ function TarjetaDetalleProducto() {
                                         {/* onClick={agregarProductoCarrito} */}
                                         <Form.Control style={{ maxWidth: "5rem" }} className="mw-20" type="number" defaultValue="1"
                                             pattern='^[0-9]+' min='1' max='24' onChange={updateStateCantidad} />
-                                        <Button className='mx-3' variant='danger' type='submit' >
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
-                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-                                            </svg>     Agregar al carrito
-                                        </Button>
+                                        {
+                                            usuario
+                                                ? renderCarritoActivo()
+                                                : renderCarritoInactivo()
+                                        }
                                     </Col>
                                 </Row>
                             </Form>
