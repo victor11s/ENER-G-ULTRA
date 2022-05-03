@@ -18,14 +18,12 @@ export default function (props) {
                     idProducto: props.id,
                     idCarrito: props.idCarrito,
                 }
-
             }).then((response) => {
 
                 console.log(response.data);
                 // setProducto(response.data[0]);
             });
         window.location.reload();
-
     }
     
     const actualizarCantidadEnter = (event) => {
