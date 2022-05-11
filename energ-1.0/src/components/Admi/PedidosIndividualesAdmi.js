@@ -14,11 +14,12 @@ import PedidosIndi from './PedidosIndi';
 import Axios from 'axios';
 
 function PedidosIndividualesAdmi() {
+    //Se extrae el nombre de usuario del que se desplegarán los pedidos desde el params (el link)
     let { nombreUsuario } = useParams();
+    //State para almacenar los pedidos
     let [sPedidos, setPedidos] = useState([]);
-
     useEffect(() => {
-
+        //Funcion para obtener los pedidos dado el nombre de usuario a través del API
         const axiosGetIdCarrito = async () => {
             await Axios.get('http://localhost:3001/api/getPedidos',
                 {
@@ -26,9 +27,7 @@ function PedidosIndividualesAdmi() {
                         nombreUsuario: nombreUsuario,
                     }
                 }).then((response) => {
-                    console.log("Pedidos del usuario: " + nombreUsuario + "\nLos pedidos son: ");
                     if (response.data[0]) {
-                        console.log(response.data);
                         let varPedidos = response.data;
                         setPedidos(varPedidos);
                     }
@@ -37,6 +36,8 @@ function PedidosIndividualesAdmi() {
         }
         axiosGetIdCarrito();
     }, []);
+
+    //Aqui se presenta la pestaña donde se ven por persona los pedidos, pero solo se hace el acordion y se le manda la informacion necesaria
     return (
         <>
 
@@ -59,27 +60,7 @@ function PedidosIndividualesAdmi() {
                             <PedidosIndi pedidos={sPedidos} />
                         </Accordion.Body>
                     </Accordion.Item>
-
-
                 </Accordion>
-
-
-
-                {/* <Row>
-                    <Col>
-                        <Button variant="danger" >Información Personal</Button>
-                    </Col>
-
-                    <Col>
-                        <Button variant="danger">Productos</Button>
-                    </Col>
-
-                    <Col>
-                        <Button variant="danger">Pedidos</Button>
-                    </Col>
-                </Row>
-
-                <TableProductos /> */}
             </Container>
 
 

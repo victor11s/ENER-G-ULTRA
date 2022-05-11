@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react'
 import { Button, Form } from "react-bootstrap"
-
+// no se uso 
 const InfoPersonalAdmiModal = () => {
     return (
         <Form>
@@ -18,7 +18,7 @@ const InfoPersonalAdmiModal = () => {
                     rows={3}
                 />
             </Form.Group>
-           
+           {/* Boton para confirmar la edición: */}
             <Button variant="danger" type="submit"  className="mt-3"block>
                 Guardar
             </Button>

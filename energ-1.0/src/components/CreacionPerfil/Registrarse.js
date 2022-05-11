@@ -13,7 +13,7 @@ import React, { Component, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 class Registrarse extends React.Component {
-
+    //State para almacenar la información del usuario a registrar
     state =
         {
             form:
@@ -32,7 +32,7 @@ class Registrarse extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
     }
-
+    
     handleChange = async event => {
         await this.setState({
             form:
@@ -79,7 +79,6 @@ class Registrarse extends React.Component {
                                 }).then((response) => {
                                     console.log(response.data);
                                     console.log("Carrito creado");
-                                    //window.location.replace("/catalogo");
                                 });
 
                         });
@@ -91,7 +90,7 @@ class Registrarse extends React.Component {
 
     render() {
 
-
+// Se muestra prestaña de resgitrarse donde se le pide al usuario insertar su informacion de registro como nombre, correo, contraseña, correo
 
         return (
             <>
@@ -117,11 +116,12 @@ class Registrarse extends React.Component {
                                 <Form.Group className="mb-3" controlId="apellidoUsuario">
                                     <Form.Control type="text" placeholder="Ingrese Apellido" name='apellido' onChange={this.handleChange} />
                                 </Form.Group>
-
+                                {/*Aqui se le da clicl para poder resgistrarse*/}
                                 <Button variant="danger btn-block" type="submit" onClick={this.handleBoton}>
                                     Registrarse
                                 </Button>
                                 <div className='text-right mt-3'>
+                                     {/*Aqui se le da click para redirigisre a la pestaña de iniciar sesion, si es que ya se tiene cuenta*/}
                                     <Button variant="btn btn-link"><Link className='register' to='/iniciarSesion'>Iniciar Sesión</Link></Button>
                                 </div>
                             </Form>

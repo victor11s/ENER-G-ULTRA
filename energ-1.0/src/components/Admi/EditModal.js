@@ -5,8 +5,9 @@ import { FaGlasses } from 'react-icons/fa';
 
 function EditModal(props) {
 
-    console.log(props.idProducto)
+    //console.log(props.idProducto)
 
+    //States (variables) del componente
     const [producto, setProducto] = useState([]);
     const [imagenes, setImagenes] = useState([]);
     const [idImagenes, setIdImagenes] = useState([]);
@@ -17,6 +18,7 @@ function EditModal(props) {
     useEffect(() => {
         const axiosGet = async () => {
 
+            //OBTENER EL PRODUCTO SELECCIONADO MEDIANTE EL API
             await Axios.get('http://localhost:3001/api/getProducto',
                 {
                     params: {
@@ -26,7 +28,9 @@ function EditModal(props) {
                     console.log(response.data);
                     setProducto(response.data[0]);
                 });
-            await Axios.get('http://localhost:3001/api/getImagenes',//OBTENER LAS UBICACIONES DE LAS IMAGENES.
+            
+            //OBTENER LAS UBICACIONES DE LAS IMAGENES.
+            await Axios.get('http://localhost:3001/api/getImagenes',
                 {
                     params: {
                         idProducto: props.idProducto,
@@ -42,6 +46,8 @@ function EditModal(props) {
                     })
                     setImagenes(ubicaciones);
                     setIdImagenes(idImgs);
+                    
+                    //se habilitan o desabilitan los botones de borrar imagenes dependiendo si existen
                     if (ubicaciones[1] == '' || ubicaciones[1] == undefined) {
                         console.log(ubicaciones[1])
                         setBottonI2(true)
@@ -58,10 +64,6 @@ function EditModal(props) {
 
     }, []);
 
-
-    // if(imagenes[2]){
-    //     setBottonI3(true)
-    // }
     const handleBotonConfirmar = async (event) => {
         event.preventDefault();
         await Axios.get('http://localhost:3001/api/consultarNombreProducto',//para verificar que el nombre del producto no haya sido usado
@@ -72,11 +74,11 @@ function EditModal(props) {
                 }
             }).then((response) => {
 
-                if (response.data[0]) {
+                if (response.data[0]) { //Si ya existe un nombre del producto repetido no se acepta
 
                     alert('Nombre de producto ya usado, seleccione otro nombre');
 
-                } else {
+                } else {//Si el nombre de producto no se repite se acepta la entrada
 
                     Axios.put('http://localhost:3001/api/actualizarProducto',//Actualizar Producto
                         {
@@ -113,7 +115,7 @@ function EditModal(props) {
             });
     }
 
-    const borrarImagen = (event) => {
+    const borrarImagen = (event) => { //Funcion para borrar imagen seleccionada
         if (window.confirm("¿Borrar imagen? Esto no se puede revertir")) {
             Axios.delete('http://localhost:3001/api/eliminarFotoProducto',
                 {
@@ -130,6 +132,8 @@ function EditModal(props) {
 
     }
 
+
+    //Se hace Forms para editar la descripcion del producto
     return (
         <Form onSubmit={handleBotonConfirmar}>
             <h4>Nombre:</h4>
@@ -139,7 +143,8 @@ function EditModal(props) {
                     placeholder="Nombre"
                     required
                     defaultValue={producto.nombre}
-                    onChange={(event) => { producto.nombre = event.target.value }}
+                    //Al realizarce un cambio cambian los valores:
+                    onChange={(event) => { producto.nombre = event.target.value }} 
                 />
                 <h4>Descripción:</h4>
             </Form.Group>
@@ -148,6 +153,7 @@ function EditModal(props) {
                     type="text"
                     placeholder="Descripcion"
                     defaultValue={producto.descripcion}
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { producto.descripcion = event.target.value }}
                     rows={3}
                 />
@@ -161,6 +167,7 @@ function EditModal(props) {
                     min='0'
                     step="any"
                     defaultValue={producto.precio}
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { producto.precio = event.target.value }}
                     required
                 />
@@ -173,6 +180,7 @@ function EditModal(props) {
                     pattern='^[0-9]+'
                     min='0'
                     defaultValue={producto.stock}
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { producto.stock = event.target.value }}
                     required
                 />
@@ -183,6 +191,7 @@ function EditModal(props) {
                     type="text"
                     placeholder="Ingredientes"
                     defaultValue={producto.ingredientes}
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { producto.ingredientes = event.target.value }}
                     rows={3}
                 />
@@ -193,6 +202,7 @@ function EditModal(props) {
                     type="text"
                     placeholder="Imagen"
                     defaultValue={imagenes[0]}
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { imagenes[0] = event.target.value; console.log(imagenes[0]) }}
                     rows={3}
                     required
@@ -204,6 +214,7 @@ function EditModal(props) {
                     type="text"
                     placeholder="Imagen2"
                     defaultValue={imagenes[1]}
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => {
                         imagenes[1] = event.target.value;
                         console.log(imagenes[1])
@@ -216,8 +227,10 @@ function EditModal(props) {
                 variant="info"
                 value={idImagenes[1]}
                 className="mt-3 btn text-right"
+                // se agrego un boton para borrar la imagen 2 y 3 , ya que estas no son siempre necesarias, solo la 1 primera
                 onClick={borrarImagen}
-                disabled={botonBorrarImagen2}>
+                //el evento del borrar la imagen se realiza cada que se hace click en el boton de borrar
+                disabled={botonBorrarImagen2}>    
                 Borrar Imagen 2
             </Button>
             <Form.Group className="mt-3">
@@ -226,34 +239,30 @@ function EditModal(props) {
                     type="text"
                     placeholder="Imagen3"
                     defaultValue={imagenes[2]}
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { imagenes[2] = event.target.value; console.log(imagenes[2]) }}
                     rows={3}
                 />
             </Form.Group>
-
+            
             <Button
                 id='imagen3'
                 variant="info"
                 value={idImagenes[2]}
                 onClick={borrarImagen}
                 className="mt-3 justify-content-md-end"
+                //Se activa o desactiva dependiendo si existe o no la imagen 3
                 disabled={botonBorrarImagen3}>
                 Borrar Imagen 3
             </Button>
-
-
-
-
-
+            
+            {/* Boton para confirmar la edición: */}
             <Col>
                 <Button variant="danger" type="submit" className="mt-3" block>
                     Confirmar
                 </Button>
 
             </Col>
-
-
-
         </Form>
     )
 }
