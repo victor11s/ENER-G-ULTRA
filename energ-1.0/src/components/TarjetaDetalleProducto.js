@@ -5,13 +5,18 @@ import ImageGallery from './ImageGallery'
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 
+//Este componente se muestra dentro de DetalleProducto.js
 function TarjetaDetalleProducto() {
+    
     let { pIdProducto, pNombreProducto, pIdCarrito } = useParams();
+    //States para alamcenar la información del producto 
     const [producto, setProducto] = useState([]);
     const [ingredientes, setIngredientes] = useState([]);
-
+    
+    //State para la información del usuario que compraría el producto
     const [usuario, setUsuario] = useState(null);
 
+    //State para la cantidad de producto a comprar
     const [sCantidadProducto, setCantidadProducto] = useState(1);
 
     useEffect(() => {
@@ -23,7 +28,7 @@ function TarjetaDetalleProducto() {
         }
 
         const axiosGet = async () => {
-            console.log(pIdProducto);
+            //Se extrae la información del producto a través del API
             await Axios.get('http://localhost:3001/api/getProducto',
                 {
                     params: {
@@ -33,7 +38,7 @@ function TarjetaDetalleProducto() {
                     // console.log(response.data);
                     setProducto(response.data[0]);
                     let ing = response.data[0].ingredientes;
-                    let ings = ing.split('\,');
+                    let ings = ing.split('\,');//Creamos un arreglo con los ingredientes
                     setIngredientes(ings);
 
                 });
@@ -41,29 +46,27 @@ function TarjetaDetalleProducto() {
         axiosGet();
     }, []);
 
-    console.log(producto);
-    console.log(ingredientes);
-
+    //Funcion para actualizar la cantidad de producto a añadir al carrito
     const updateStateCantidad = event => {
         setCantidadProducto(event.target.value);
-        // console.log(sCantidadProducto);
     };
 
+    //Funcion para agregar un producto al carrito
     const agregarProductoCarrito = (event) => {
-        // event.preventDefault();
-        // console.log(sCantidadProducto);
+
         Axios.post('http://localhost:3001/api/agregarCarrito',
             {
                 idProducto: pIdProducto,
                 idCarrito: pIdCarrito,
                 cantidadProducto: sCantidadProducto,
             }).then((response) => {
-                console.log(response.data);
-                // setProducto(response.data[0]);
+
             });
     };
 
     // activar o desactivar el boton de carrito:
+
+    //Toltip que se muestra si el usuario no ha iniciado sesión
     const renderTooltipCarrito = (props) => (
         <Tooltip id="button-tooltip" {...props}>
             Inicia sesión para agregar productos al carrito
@@ -101,6 +104,8 @@ function TarjetaDetalleProducto() {
     }
 
     return (
+
+        // Tarjeta para cuando se ve un producto , se ve su detalle, ingredientes, costo, imagenes, etc.
         <div>
             <Card className='mt-2'>
                 <Container className='p-4'>
@@ -122,6 +127,8 @@ function TarjetaDetalleProducto() {
                                         {/* onClick={agregarProductoCarrito} */}
                                         <Form.Control style={{ maxWidth: "5rem" }} className="mw-20" type="number" defaultValue="1"
                                             pattern='^[0-9]+' min='1' max='24' onChange={updateStateCantidad} />
+                                        
+                                        {/* Se muestra un botón un otro dependiendo si el usuario inició sesión: */}
                                         {
                                             usuario
                                                 ? renderCarritoActivo()
@@ -140,7 +147,7 @@ function TarjetaDetalleProducto() {
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                            {/*Aqui lo que se haces , es que cuando se agrega un nuevo ingrediente, se corta y se toma la primer letra y se pone mayuscula*/}
                                         {
                                             ingredientes.map(ingrediente => {
                                                 let ingM = ingrediente.trim()

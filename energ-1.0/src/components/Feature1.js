@@ -1,8 +1,11 @@
 import React from "react";
 import img1 from '../assets/img/LATASF.png'
 import { Col, Container, Row } from "react-bootstrap";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
+
+
+// Parte de la landing page 1, que incluye imagen del producto y boton
 class Feature1 extends React.Component {
     render() {
         return (
@@ -17,9 +20,13 @@ class Feature1 extends React.Component {
                                 </Row>
                                 <Row>
                                     <div>
-                                        <button
+                                        
+                                        <button to="/catalogo"
                                             type="button"
-                                            className="btn btn-danger text-white p-10 align-self-start ml-auto"> Conoce Más
+                                            className="btn btn-danger text-white p-10 align-self-start ml-auto">
+                                                <Link to="/catalogo">
+                                                    Conoce Más
+                                                </Link>
                                         </button>
                                     </div>
                                 </Row>
@@ -28,29 +35,12 @@ class Feature1 extends React.Component {
 
                     </Col>
                     <Col>
-                        <img class="rounded mx-auto d-block" src={img1} style={{maxHeight: '30rem'}} alt="..." />
+                        <img class="rounded mx-auto d-block" src={img1} style={{maxHeight: '30rem'}} alt="Imagen de lata Ener-G Ultra" />
                     </Col>
                 </Row>
             </div>
 
-            /* <Routes>
-                    <Route path="url" element={"componente"}/>
-            </Routes> */
-
-
-            // <header class="masthead">
-            //     <div class="container px-5">
-            //         <div className="row">
-            //             <div class=" col-md-6 ">
-            //                 <h1 class="display-1 lh-1 mb-3">Ener-G ULTRA</h1>
-            //                 <p class="lead fw-normal text-muted mb-5">Feel the Power</p>
-            //             </div>
-            //             <div className="col-md-6">
-            //                     <img class="img-responsive" src={img1} alt="..." />
-            //                 </div>
-            //         </div>
-            //     </div>
-            // </header>
+            
 
         );
     }

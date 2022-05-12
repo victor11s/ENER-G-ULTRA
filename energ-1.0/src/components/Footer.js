@@ -2,6 +2,8 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Nav, FooterBottom, PageContainer, ContentWrap } from './NavComponent';
 
+
+// Footer donde se encuentran dos textos de los derechos y la marca
 class Footer extends React.Component {
     render() {
         return (

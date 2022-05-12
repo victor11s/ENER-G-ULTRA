@@ -27,12 +27,12 @@ class Registrarse extends React.Component {
             errorMsg: ""
 
         }
-
+ 
 
     handleSubmit = e => {
         e.preventDefault();
     }
-    
+    //Un solo handle para cambiar el state del campo con el valor correspondiente:
     handleChange = async event => {
         await this.setState({
             form:
@@ -48,37 +48,37 @@ class Registrarse extends React.Component {
 
     handleBoton = () => {
         console.log(this.state.form);
+        //Se consulta si el usuario ya existe o no en la base de datos
         Axios.get('http://localhost:3001/api/consultarUsuario',
             {
                 params: {
                     nombreUsuario: this.state.form.nombreUsuario,
                 }
+
             }).then((response) => {
-                if (response.data[0]) {
+                if (response.data[0]) {//Nos indica is hubo alguna coincidencia
 
                     alert('Nombre Usuario tomado, selecciona otro Usuario');
 
-                    console.log("Handle Modal:");
-                    console.log(response.data);
-
                 } else {
 
+                    //Si el nombre de usuario no estaba repetido se agrega a la BD:
                     Axios.post('http://localhost:3001/api/agregarUsuario',
                         {
                             nombreUsuario: this.state.form.nombreUsuario,
-                            contraseña: md5(this.state.form.contraseña),
+                            contraseña: md5(this.state.form.contraseña),//Contraseña cifrada con md5
                             nombre: this.state.form.nombre,
                             apellido: this.state.form.apellido,
+
                         }).then((response) => {
-                            console.log(response.data);
-                            console.log("enviado");
+
                             alert('Usuario Creado');
+                            //Una vez se ha creado el usuario, se le añade un nuevo carrito a la BD
                             Axios.post('http://localhost:3001/api/agregarNuevoCarrito',
                                 {
                                     nombreUsuario: this.state.form.nombreUsuario,
                                 }).then((response) => {
-                                    console.log(response.data);
-                                    console.log("Carrito creado");
+
                                 });
 
                         });

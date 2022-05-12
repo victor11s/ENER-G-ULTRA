@@ -9,30 +9,32 @@ import IniciarSesion from './CreacionPerfil/IniciarSesion';
 
 function NavBar() {
 
+  //States para almacenar información del usuario, carrito actual, direccion del usuario y numero de productos en carrito
   const [usuario, setUsuario] = useState(null);
   const [sIdCarrito, setIdCarrito] = useState(null);
   const [sDireccion, setDireccion] = useState(null);
   let [sNumProductosCarrito, setNumProductos] = useState(0);
 
   useEffect(() => {
+    //Procedimiento para recuperar la información del usuario incluyendo su carrito de producto
     const usuarioString = window.localStorage.getItem("usuario");
     if (usuarioString) {
+
       const user = JSON.parse(usuarioString);
       setUsuario(user);//Ya tenemos el usuario
 
       const axiosGetIdCarrito = async () => {
+        //Se hace una consultra a traves del API para recuperar el idCarrito
         await Axios.get('http://localhost:3001/api/getIdCarrito',
           {
             params: {
               nombreUsuario: user.nombreUsuario,
             }
           }).then(async (response) => {
-            // console.log(response.data);
-            console.log("id carrito de usuario: -> " + user.nombreUsuario);
-            console.log("idCarrito: " + response.data[response.data.length - 1].idCarrito);
+
             let vIdCarrito = parseInt(response.data[response.data.length - 1].idCarrito);//nos da el ultimo carrito que se asigno al usuario
             setIdCarrito(vIdCarrito);
-            window.localStorage.setItem("carrito", vIdCarrito);
+            window.localStorage.setItem("carrito", vIdCarrito);//
 
             //Este Axios es para sacar el numero de productos en el carrito
             console.log("Recuperando proudctos del carrito: " + vIdCarrito + " ...");
@@ -64,6 +66,7 @@ function NavBar() {
   }, []);
 
 
+  //Aviso que va sobre el boton de perfil si el usuario no ha inicado sesion:
   const renderTooltipPerfil = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       Inicia sesión para ver tu perfil
@@ -93,13 +96,15 @@ function NavBar() {
     );
   }
 
-  //Para quitar o habilitar el carrito solo si el usuario inició sesión
+  //Para quitar o habilitar el carrito solo si el usuario inició sesión:
+  //Aviso que va sobre el boton de carrito si el usuario no ha inicado sesion:
   const renderTooltipCarritoNoUsuario = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       Inicia sesión para agregar productos al carrito
     </Tooltip>
   );
 
+  //Carrito para cuando todo esté en orden (sesión iniciada y dirección agregada)
   const renderCarritoActivo = () => {
     return (
       <>
@@ -112,6 +117,8 @@ function NavBar() {
       </>
     );
   }
+
+  //Boton de carrito pero con toltip activo por si el usuario no ha iniciado sesión 
   const renderCarritoUsuarioInactivo = () => {
     return (
       <>
@@ -129,12 +136,14 @@ function NavBar() {
     );
   }
 
+  //Aviso que va sobre el boton de carrito si el usuario no ha agregado su dirección:
   const renderTooltipCarritoNoDireccion = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       Agrega tu direccion para ver el carrito
     </Tooltip>
   );
 
+  //Boton de carrito pero con toltip activo por si el usuario no ha agregado su dirección
   const renderCarritoDireccionInactiva = () => {
     return (
       <>
@@ -153,6 +162,7 @@ function NavBar() {
     );
   }
 
+  //Funcion para el boton de cerrar sesión:
   const handleCerrarSesion = () => {
     window.localStorage.removeItem('usuario');
     window.localStorage.removeItem('carrito');
@@ -170,12 +180,14 @@ function NavBar() {
   console.log("productos en carrito: " + sNumProductosCarrito);
 
   return (
+
+    // aqui se incoporaron los disntintos componentes del navbar, donde se le coloco una imagen que es la del logo, ademas de los menus, que este contiene y finalmente un boton de carrito
+    // tambien aqui se encuentra configurado como se va a ver la navbar segun que tipo de usuario, ya se administrador, usuario con cuenta o usuario sin cuenta
     <>
       <Nav>
         <NavLink to='/'>
           <img src={imgLogo} alt="" style={{ width: 75 }} />
           {/*Para el logo */}
-          {/* <img src='' alt=''/>*/}
         </NavLink>
         <Bars />
         <NavMenu>

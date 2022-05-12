@@ -11,6 +11,7 @@ import Footer from '../Footer';
 
 function Pagado() {
   return (
+      //no se uso este componente
    <>
    <NavBar/>
 

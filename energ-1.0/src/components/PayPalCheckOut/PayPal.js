@@ -10,12 +10,13 @@ import { NavBtnLink } from '../NavComponent';
 import Axios from 'axios'
 
 
-
+// componente de paypal , configurado para los pagos con tarjeta y paypal
 
 const PayPal = () => { 
 
 
   let { nombreUsuario, idDireccion, amount, idCarrito } = useParams();
+  
   return (<>
     <Row>
       <NavBar />
@@ -25,9 +26,11 @@ const PayPal = () => {
       <Col></Col>
 
       <Col><PayPalCheckout
+        //Parametros para el funcionamientos del componenete:
         clientId='AXve-xxWl8FMWNmZ5vKxDar53_gClnOLVq9ezGb9XHnIQuQ5MoIwo5jGj8adGdPPRREcLWrWUdqhuah8'
         amount={amount}
         currency='MXN'
+
         onSuccess={(data, order) => {
           console.log("id de la orden: "+order.id)
           alert('Pago Exitoso')
@@ -60,6 +63,7 @@ const PayPal = () => {
               window.location.replace("/catalogo");
           });
         }}
+        //Cierra onSuccess
         onError={(error) => {
           console.log(error)
           alert("No se realizo el Pago")
@@ -76,6 +80,7 @@ const PayPal = () => {
       <Col></Col>
       <Col  clasName='d-flex justify-content-end'>
         <Button className='mx-3' variant='danger'>
+          {/*Una vez que se tiene pagado, se le da la oportunidad al usuario de volver al inicio*/ }
           <NavLink to='/'>Volver a Inicio</NavLink>
         </Button>
 

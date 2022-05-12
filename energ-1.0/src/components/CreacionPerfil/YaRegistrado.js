@@ -6,7 +6,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 
 import { Row, Col } from 'react-bootstrap';
 
-
+// no lo usamos
 
 function YaRegistrado() {
   //modal de agregar

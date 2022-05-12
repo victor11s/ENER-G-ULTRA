@@ -1,27 +1,25 @@
 import React, { Component, useState, useEffect } from 'react'
 import Axios from 'axios'
 import { Button, Card, Container, Form, Row, Col, Tooltip, OverlayTrigger } from 'react-bootstrap';
-
 import img1 from '../assets/img/LATASF.png'
-
 import { NavLink } from './NavComponent'
 
 
-
-function TarjetaProducto(props) {
+//Este componente se encuentra dentro del Catalogo.js
+function TarjetaProducto(props) {//Props contiene el usuario actual y el idProducto a mostrar en la tarjeta
+  
   const [sIdCarrito, setIdCarrito] = useState();
   const [imagenes, setImagenes] = useState('');
   const [usuario, setUsuario] = useState(props.usuario);
 
-  let busquedaRealizada = false;
-
-  
+  let busquedaRealizada = false;//Evita que la consulta se haga más de una vez
 
   useEffect(() => {
     let vIdCarrito = parseInt(window.localStorage.getItem("carrito"));
     setIdCarrito(vIdCarrito);
 
     if (!busquedaRealizada) {
+      //Se consultan las imagenes del producto en la base de datos
       Axios.get('http://localhost:3001/api/getImagenes',
         {
           params: {
@@ -30,27 +28,21 @@ function TarjetaProducto(props) {
         }).then((response) => {
           busquedaRealizada = true;
           let imgs = response.data[0].ubicacion;
-          setImagenes(imgs);
-
-
+          setImagenes(imgs);//Ya tenemos la imgen en el state
         })
     }
 
   }, []);
 
-  console.log(imagenes);
-
   const agregarProductoCarrito = (event) => {
-    // event.preventDefault();
-    // console.log(sCantidadProducto);
+    //Funcion para agregar el producto al carrito mediante el API
     Axios.post('http://localhost:3001/api/agregarCarrito',
       {
         idProducto: props.id,
         idCarrito: sIdCarrito,
         cantidadProducto: 1,
       }).then((response) => {
-        console.log(response.data);
-        // setProducto(response.data[0]);
+
       });
   };
 
@@ -61,6 +53,7 @@ function TarjetaProducto(props) {
     </Tooltip>
   );
 
+  //Carrito activo por si el usuario ya inició sesión
   const renderCarritoActivo = () => {
     return (
       <>
@@ -73,6 +66,7 @@ function TarjetaProducto(props) {
       </>
     );
   }
+  //Carrito inactivo por si el usuario no inició sesión
   const renderCarritoInactivo = () => {
     return (
       <>
@@ -92,6 +86,8 @@ function TarjetaProducto(props) {
   }
 
   return (
+
+    // con este componente se renderiza los productos del catalago de cada articulo, es decir en su tarjeta, donde se pueden ver las imagenes, precio y darle click, para ver el detalle del producto
     <div>
       <Container className="" style={{ align: 'center' }}>
         <Row>
@@ -103,7 +99,7 @@ function TarjetaProducto(props) {
                 <Card.Text>
                   {props.descripcion}
                 </Card.Text>
-                {/* <Container className="" style={{align: 'center'}}> */}
+                
                 <Row>
                   <Col className="d-flex align-items-center">
                     <div >
@@ -113,6 +109,7 @@ function TarjetaProducto(props) {
 
                   <Col className="d-grid">
                     <Form onSubmit={agregarProductoCarrito}>
+                      {/* Aquí se intercambia el boton de agregar al carrito si el usuario ha iniciado sesión o no */}
                       {
                         usuario
                           ? renderCarritoActivo()
@@ -130,7 +127,6 @@ function TarjetaProducto(props) {
                     <Button size="md" variant="dark" >  <NavLink to={`/detalleProducto/${props.id}/${props.nombre}/${sIdCarrito}`} className="d-grid" >Ver producto</NavLink></Button>
                   </Col>
                 </Row>
-                {/* </Container> */}
               </Card.Body>
             </Card>
           </Col>

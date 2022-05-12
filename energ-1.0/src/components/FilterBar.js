@@ -4,6 +4,8 @@ import Productos from './Productos';
 import { Col, Container, Row } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 
+
+// no se uso
 export default class FilterBar extends Component {
   render() {
     return (
