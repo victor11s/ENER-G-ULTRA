@@ -128,6 +128,11 @@ export default function Carrito() {
                     </Form>
                 </Card>
             </Container>
+            <Row className='mt-5'></Row>
+            <Row className='mt-5'></Row>
+            <Row className='mt-5'></Row>
+            <Row className='mt-5'></Row>
+            <Row className='mt-5'></Row>
             <Footer />
         </>
     )
