@@ -9,6 +9,9 @@ import { NavLink } from 'react-router-dom';
 
 import Item from '../components/CarritoProducto/Item'
 
+
+// no se usa, se puede usar para futuras implementaciones
+//Revisar documentacion completa en Carrito.js
 export default function CarritoAdmi() {
     let { pIdCarrito } = useParams();
     let [sProductos, setProductos] = useState([]);

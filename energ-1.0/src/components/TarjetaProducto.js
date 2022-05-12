@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react'
 import Axios from 'axios'
 import { Button, Card, Container, Form, Row, Col, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import img1 from '../assets/img/LATASF.png'
-import { NavLink } from './NavComponent'
+import { NavLink } from './NavComponent' 
 
 
 //Este componente se encuentra dentro del Catalogo.js

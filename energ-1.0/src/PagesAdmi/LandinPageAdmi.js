@@ -10,8 +10,7 @@ import { Component } from 'react';
 
 import { Container } from "react-bootstrap";
 import NavBarAdmi from "../components/NavBarAdmi";
-
-
+// Se manda llamar cada componente para la landing page del administrador
 
 export default class LandingPage extends Component {
   render() {
@@ -22,6 +21,7 @@ export default class LandingPage extends Component {
       <Feature1/>
       <Feature2/>
       <Feature3/>
+      {/* Inserte aquí mas componentes si lo desea */}
       <Footer/>
       
     </div>

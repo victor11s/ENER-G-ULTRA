@@ -13,26 +13,20 @@ import Productos from '../components/Productos';
 
 import Axios from 'axios'
 
-console.log(Productos)
-
-
-
 function CatalogoAdmi() {
-
+  //State para almacenar la lista de productos en la tienda
   const [productoLista, setProductoLista] = useState([])
 
   useEffect(() => {
+    //Se extraen todos los productos desde el API:
     Axios.get('http://localhost:3001/api/get').then((response) => {
       console.log(response.data);
-      setProductoLista(response.data)
-
+      setProductoLista(response.data)//Ya tenemos los productos
     })
   }, [])
 
-  console.log(productoLista);
-
   return (
-
+// Se manda llamar a cada producto que es llamada por la tarjeta de producto, para que sea mostrada como catalogo
     <div>
       <NavBarAdmi />
       <Container className='mt-2'>
@@ -42,14 +36,13 @@ function CatalogoAdmi() {
           <li class="breadcrumb-item active" aria-current="page">Catálogo</li>
         </Breadcrumb>
       </Container>
-      {/* <FilterBar /> */}
-      {/* <TarjetaProducto nombre={producto.nombre}/> */}
 
       <div >
         <Container>
 
           <Row className='row d-flex flex-row flex-wrap'>
             {
+              //Se mapean los productos y se muestran dentro del componente TarjetaProducto.js
               productoLista.map(producto => {
                 
                 return (
