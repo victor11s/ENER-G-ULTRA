@@ -111,14 +111,10 @@ class IniciarSesion extends React.Component {
                         <Col></Col>
                     </Row>
                 </Container>
-                <Row className='mt-5'></Row>
-                <Row className='mt-5'></Row>
-                <Row className='mt-5'></Row>
-                <Row className='mt-5'></Row>
-                <Row className='mt-5'></Row>
-                <Row className='mt-5'>
+                
+               
                 <Footer />
-                </Row>
+                
                 
 
             </>
