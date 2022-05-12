@@ -133,7 +133,10 @@ class Registrarse extends React.Component {
 
                 </Container>
 
-
+                <Row className='mt-5'></Row>
+                <Row className='mt-5'></Row>
+                <Row className='mt-5'></Row>
+                <Row className='mt-5'></Row>
                 <Footer />
 
             </>

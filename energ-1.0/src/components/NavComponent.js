@@ -32,7 +32,7 @@ padding-bottom: 2.5rem;
 //fixed para que se ponga abajo
  export const FooterBottom = styled.nav`
  position: relative;
-  height: 80px;
+  height: 71px;
   width: 100%;
   bottom: 0px;
   background: rgb(93,92,94);
