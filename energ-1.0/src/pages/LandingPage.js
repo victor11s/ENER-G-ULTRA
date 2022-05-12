@@ -10,7 +10,7 @@ import { Component } from 'react';
 import NavBar from "../components/NavBar";
 import { Container } from "react-bootstrap";
 
-
+// Se manda llamar a cada componente para poder formar la landing page
 
 export default class LandingPage extends Component {
   render() {
@@ -21,7 +21,9 @@ export default class LandingPage extends Component {
       <Feature1/>
       <Feature2/>
       <Feature3/>
+      {/* Inserte aquí mas componentes si lo desea */}
       <Footer/>
+      
       
     </div>
     )
