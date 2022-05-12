@@ -9,7 +9,7 @@ import React from "react";
 import { Component } from 'react';
 import NavBar from "../components/NavBar";
 import { Container } from "react-bootstrap";
-
+import { Row } from "react-bootstrap";
 // Se manda llamar a cada componente para poder formar la landing page
 
 export default class LandingPage extends Component {
@@ -22,6 +22,7 @@ export default class LandingPage extends Component {
       <Feature2/>
       <Feature3/>
       {/* Inserte aquí mas componentes si lo desea */}
+      <Row className='mt-5'></Row>
       <Footer/>
       
       

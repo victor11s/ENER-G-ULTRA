@@ -33,8 +33,6 @@ padding-bottom: 2.5rem;
  export const FooterBottom = styled.nav`
  position: fixed;
   left:0;
-
-  
   width: 100%;
   bottom: 0px;
   background: rgb(93,92,94);
