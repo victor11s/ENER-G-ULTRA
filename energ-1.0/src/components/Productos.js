@@ -1,3 +1,4 @@
+// se uso para pruebas antes de usar bases de datos
 const Productos=
 [
     {

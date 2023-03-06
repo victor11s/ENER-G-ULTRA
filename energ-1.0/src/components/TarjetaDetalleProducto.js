@@ -1,21 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import img1 from '../assets/img/LATASF.png'
-import { Button, Card, Col, Container, Form, Row, Table } from 'react-bootstrap'
+import { Button, Card, Col, Container, Form, Row, Table, Tooltip, OverlayTrigger } from 'react-bootstrap'
 import ImageGallery from './ImageGallery'
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 
+//Este componente se muestra dentro de DetalleProducto.js
 function TarjetaDetalleProducto() {
+    
     let { pIdProducto, pNombreProducto, pIdCarrito } = useParams();
+    //States para alamcenar la información del producto 
     const [producto, setProducto] = useState([]);
     const [ingredientes, setIngredientes] = useState([]);
     
+    //State para la información del usuario que compraría el producto
+    const [usuario, setUsuario] = useState(null);
 
+    //State para la cantidad de producto a comprar
     const [sCantidadProducto, setCantidadProducto] = useState(1);
 
     useEffect(() => {
+        const usuarioString = window.localStorage.getItem("usuario");
+
+        if (usuarioString) {
+            const user = JSON.parse(usuarioString);
+            setUsuario(user);//Ya tenemos el usuario
+        }
+
         const axiosGet = async () => {
-            console.log(pIdProducto);
+            //Se extrae la información del producto a través del API
             await Axios.get('http://localhost:3001/api/getProducto',
                 {
                     params: {
@@ -25,39 +38,74 @@ function TarjetaDetalleProducto() {
                     // console.log(response.data);
                     setProducto(response.data[0]);
                     let ing = response.data[0].ingredientes;
-                    let ings = ing.split('\,');
+                    let ings = ing.split('\,');//Creamos un arreglo con los ingredientes
                     setIngredientes(ings);
-                    
+
                 });
         }
         axiosGet();
     }, []);
 
-    console.log(producto);
-    console.log(ingredientes);
-
+    //Funcion para actualizar la cantidad de producto a añadir al carrito
     const updateStateCantidad = event => {
         setCantidadProducto(event.target.value);
-        // console.log(sCantidadProducto);
     };
 
+    //Funcion para agregar un producto al carrito
     const agregarProductoCarrito = (event) => {
-        // event.preventDefault();
-        // console.log(sCantidadProducto);
+
         Axios.post('http://localhost:3001/api/agregarCarrito',
             {
                 idProducto: pIdProducto,
                 idCarrito: pIdCarrito,
                 cantidadProducto: sCantidadProducto,
             }).then((response) => {
-                console.log(response.data);
-                // setProducto(response.data[0]);
+
             });
     };
 
-    // console.log(ingredientes);
+    // activar o desactivar el boton de carrito:
+
+    //Toltip que se muestra si el usuario no ha iniciado sesión
+    const renderTooltipCarrito = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            Inicia sesión para agregar productos al carrito
+        </Tooltip>
+    );
+
+    const renderCarritoActivo = () => {
+        return (
+            <>
+                <Button className='mx-3' variant='danger' type='submit' >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                        <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
+                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                    </svg>     Agregar al carrito
+                </Button>
+            </>
+        );
+    }
+    const renderCarritoInactivo = () => {
+        return (
+            <>
+                <OverlayTrigger
+                    placement="bottom"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={renderTooltipCarrito}>
+                    <Button className='mx-3' variant='danger'  >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                            <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
+                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                        </svg>     Agregar al carrito
+                    </Button>
+                </ OverlayTrigger>
+            </>
+        );
+    }
 
     return (
+
+        // Tarjeta para cuando se ve un producto , se ve su detalle, ingredientes, costo, imagenes, etc.
         <div>
             <Card className='mt-2'>
                 <Container className='p-4'>
@@ -79,12 +127,13 @@ function TarjetaDetalleProducto() {
                                         {/* onClick={agregarProductoCarrito} */}
                                         <Form.Control style={{ maxWidth: "5rem" }} className="mw-20" type="number" defaultValue="1"
                                             pattern='^[0-9]+' min='1' max='24' onChange={updateStateCantidad} />
-                                        <Button className='mx-3' variant='danger' type='submit' >
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
-                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-                                            </svg>     Agregar al carrito
-                                        </Button>
+                                        
+                                        {/* Se muestra un botón un otro dependiendo si el usuario inició sesión: */}
+                                        {
+                                            usuario
+                                                ? renderCarritoActivo()
+                                                : renderCarritoInactivo()
+                                        }
                                     </Col>
                                 </Row>
                             </Form>
@@ -98,7 +147,7 @@ function TarjetaDetalleProducto() {
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                            {/*Aqui lo que se haces , es que cuando se agrega un nuevo ingrediente, se corta y se toma la primer letra y se pone mayuscula*/}
                                         {
                                             ingredientes.map(ingrediente => {
                                                 let ingM = ingrediente.trim()

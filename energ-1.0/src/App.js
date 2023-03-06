@@ -2,7 +2,6 @@ import LandingPage from "./pages/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Catalogo from "./pages/Catalogo.js";
 import CatalogoAdmi from "./PagesAdmi/CatalogoAdmi.js";
-
 import React, { useState, useEffect } from "react";
 import DetalleProductos from "./pages/DetalleProductos";
 import AdmiAgregarProducto from "./pages/AdmiAgregarProducto";
@@ -17,6 +16,7 @@ import PerfilAdmi from "./components/Admi/PerfilAdmi";
 import LandingPageAdmi from "./PagesAdmi/LandingPagesAdmi";
 import DetalleProductosAdmi from "./PagesAdmi/DetalleProductosAdmi";
 import PedidosIndividualesAdmi from "./components/Admi/PedidosIndividualesAdmi";
+
 // aqui se importan todos los componentes creados
 
 // crear nuevos componentes de navBar ya en proceso
@@ -24,6 +24,7 @@ import PedidosIndividualesAdmi from "./components/Admi/PedidosIndividualesAdmi";
 
 //Se llaman los componentes para incluirlos en el app.js
 const App = () => { 
+  //States para guardar la información del usuario actual
   const [usuario, setUsuario] = useState(null);
   const [token, setToken] = useState(null);
   const [tipoUsuario, setTipoUsuario] = useState('usuario');
@@ -31,15 +32,19 @@ const App = () => {
   useEffect(() => {
     const usuarioString = window.localStorage.getItem("usuario");
     if(usuarioString){
+      //Si existe el usuario existe se actualiza el state
       const user = JSON.parse(usuarioString);
       setUsuario(user);
       setTipoUsuario(user.tipo);
     }else{
+      //Sino se coloca en null
       setUsuario(null);
       setTipoUsuario('usuario');
     }
   }, []);
 
+
+  // Componentes renderizados si es usuario tipo cliente
   const renderUsuario = () => {
     return (
       <div>
@@ -49,15 +54,12 @@ const App = () => {
             <Route path="/catalogo" element={<Catalogo />} />
             <Route path="/detalleProducto/:id/:nombre" element={<DetalleProductos />} />
             <Route path="/detalleProducto/:pIdProducto/:pNombreProducto/:pIdCarrito" element={<DetalleProductos />} />
-            <Route path="/admiAgregarProducto/" element={<AdmiAgregarProducto />} />
             <Route path="/carrito/:pIdCarrito" element={<Carrito />} />
             <Route path="/iniciarSesion" element={<IniciarSesion pSetUsuario={setUsuario} pTipoUsuario={setTipoUsuario}/>} />
             <Route path="/registrar" element={<Registrarse />} />
             <Route path="/checkout/:nombreUsuario/:idDireccion/:amount/:idCarrito" element={<PayPal />} />
             <Route path="/regresarInicio" element={<Pagado />} />
             <Route path="/miPerfil" element={<Profile />} /> 
-            <Route path="/perfilAdmi" element={<PerfilAdmi />} />
-
             {/* Agregar rutas de perfil y noticias*/}
           </Routes>
         </BrowserRouter>
@@ -65,7 +67,7 @@ const App = () => {
       </div>
     );
   }
-
+// Componentes renderizados si es usuario tipo administrador
   const renderAdmin = () => {
     return (
       <div>
@@ -79,10 +81,7 @@ const App = () => {
             <Route path="/iniciarSesion" element={<IniciarSesion pSetUsuario={setUsuario} pTipoUsuario={setTipoUsuario} />} />
             <Route path="/registrar" element={<Registrarse />} />
             <Route path="/perfilAdmi" element={<PerfilAdmi />} />
-
             <Route path="/pedidosAdmi/:nombreUsuario" element={<PedidosIndividualesAdmi />} />
-
-
             {/* Agregar rutas de perfil y noticias*/}
           </Routes>
         </BrowserRouter>
@@ -93,10 +92,11 @@ const App = () => {
 
   return (
     <div>
+      {/* Aqui se intercambian las rutas por tipo de usuario */}
       {
-        tipoUsuario == 'usuario'
-          ? renderUsuario()
-          : renderAdmin()
+        tipoUsuario == 'admi'
+          ? renderAdmin()
+          : renderUsuario()
       }
     </div>
   );

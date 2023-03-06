@@ -2,6 +2,9 @@ import { FaBars } from 'react-icons/fa';
 import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+
+
+// le da estilo a la navbar
 export const Nav = styled.nav`
 background: rgb(93,92,94);
 background: linear-gradient(0deg, rgba(93,92,94,1) 5%, rgba(122,12,28,1) 63%);
@@ -24,25 +27,12 @@ export const ContentWrap = styled.div`
 padding-bottom: 2.5rem;    
 `;
 
-// export const FooterBottom = styled.nav`
-//   position: absolute;
-//   bottom: 0;
-//   width: 100%;
-//   height: 80px;
-//   background: rgb(93,92,94);
-//   background: linear-gradient(0deg, rgba(93,92,94,1) 5%, rgba(122,12,28,1) 63%);
 
-  
-//   justify-content: space-between;
-//   padding: 0.5rem calc((100vw - 1000px) / 2);
-//   z-index: 10;
-// `;
-
-
+// Estilos del Footer
 //fixed para que se ponga abajo
  export const FooterBottom = styled.nav`
- position: relative;
-  height: 80px;
+ position: fixed;
+  left:0;
   width: 100%;
   bottom: 0px;
   background: rgb(93,92,94);
@@ -54,6 +44,8 @@ padding-bottom: 2.5rem;
   z-index: 10;
 `;
 
+
+//Estilos del Link 
 export const NavLink = styled(Link)`
   color: #fff;
   display: flex;
@@ -66,7 +58,7 @@ export const NavLink = styled(Link)`
     color: #FFF;
   }
 `;
-
+// estilos de la barra al contraerse
 export const Bars = styled(FaBars)`
   display: none;
   color: #fff;
@@ -81,6 +73,8 @@ export const Bars = styled(FaBars)`
   }
 `;
 
+
+// estilos de los posibles menus del navbar
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
@@ -95,6 +89,7 @@ export const NavMenu = styled.div`
   }
 `;
 
+//Estilo de un boton para la navBar
 export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
@@ -107,6 +102,8 @@ export const NavBtn = styled.nav`
   }
 `;
 
+
+//Estilo de un boton con link
 export const NavBtnLink = styled(Link)`
   border-radius: 4px;
   background: #87868A;

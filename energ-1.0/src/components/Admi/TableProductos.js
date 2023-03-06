@@ -1,23 +1,16 @@
 import React, { Component, useEffect, useState } from 'react'
-
 import { Button, Form, Container, Table, Modal, ModalHeader } from 'react-bootstrap'
-
 import { AiOutlinePlusCircle } from "react-icons/ai";
-
-import { Row, Col } from 'react-bootstrap';
- 
+import { Row, Col } from 'react-bootstrap'; 
 import EditModal from './EditModal';
-
 import FormModal from './FormModal';
-
 import Axios from 'axios';
 
-
-
 function TableProductos() {
-  //modal de agregar:
+  //modal de agregar producto:
   const [show, setShow] = useState(false)
 
+  //Handle Show/Close del modal añadir producto:
   const handleShow = () => setShow(true)
 
   const handleClose = () => setShow(false)
@@ -25,6 +18,7 @@ function TableProductos() {
   //modal de editar:
   const [show2, setShow2] = useState(false)
 
+  //Handle Show/Close del modal editar producto:
   const handleShow2 = (event) => {
     setThisIdProducto(event.target.value);//Cambia el state del producto de interes para el modal
     setShow2(true)
@@ -34,11 +28,14 @@ function TableProductos() {
 
   //modal de borrar:
   const [show3, setShow3] = useState(false)
+
+  //Handle Show del modal borrar producto 
   const handleShow3 = (event) => {
     setThisIdProducto(event.target.value);//Cambia el state del producto de interes para el modal
     setShow3(true);
   }
 
+  //Handle Close del modal borrar producto cuando se confirma el borrado
   const handleClose3Aceptar = () => {
 
     Axios.delete('http://localhost:3001/api/eliminarProducto',
@@ -54,13 +51,13 @@ function TableProductos() {
     setShow3(false)
   }
 
+  //Función para eliminar el producto borrado de la interfaz gráfica
   const eliminarItem = (id) => {
     const nuevosProductos = productoLista.filter(producto => producto.idProducto != id);
     setProductoLista(nuevosProductos);
-    console.log(id);
-    console.log(nuevosProductos);
   }
 
+  //Handle Show/Close del modal borrar producto cuando se cancela el borrado
   const handleClose3 = () => setShow3(false)
 
   //Productos en la tienda:
@@ -68,7 +65,6 @@ function TableProductos() {
 
   //Produdcto a editar/borrar:
   const [thisIdProducto, setThisIdProducto] = useState("1");
-
 
   //Recuperar todos los productos de la BD:
   useEffect(() => {
@@ -85,6 +81,8 @@ function TableProductos() {
 
   const wellStyles = { minWidth: 100 };
   
+
+  //Aqui se crea la tabla de cada producto en el inventario, con sus respectivas opciones de editar y borrar, ademas de poder agregar un porducto con un boton con un simbolo de +
   return (
     <Container>
       <div className='mt-0'>
@@ -107,8 +105,7 @@ function TableProductos() {
               <th>Precio</th>
               <th>Stock</th>
               <th>Ingredientes</th>
-              {/* <th>Imagen</th> */}
-              <th>Editar</th>
+              <th>Opciones</th>
             </tr>
           </thead>
           <tbody>

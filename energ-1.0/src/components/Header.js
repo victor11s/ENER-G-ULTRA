@@ -3,6 +3,8 @@ import { Col, Container, Nav, Row } from "react-bootstrap";
 import { NavLink } from 'react-router-dom'
 
 
+// no se uso
+
 class Header extends React.Component {
   render() {
     return (

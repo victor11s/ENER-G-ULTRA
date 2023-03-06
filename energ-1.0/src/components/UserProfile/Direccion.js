@@ -15,7 +15,7 @@ function Direccion(props) {
 
   return (
     <Container>
-      <h2>Dirección</h2>
+      <h2 className="text-center">Dirección</h2>
       <ListGroup>
         <ListGroup.Item className="mt-1">Calle: {props.calle}</ListGroup.Item>
       </ListGroup>

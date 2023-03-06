@@ -7,8 +7,9 @@ import img1 from '../assets/img/LATASF.png'
 import { NavLink } from '../components/NavComponent'
 
 
-
+//Este componente se encuentra dentro del CatalogoAdmin.js
 function TarjetaProductoAdmi(props) {
+  //Props contiene el usuario actual y el idProducto a mostrar en la tarjeta
   const [imagenes, setImagenes] = useState('');
   let busquedaRealizada = false;
 
@@ -17,6 +18,8 @@ function TarjetaProductoAdmi(props) {
 
  useEffect(() => {
   if(!busquedaRealizada){
+  //Se consultan las imagenes del producto en la base de datos
+
     Axios.get('http://localhost:3001/api/getImagenes',
     {
       params: {
@@ -25,7 +28,7 @@ function TarjetaProductoAdmi(props) {
     }).then((response)  => {
       busquedaRealizada = true;
       let imgs = response.data[0].ubicacion;
-      setImagenes(imgs);
+      setImagenes(imgs); //Ya tenemos la imgen en el state
       
     })
   } 
@@ -35,19 +38,18 @@ function TarjetaProductoAdmi(props) {
   console.log(imagenes);
 
   const agregarProductoCarrito = (event) => {
-    // event.preventDefault();
-    // console.log(sCantidadProducto);
+    //Funcion para agregar el producto al carrito mediante el API
     Axios.post('http://localhost:3001/api/agregarCarrito',
       {
         idProducto: props.id,
         idCarrito: 1,
         cantidadProducto: 1,
       }).then((response) => {
-        console.log(response.data);
-        // setProducto(response.data[0]);
+
       });
   };
   return (
+    // con este componente se renderiza los productos del catalago de cada articulo, es decir en su tarjeta, donde se pueden ver las imagenes, precio y darle click, para ver el detalle del producto
     <div>
       <Container className="" style={{ align: 'center' }}>
         <Row>
@@ -59,7 +61,6 @@ function TarjetaProductoAdmi(props) {
                 <Card.Text>
                   {props.descripcion}
                 </Card.Text>
-                {/* <Container className="" style={{align: 'center'}}> */}
                 <Row>
                   <Col className="d-flex align-items-center">
                     <div >
@@ -89,7 +90,7 @@ function TarjetaProductoAdmi(props) {
                     <Button size="md" variant="dark" >  <NavLink to={`/detalleProducto/${props.id}/${props.nombre}/1`} className="d-grid" >Ver producto</NavLink></Button>
                   </Col>
                 </Row>
-                {/* </Container> */}
+
               </Card.Body>
             </Card>
           </Col>

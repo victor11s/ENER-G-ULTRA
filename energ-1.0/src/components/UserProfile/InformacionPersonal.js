@@ -14,7 +14,8 @@ function InformacionPersonal(props) {
 
     <Container>
 
-      <h2>Perfil</h2>
+      <h2 className="text-center">Perfil</h2>
+     
       <ListGroup>
         <ListGroup.Item >Nombre: {props.profileNombre}</ListGroup.Item>
         <ListGroup.Item >Apellido: {props.profileApellido}</ListGroup.Item>

@@ -10,7 +10,8 @@ import "./iniciarSesion.css"
 import { Link } from 'react-router-dom'
 
 class IniciarSesion extends React.Component {
-
+    
+    //State para almacenar la información del usuario a iniciar sesión
     state =
         {
             form:
@@ -22,12 +23,12 @@ class IniciarSesion extends React.Component {
             },
             error: false,
             errorMsg: ""
-
         } 
 
     handleSubmit = async (e) => {
         e.preventDefault();
         console.log(this.state.form.nombreUsuario);
+        //Se verfica que el usuario ingresado coincida con el de la base de datos 
         await Axios.get('http://localhost:3001/api/verificarUsuario',
             {
                 params: {
@@ -37,18 +38,18 @@ class IniciarSesion extends React.Component {
                 if(response.data[0]){
                     let usuario = response.data[0];
                     let contrasena = usuario.contraseña;
-                    let sContrasena = md5(this.state.form.contrasena)
+                    let sContrasena = md5(this.state.form.contrasena)//La contraseña se encripta con MD5
 
-                    // if(contrasena==md5(this.state.form.contrasena)){
-                    if(contrasena == sContrasena){
+                    if(contrasena == sContrasena){//Se compara la contraseña ingresada con la de la BD
                         alert("Inicio Sesión con Exito")
+                        //Se actualiza la información del usuario en distintos componentes:
                         this.props.pSetUsuario(usuario);
-                        //console.log(JSON.stringify(response.data[0]));
                         window.localStorage.setItem("usuario", JSON.stringify(usuario));
                         await this.props.pTipoUsuario(usuario.tipo);
                         setTimeout(() => {
                             console.log("3 Segundos esperado")
                         }, 3000);
+                        //Se redirige a una sección o a otra dependiendo del tipo de usuario
                         (usuario.tipo=="usuario" ?
                         window.location.replace("/")
                         : window.location.replace("/landing"))
@@ -59,7 +60,7 @@ class IniciarSesion extends React.Component {
                 console.log(response.data);
             });
     }
-
+    //Un solo handle para cambiar el state del campo con el valor correspondiente:
     handleChange = async e => {
         await this.setState({
             form:
@@ -73,6 +74,8 @@ class IniciarSesion extends React.Component {
 
 
     render() {
+
+        // Forms donde se llena la informacion del usuario y la contraseña para hacer el login
         return (
             <>
                 <NavBar />
@@ -99,6 +102,7 @@ class IniciarSesion extends React.Component {
                                 <Button variant="danger btn-block" type="submit">
                                     Iniciar Sesión
                                 </Button>
+                                {/* Aqui se le puede dar click y te lleva a la ventana de resgistrarse*/}
                                 <div className='text-right mt-3'>
                                     <Button variant="btn btn-link"><Link className='register' to='/registrar'>Registrarse</Link></Button>
                                 </div>
@@ -107,7 +111,11 @@ class IniciarSesion extends React.Component {
                         <Col></Col>
                     </Row>
                 </Container>
+                
+               
                 <Footer />
+                
+                
 
             </>
         )

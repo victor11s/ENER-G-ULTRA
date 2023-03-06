@@ -6,7 +6,7 @@ import Axios from 'axios';
 
 
 const FormModal = () => {
-
+    //Guardamos la información del producto a agregar states:
     const [sNombreProducto, setNombreProducto] = useState('');
     const [sDescripcionProducto, setDescripcionProducto] = useState('');
     const [sPrecioProducto, setPrecioProducto] = useState(1);
@@ -70,71 +70,76 @@ const FormModal = () => {
                 <Form.Control
                     type="text"
                     placeholder="Nombre"
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { setNombreProducto(event.target.value) }}//Guardamos la información del campo en el state
-                    required
-                />
+                    required/>
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
                     type="text"
                     placeholder="Descripcion"
                     rows={3}
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { setDescripcionProducto(event.target.value) }}
-                    required
-                />
+                    required/>
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
                     type="number"
                     placeholder="Precio"
+                    pattern='^[0-9]+'
+                    min='0'
+                    step="any"
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { setPrecioProducto(event.target.value) }}
-                    required
-                />
+                    required/>
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
                     type="number"
                     placeholder="Stock"
+                    pattern='^[0-9]+'
+                    min='0'
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { setStockProducto(event.target.value) }}
-                    required
-                />
+                    required/>
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
                     type="text"
                     placeholder="Ingredientes"
                     rows={3}
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { setIngredientesProducto(event.target.value) }}
-                    required
-                />
+                    required/>
             </Form.Group>
             {<Form.Group className="mt-3">
                 <Form.Control
                     type="text"
                     placeholder="Imagen1"
                     rows={3}
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { setImagen1Producto(event.target.value) }}
-                    required
-                />
+                    required/>
             </Form.Group>}
             <Form.Group className="mt-3">
                 <Form.Control
                     type="text"
                     placeholder="Imagen2"
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { setImagen2Producto(event.target.value) }}
-                    rows={3}
-                />
+                    rows={3}/>
             </Form.Group>
             <Form.Group className="mt-3">
                 <Form.Control
                     type="text"
                     placeholder="Imagen3"
+                    //Al realizarce un cambio cambian los valores:
                     onChange={(event) => { setImagen3Producto(event.target.value) }}
-                    rows={3}
-                />
+                    rows={3}/>
             </Form.Group>
 
-
+            {/* Boton para confirmar la agergación del producto: */}
             <Button variant="danger" type="submit" className="mt-3" block>
                 Agregar Producto
             </Button>

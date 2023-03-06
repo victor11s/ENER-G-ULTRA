@@ -4,6 +4,8 @@ import img1 from '../assets/img/LATASF.png'
 import { div } from "./LandingStyle";
 
 
+// Parte 2 Landing page, incluye imagen y marca
+
 class Feature2 extends React.Component {
     render() {
         return (
@@ -23,19 +25,7 @@ class Feature2 extends React.Component {
             </div>
 
 
-            // <header class="masthead">
-            //     <div class="container px-5">
-            //         <div className="row">
-            //             <div class=" col-md-6 ">
-            //                 <h1 class="display-1 lh-1 mb-3">Ener-G ULTRA</h1>
-            //                 <p class="lead fw-normal text-muted mb-5">Feel the Power</p>
-            //             </div>
-            //             <div className="col-md-6">
-            //                     <img class="img-responsive" src={img1} alt="..." />
-            //                 </div>
-            //         </div>
-            //     </div>
-            // </header>
+         
 
         );
     }

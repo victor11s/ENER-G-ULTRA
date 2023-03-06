@@ -6,27 +6,31 @@ import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 import ImageGallery from '../components/ImageGallery';
 
+
+//Este componente se muestra dentro de DetalleProducto.js
 function TarjetaDetalleProductoAdmi() {
     let { pIdProducto, pNombreProducto, pIdCarrito } = useParams();
+     //States para alamcenar la información del producto 
     const [producto, setProducto] = useState([]);
     const [ingredientes, setIngredientes] = useState([]);
     
-
+    //State para la información del usuario que compraría el producto
     const [sCantidadProducto, setCantidadProducto] = useState(1);
 
     useEffect(() => {
         const axiosGet = async () => {
             console.log(pIdProducto);
+            //Se extrae la información del producto a través del API
             await Axios.get('http://localhost:3001/api/getProducto',
                 {
                     params: {
                         idProducto: pIdProducto,
                     }
                 }).then((response) => {
-                    // console.log(response.data);
+
                     setProducto(response.data[0]);
                     let ing = response.data[0].ingredientes;
-                    let ings = ing.split('\,');
+                    let ings = ing.split('\,');//Creamos un arreglo con los ingredientes
                     setIngredientes(ings);
                     
                 });
@@ -37,14 +41,17 @@ function TarjetaDetalleProductoAdmi() {
     console.log(producto);
     console.log(ingredientes);
 
+
+    //Funcion para actualizar la cantidad de producto a añadir al carrito
     const updateStateCantidad = event => {
         setCantidadProducto(event.target.value);
         // console.log(sCantidadProducto);
     };
 
+
+    //Funcion para agregar un producto al carrito
     const agregarProductoCarrito = (event) => {
-        // event.preventDefault();
-        // console.log(sCantidadProducto);
+
         Axios.post('http://localhost:3001/api/agregarCarrito',
             {
                 idProducto: pIdProducto,
@@ -56,9 +63,9 @@ function TarjetaDetalleProductoAdmi() {
             });
     };
 
-    // console.log(ingredientes);
 
     return (
+        // Tarjeta para cuando se ve un producto , se ve su detalle, ingredientes, costo, imagenes, etc.
         <div>
             <Card className='mt-2'>
                 <Container className='p-4'>
@@ -99,7 +106,7 @@ function TarjetaDetalleProductoAdmi() {
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                     {/*Aqui lo que se haces , es que cuando se agrega un nuevo ingrediente, se corta y se toma la primer letra y se pone mayuscula*/}
                                         {
                                             ingredientes.map(ingrediente => {
                                                 let ingM = ingrediente.trim()

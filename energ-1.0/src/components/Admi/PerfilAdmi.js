@@ -11,7 +11,7 @@ import NavBarAdmi from '../NavBarAdmi';
 import PedidosAdmi from './PedidosAdmi';
 
 
-
+//Esta página contiene los 2 acordiones del admi, es decir de la tabla de los productos y de los pedidos por usuario
 function PerfilAdmi() {
     return (
         <>
@@ -27,8 +27,9 @@ function PerfilAdmi() {
                 </Container>
             <Container>
                 
-
+                
                 <Accordion defaultActiveKey="0">
+                    {/* Sección del accordion para ver los productos registrados: */}
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>Productos</Accordion.Header>
                         <Accordion.Body>
@@ -40,6 +41,7 @@ function PerfilAdmi() {
                             <TableProductos/>
                         </Accordion.Body>
                     </Accordion.Item>
+                    {/* Sección del accordion para ver los usuarios que tienen pedidos solicitados*/}
                     <Accordion.Item eventKey="1">
                         <Accordion.Header>Pedidos</Accordion.Header>
                         <Accordion.Body>
